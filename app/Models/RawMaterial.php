@@ -4,8 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
-class RawMaterial extends Model
-{
+class RawMaterial extends Model {
     use HasFactory;
+
+    public function machinery(): Relation {
+        return $this->belongsToMany(Machinery::class);
+    }
 }

@@ -4,8 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
-class Review extends Model
-{
+class Review extends Model {
     use HasFactory;
+
+    public function client(): Relation {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function makarons(): Relation {
+        return $this->belongsTo(Makarons::class);
+    }
 }
