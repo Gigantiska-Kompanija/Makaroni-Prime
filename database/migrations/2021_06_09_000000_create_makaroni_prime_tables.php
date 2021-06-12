@@ -105,11 +105,11 @@ class CreateMakaroniPrimeTables extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('order_makarons', function (Blueprint $table) {
+        Schema::create('makarons_order', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('orderID');
             $table->string('makarons');
+            $table->foreignId('orderID');
             $table->integer('amount');
             $table->decimal('price');
 
@@ -124,23 +124,23 @@ class CreateMakaroniPrimeTables extends Migration {
             $table->foreign('code')->references('code')->on('discount')->onDelete('cascade');
             $table->foreign('makarons')->references('name')->on('makarons')->onDelete('cascade');
         });
-        Schema::create('employee_division', function (Blueprint $table) {
+        Schema::create('division_employee', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('division');
             $table->string('employee', 11);
-            $table->string('division');
 
-            $table->foreign('employee')->references('personalId')->on('employee')->onDelete('cascade');
             $table->foreign('division')->references('name')->on('division')->onDelete('cascade');
+            $table->foreign('employee')->references('personalId')->on('employee')->onDelete('cascade');
         });
-        Schema::create('manager_division', function (Blueprint $table) {
+        Schema::create('division_manager', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('manager');
             $table->string('division');
+            $table->string('manager');
 
-            $table->foreign('manager')->references('employee')->on('manager')->onDelete('cascade');
             $table->foreign('division')->references('name')->on('division')->onDelete('cascade');
+            $table->foreign('manager')->references('employee')->on('manager')->onDelete('cascade');
         });
         Schema::create('machinery_rawMaterial', function (Blueprint $table) {
             $table->id();
