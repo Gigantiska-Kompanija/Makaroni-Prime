@@ -13,7 +13,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        return view('employees.list');
     }
 
     /**
@@ -23,7 +23,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('employees.add');
     }
 
     /**
@@ -34,7 +34,18 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('employees.list');
+    }
+    
+    /**
+     * Display an employee.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('employees.info', compact('id'));
     }
 
     /**
@@ -45,7 +56,7 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('employees.edit', compact('id'));
     }
 
     /**
@@ -57,7 +68,7 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return view('employees.info', compact('id'));
     }
 
     /**
@@ -68,6 +79,6 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return view('employees.list');
     }
 }
