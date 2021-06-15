@@ -13,9 +13,9 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        //
+        return view('ingredients.list');
     }
-
+    
     /**
      * Filter ingredients by name and amount.
      *
@@ -25,7 +25,7 @@ class IngredientController extends Controller
     {
         //
     }
-    
+
     /**
      * Add an ingredient
      *
@@ -33,7 +33,7 @@ class IngredientController extends Controller
      */
     public function create()
     {
-        //
+        return view('ingredients.add');
     }
 
     /**
@@ -44,7 +44,18 @@ class IngredientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('ingredients.list');
+    }
+    
+    /**
+     * Display an ingredient.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('ingredients.info', compact('id'));
     }
 
     /**
@@ -55,7 +66,7 @@ class IngredientController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('ingredients.edit', compact('id'));
     }
 
     /**
@@ -67,7 +78,7 @@ class IngredientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return view('ingredients.info', compact('id'));
     }
 
     /**
@@ -78,6 +89,6 @@ class IngredientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return view('ingredients.list');
     }
 }

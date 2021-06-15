@@ -13,7 +13,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        return view('clients.list');
     }
     
     /**
@@ -33,7 +33,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('clients.add');
     }
 
     /**
@@ -44,7 +44,18 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('clients.list');
+    }
+    
+    /**
+     * Display a client.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('clients.info', compact('id'));
     }
 
     /**
@@ -55,7 +66,7 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('clients.edit', compact('id'));
     }
 
     /**
@@ -67,7 +78,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return view('clients.info', compact('id'));
     }
 
     /**
@@ -78,6 +89,6 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return view('clients.list');
     }
 }

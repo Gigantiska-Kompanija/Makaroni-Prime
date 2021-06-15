@@ -13,7 +13,7 @@ class MachineController extends Controller
      */
     public function index()
     {
-        //
+        return view('machines.list');
     }
     
     /**
@@ -33,7 +33,7 @@ class MachineController extends Controller
      */
     public function create()
     {
-        //
+        return view('machines.add');
     }
 
     /**
@@ -44,7 +44,18 @@ class MachineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('machines.list');
+    }
+    
+    /**
+     * Display a machine.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('machines.info', compact('id'));
     }
 
     /**
@@ -55,7 +66,7 @@ class MachineController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('machines.edit', compact('id'));
     }
 
     /**
@@ -67,7 +78,7 @@ class MachineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return view('machines.info', compact('id'));
     }
 
     /**
@@ -78,6 +89,6 @@ class MachineController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return view('machines.list');
     }
 }

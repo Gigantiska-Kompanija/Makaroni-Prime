@@ -13,7 +13,7 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        //
+        return view('discounts.list');
     }
     
     /**
@@ -33,7 +33,7 @@ class DiscountController extends Controller
      */
     public function create()
     {
-        //
+        return view('discounts.add');
     }
 
     /**
@@ -44,7 +44,18 @@ class DiscountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('discounts.list');
+    }
+    
+    /**
+     * Display a discount.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('discounts.info', compact('id'));
     }
 
     /**
@@ -55,7 +66,7 @@ class DiscountController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('discounts.edit', compact('id'));
     }
 
     /**
@@ -67,7 +78,7 @@ class DiscountController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return view('discounts.info', compact('id'));
     }
 
     /**
@@ -78,6 +89,6 @@ class DiscountController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return view('discounts.list');
     }
 }

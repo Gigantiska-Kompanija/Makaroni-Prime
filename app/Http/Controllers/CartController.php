@@ -7,6 +7,36 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     /**
+     * Show a list of clients.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('cart');
+    }
+
+    /**
+     * Show a list of clients.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function order()
+    {
+        return view('form-order');
+    }
+
+    /**
+     * Show a list of clients.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeOrder()
+    {
+        return view('store');
+    }
+
+    /**
      * Create a cart.
      *
      * @return \Illuminate\Http\Response

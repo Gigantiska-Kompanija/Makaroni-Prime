@@ -13,7 +13,7 @@ class MakaroniController extends Controller
      */
     public function index()
     {
-        //
+        return view('makaroni.list');
     }
     
     /**
@@ -33,7 +33,7 @@ class MakaroniController extends Controller
      */
     public function create()
     {
-        //
+        return view('makaroni.add');
     }
 
     /**
@@ -44,7 +44,18 @@ class MakaroniController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('makaroni.list');
+    }
+    
+    /**
+     * Display a MAKARONI.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('makaroni.info', compact('id'));
     }
 
     /**
@@ -55,7 +66,7 @@ class MakaroniController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('makaroni.edit', compact('id'));
     }
 
     /**
@@ -67,7 +78,7 @@ class MakaroniController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return view('makaroni.info', compact('id'));
     }
 
     /**
@@ -78,6 +89,6 @@ class MakaroniController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return view('makaroni.list');
     }
 }

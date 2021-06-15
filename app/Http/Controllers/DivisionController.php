@@ -13,7 +13,7 @@ class DivisionController extends Controller
      */
     public function index()
     {
-        //
+        return view('divisions.list');
     }
     
     /**
@@ -33,7 +33,7 @@ class DivisionController extends Controller
      */
     public function create()
     {
-        //
+        return view('divisions.add');
     }
 
     /**
@@ -44,7 +44,18 @@ class DivisionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('divisions.list');
+    }
+    
+    /**
+     * Display a division.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('divisions.info', compact('id'));
     }
 
     /**
@@ -55,7 +66,7 @@ class DivisionController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('divisions.edit', compact('id'));
     }
 
     /**
@@ -67,7 +78,7 @@ class DivisionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return view('divisions.info', compact('id'));
     }
 
     /**
@@ -78,6 +89,6 @@ class DivisionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return view('divisions.list');
     }
 }

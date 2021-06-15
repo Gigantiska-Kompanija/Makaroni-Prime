@@ -1,21 +1,36 @@
 <x-app-layout>
     <x-slot name="header">
+    <div class="d-flex justify-content-between align-items-center">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Store') }}
+            Store
         </h2>
+        <a class="btn btn-dark" href={{ route("cart.index") }}>Cart</a>
+    </div>
     </x-slot>
-    <style></style>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="row">
-                    @for ($i = 0; $i < 10; $i++)
-                        product
-                    @endfor
-                    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @for ($i = 0; $i < 10; $i++)
+            <a class="col" href={{ route("makaroni.show", $i) }}>
+                <div class="card h-100">
+                <img src="https://picsum.photos/200" class="card-img-top" alt="...">
+                <div class="card-img-overlay">
+                    <h5 class="card-title fs-2 bg-light rounded-circle p-3" style="width: fit-content;">#{{ $i }}</h5>
                 </div>
-            </div>
-        </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title fs-2">Name {{$i}}</h5>
+                        <h5 class="card-title fs-2">{{$i}}$</h5>
+                    </div>
+                    <ul>
+                        <li>Shape: shape {{ $i }}</li>
+                        <li>Color: color {{ $i }}</li>
+                        <li>Length: length {{ $i }}</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <p class="text-muted">In stock: {{ $i }}</p>
+                </div>
+                </div>
+            </a>
+        @endfor
     </div>
 </x-app-layout>

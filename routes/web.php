@@ -27,5 +27,8 @@ Route::resource('ingredients', 'App\Http\Controllers\IngredientController');
 Route::resource('divisions', 'App\Http\Controllers\DivisionController');
 Route::resource('clients', 'App\Http\Controllers\ClientController');
 Route::resource('discounts', 'App\Http\Controllers\DiscountController');
+Route::get('cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
+Route::get('form-order', 'App\Http\Controllers\CartController@order')->name('form.order');
+Route::post('form-order', 'App\Http\Controllers\CartController@storeOrder')->name('form.storeOrder');
 
 require __DIR__.'/auth.php';
