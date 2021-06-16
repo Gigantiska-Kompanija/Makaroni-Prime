@@ -44,6 +44,7 @@ class MachineController extends Controller
      */
     public function store(Request $request)
     {
+        //
         $machine = new Employee();
         $machine->serialNumber = $request->serialNumber;
         $machine->function = $request->function;
