@@ -44,6 +44,15 @@ class MakaroniController extends Controller
      */
     public function store(Request $request)
     {
+        $makarons = new Makarons();
+        $makarons->name = $request->name;
+        $makarons->quantity = $request->quantity;
+        $makarons->price = $request->price;
+        $makarons->shape = $request->shape;
+        $makarons->color = $request->color;
+        $makarons->length = $request->length;
+        $makarons->popularity = $request->popularity;
+        $makarons->save();
         return view('makaroni.list');
     }
     

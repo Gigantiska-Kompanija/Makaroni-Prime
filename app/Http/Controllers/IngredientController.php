@@ -44,6 +44,12 @@ class IngredientController extends Controller
      */
     public function store(Request $request)
     {
+        $ingredient = new Ingredient();
+        $ingredient->name = $request->name;
+        $ingredient->price = $request->price;
+        $ingredient->quantity = $request->quantity;
+        $ingredient->minimum = $request->minimum;
+        $ingredient->save();
         return view('ingredients.list');
     }
     

@@ -44,6 +44,11 @@ class DivisionController extends Controller
      */
     public function store(Request $request)
     {
+        $division = new Division();
+        $division->name = $request->name;
+        $division->location = $request->location;
+        $division->isOperationg = $request->isOperationg;
+        $division->save();
         return view('divisions.list');
     }
     

@@ -44,6 +44,12 @@ class DiscountController extends Controller
      */
     public function store(Request $request)
     {
+        $discount = new Discount();
+        $discount->code = $request->code;
+        $discount->amount = $request->amount;
+        $discount->startDate = $request->startDate;
+        $discount->endDate = $request->endDate;
+        $discount->save();
         return view('discounts.list');
     }
     

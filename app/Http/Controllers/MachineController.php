@@ -44,6 +44,17 @@ class MachineController extends Controller
      */
     public function store(Request $request)
     {
+        $machine = new Employee();
+        $machine->serialNumber = $request->serialNumber;
+        $machine->function = $request->function;
+        $machine->located = $request->located;
+        $machine->model = $request->model;
+        $machine->isOperating = $request->isOperating;
+        $machine->lastServiced = $request->lastServiced;
+        $machine->needsMaintenance = $request->needsMaintenance;
+        $machine->purchaseDate = $request->purchaseDate;
+        $machine->decommissionDate = $request->decommissionDate;
+        $machine->save();
         return view('machines.list');
     }
     

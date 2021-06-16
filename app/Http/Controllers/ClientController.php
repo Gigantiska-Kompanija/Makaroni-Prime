@@ -44,6 +44,14 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+        $client = new Client();
+        $client->firstName = $request->firstName;
+        $client->lastName = $request->lastName;
+        $client->registerDate = $request->registerDate;
+        $client->email = $request->email;
+        $client->password = Hash::make($request->password);
+        $client->phoneNumber = $request->phoneNumber;
+        $client->save();
         return view('clients.list');
     }
     
