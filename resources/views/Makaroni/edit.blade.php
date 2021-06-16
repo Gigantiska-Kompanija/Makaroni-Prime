@@ -7,7 +7,7 @@
         <form method="POST" action="{{ action([App\Http\Controllers\MakaroniController::class, 'destroy'], $id) }}">
             @csrf
             <input type="hidden" name="_method" value="delete">
-            <button class="btn btn-dark">
+            <button class="btn btn-warning">
                 <i class="fas fa-trash-alt"></i>
             </button>
         </form>

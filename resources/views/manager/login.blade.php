@@ -16,21 +16,12 @@
             @csrf
 
             <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
+            <x-input inputFor="email" type="email" required >Email</x-input>
 
             <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
+            <x-input inputFor="password" type="password" required autocomplete="current-password" >
+                Password
+            </x-input>
 
             <!-- Remember Me -->
             <div class="block mt-4">

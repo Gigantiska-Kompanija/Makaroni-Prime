@@ -20,16 +20,16 @@ Route::get('/', function () {
     return view('store');
 })->name('store'); //->middleware(['auth'])
 
-Route::resource('makaroni', 'App\Http\Controllers\MakaroniController');
-Route::resource('employees', 'App\Http\Controllers\EmployeeController');
-Route::resource('machines', 'App\Http\Controllers\MachineController');
-Route::resource('ingredients', 'App\Http\Controllers\IngredientController');
-Route::resource('divisions', 'App\Http\Controllers\DivisionController');
-Route::resource('clients', 'App\Http\Controllers\ClientController');
-Route::resource('discounts', 'App\Http\Controllers\DiscountController');
-Route::get('cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
-Route::get('form-order', 'App\Http\Controllers\CartController@order')->name('form.order');
-Route::post('form-order', 'App\Http\Controllers\CartController@storeOrder')->name('form.storeOrder');
-Route::resource('review', 'App\Http\Controllers\ReviewController', ['only' => ['create', 'store']]);
+Route::resource('makaroni', 'MakaroniController');
+Route::resource('employees', 'EmployeeController');
+Route::resource('machines', 'MachineController');
+Route::resource('ingredients', 'IngredientController');
+Route::resource('divisions', 'DivisionController');
+Route::resource('clients', 'ClientController');
+Route::resource('discounts', 'DiscountController');
+Route::get('cart', 'CartController@index')->name('cart.index');
+Route::get('form-order', 'CartController@order')->name('form.order');
+Route::post('form-order', 'CartController@storeOrder')->name('form.storeOrder');
+Route::resource('review', 'ReviewController', ['only' => ['create', 'store']]);
 
 require __DIR__.'/auth.php';

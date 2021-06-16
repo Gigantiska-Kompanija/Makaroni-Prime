@@ -4,7 +4,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             division {{ $id }}
         </h2>
-        <a class="btn btn-dark" href={{ route("ingredients.edit", $id) }}><i class="fas fa-pen"></i></a>
+        <a class="btn btn-warning" href={{ route("ingredients.edit", $id) }}><i class="fas fa-pen"></i></a>
     </div>
     </x-slot>
     <dl class="row">

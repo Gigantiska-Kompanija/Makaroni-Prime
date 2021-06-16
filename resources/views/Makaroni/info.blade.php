@@ -5,8 +5,8 @@
             makarons {{ $id }}
         </h2>
         <div>
-            <a class="btn btn-dark" href={{ route("makaroni.edit", $id) }}><i class="fas fa-cart-plus"></i></a>
-            <a class="btn btn-dark ml-1" href={{ route("makaroni.edit", $id) }}><i class="fas fa-pen"></i></a>
+            <a class="btn btn-warning" href={{ route("makaroni.edit", $id) }}><i class="fas fa-cart-plus"></i></a>
+            <a class="btn btn-warning ml-1" href={{ route("makaroni.edit", $id) }}><i class="fas fa-pen"></i></a>
         </div>
     </div>
     </x-slot>
@@ -15,7 +15,7 @@
             <div class="col-md-4">
             <img src="https://picsum.photos/id/{{$id}}/400" class="card-img" alt="...">
             <div class="card-img-overlay">
-                <h5 class="card-title fs-2 bg-light rounded-circle p-3" style="width: fit-content;">#{{ $id }}</h5>
+                <h5 class="card-title fs-2 btn-warning rounded-circle p-3" style="width: fit-content;">#{{ $id }}</h5>
             </div>
             </div>
             <div class="col-md-8">
@@ -40,7 +40,7 @@
     <div class="mt-4">
         <div class="d-flex justify-content-between align-items-center">
             <h2 class="fs-2">Reviews:</h2>
-            <a class="btn btn-dark ml-1" href={{ route("review.create") }}><i class="fas fa-plus"></i></a>
+            <a class="btn btn-warning ml-1" href={{ route("review.create") }}><i class="fas fa-plus"></i></a>
         </div>
         @for ($i = 0; $i < 5; $i++)
             <div class="card mt-4">
