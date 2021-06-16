@@ -4,7 +4,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             discount {{ $id }}
         </h2>
-        <a class="btn btn-dark" href={{ route("discounts.edit", $id) }}>Edit</a>
+        <a class="btn btn-dark" href={{ route("discounts.edit", $id) }}><i class="fas fa-pen"></i></a>
     </div>
     </x-slot>
     <dl class="row">

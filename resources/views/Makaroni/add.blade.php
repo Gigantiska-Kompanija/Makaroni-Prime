@@ -15,6 +15,6 @@
         <x-input inputFor="length" :errors="$errors" required>Length</x-input>
         <x-input inputFor="popularity" :errors="$errors" required>Popularity</x-input>
 
-        <x-submit-btn>Create</x-submit-btn>
+        <x-submit-btn />
     </form>
 </x-app-layout>

@@ -12,6 +12,6 @@
         <x-input inputFor="startDate" :errors="$errors" required>Start date</x-input>
         <x-input inputFor="endDate" :errors="$errors" required>End date</x-input>
 
-        <x-submit-btn>Create</x-submit-btn>
+        <x-submit-btn />
     </form>
 </x-app-layout>

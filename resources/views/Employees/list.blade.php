@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Employees') }}
             </h2>
-            <a class="btn btn-dark" href={{ route("employees.create") }}>+</a>
+            <a class="btn btn-dark" href={{ route("employees.create") }}><i class="fas fa-plus"></i></a>
         </div>
     </x-slot>
     <table class="table table-striped table-hover">

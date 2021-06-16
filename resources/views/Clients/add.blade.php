@@ -14,6 +14,6 @@
         <x-input inputFor="password" :errors="$errors" required>Password</x-input>
         <x-input inputFor="phoneNumber" :errors="$errors" required>Phone number</x-input>
 
-        <x-submit-btn>Create</x-submit-btn>
+        <x-submit-btn />
     </form>
 </x-app-layout>

@@ -33,7 +33,7 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        //
+        return view("add-review");
     }
 
     /**
@@ -44,7 +44,7 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view("store");
     }
 
     /**

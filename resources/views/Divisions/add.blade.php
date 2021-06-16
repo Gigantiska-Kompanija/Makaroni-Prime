@@ -11,6 +11,6 @@
         <x-input inputFor="location" :errors="$errors" required>Location</x-input>
         <x-input inputFor="isOperating" :errors="$errors" required>Is operating</x-input>
 
-        <x-submit-btn>Create</x-submit-btn>
+        <x-submit-btn />
     </form>
 </x-app-layout>

@@ -17,6 +17,6 @@
         <x-input inputFor="purchaseDate" :errors="$errors" required>Purchase date</x-input>
         <x-input inputFor="decommissionDate" :errors="$errors" required>Decommision date</x-input>
 
-        <x-submit-btn>Create</x-submit-btn>
+        <x-submit-btn />
     </form>
 </x-app-layout>

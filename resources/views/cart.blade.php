@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Cart') }}
             </h2>
-            <a class="btn btn-dark" href={{ route("form.order") }}>Checkout</a>
+            <a class="btn btn-dark" href={{ route("form.order") }}><i class="fas fa-cash-register"></i></a>
         </div>
     </x-slot>
     <table class="table table-striped table-hover">

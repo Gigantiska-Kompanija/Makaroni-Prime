@@ -12,6 +12,6 @@
         <x-input inputFor="quantity" :errors="$errors" required>Quantity</x-input>
         <x-input inputFor="minimum" :errors="$errors" required>Minimum</x-input>
 
-        <x-submit-btn>Create</x-submit-btn>
+        <x-submit-btn />
     </form>
 </x-app-layout>

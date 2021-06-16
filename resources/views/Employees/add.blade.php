@@ -17,6 +17,6 @@
         <x-input inputFor="joinDate" :errors="$errors" required>Join date</x-input>
         <x-input inputFor="leaveDate" :errors="$errors" required>Leave date</x-input>
 
-        <x-submit-btn>Create</x-submit-btn>
+        <x-submit-btn />
     </form>
 </x-app-layout>

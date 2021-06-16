@@ -30,5 +30,6 @@ Route::resource('discounts', 'App\Http\Controllers\DiscountController');
 Route::get('cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
 Route::get('form-order', 'App\Http\Controllers\CartController@order')->name('form.order');
 Route::post('form-order', 'App\Http\Controllers\CartController@storeOrder')->name('form.storeOrder');
+Route::resource('review', 'App\Http\Controllers\ReviewController', ['only' => ['create', 'store']]);
 
 require __DIR__.'/auth.php';
