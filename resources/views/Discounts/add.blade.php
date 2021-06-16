@@ -4,13 +4,13 @@
             Add discount
         </h2>
     </x-slot>
-    <form method="POST" action="{{ action([App\Http\Controllers\DiscountController::class, 'store']) }}">
+    <form method="POST" action="{{ route('discounts.store') }}">
         @csrf
 
-        <x-input inputFor="code" :errors="$errors" required>Code</x-input>
-        <x-input inputFor="amount" :errors="$errors" required>Amount</x-input>
-        <x-input inputFor="startDate" :errors="$errors" required>Start date</x-input>
-        <x-input inputFor="endDate" :errors="$errors" required>End date</x-input>
+        <x-input inputFor="code" required>Code</x-input>
+        <x-input inputFor="amount" required>Amount</x-input>
+        <x-input inputFor="startDate" required>Start date</x-input>
+        <x-input inputFor="endDate" required>End date</x-input>
 
         <x-submit-btn />
     </form>

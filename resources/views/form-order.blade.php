@@ -7,9 +7,9 @@
     <form method="POST" action="{{ action([App\Http\Controllers\CartController::class, 'storeOrder']) }}">
         @csrf
 
-        <x-input inputFor="cardNr" :errors="$errors" required>Credit card number</x-input>
-        <x-input inputFor="expDate" :errors="$errors" required>Expiration date</x-input>
-        <x-input inputFor="code" :errors="$errors" required>Security code</x-input>
+        <x-input inputFor="cardNr" required>Credit card number</x-input>
+        <x-input inputFor="expDate" required>Expiration date</x-input>
+        <x-input inputFor="code" required>Security code</x-input>
 
         <div class="flex items-center justify-end mt-4">
             <button class="btn btn-warning">

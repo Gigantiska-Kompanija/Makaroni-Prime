@@ -4,18 +4,18 @@
             Add employee
         </h2>
     </x-slot>
-    <form method="POST" action="{{ action([App\Http\Controllers\EmployeeController::class, 'store']) }}">
+    <form method="POST" action="{{ route('employees.store') }}">
         @csrf
 
-        <x-input inputFor="personalId" :errors="$errors" required>Personal ID</x-input>
-        <x-input inputFor="firstName" :errors="$errors" required>First name</x-input>
-        <x-input inputFor="lastName" :errors="$errors" required>Last name</x-input>
-        <x-input inputFor="email" :errors="$errors" required>Email</x-input>
-        <x-input inputFor="phoneNumber" :errors="$errors" required>Phone number</x-input>
-        <x-input inputFor="position" :errors="$errors" required>Position</x-input>
-        <x-input inputFor="pay" :errors="$errors" required>Salary</x-input>
-        <x-input inputFor="joinDate" :errors="$errors" required>Join date</x-input>
-        <x-input inputFor="leaveDate" :errors="$errors" required>Leave date</x-input>
+        <x-input inputFor="personalId" required>Personal ID</x-input>
+        <x-input inputFor="firstName" required>First name</x-input>
+        <x-input inputFor="lastName" required>Last name</x-input>
+        <x-input inputFor="email" required>Email</x-input>
+        <x-input inputFor="phoneNumber" required>Phone number</x-input>
+        <x-input inputFor="position" required>Position</x-input>
+        <x-input inputFor="pay" required>Salary</x-input>
+        <x-input inputFor="joinDate" required>Join date</x-input>
+        <x-input inputFor="leaveDate" required>Leave date</x-input>
 
         <x-submit-btn />
     </form>

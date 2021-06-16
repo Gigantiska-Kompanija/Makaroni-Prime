@@ -1,9 +1,19 @@
-@props(['disabled' => false, 'required' => false, 'inputFor' => 'a', 'errors' => []])
+@props(['disabled' => false, 'required' => false, 'inputFor' => 'a', 'type' => 'text'])
 
-<div>
+<div class="mb-3">
     <label for={{ $inputFor }} class="form-label">{{ $slot }}</label>
-    <input {{ $required ? 'required' : '' }} class="form-control mb-3" id={{ $inputFor }} :value={{ old($inputFor) }} />
-    <x-validation-error class="mb-4" :errors="$errors" title={{ $inputFor }}/>  
-</div>
+    <input {{ $required ? 'required' : '' }} 
+            class="form-control {{ $errors->get($inputFor) ? 'border-danger' : '' }}" 
+            id={{ $inputFor }} 
+            name={{ $inputFor }}  b
+            type={{ $type }}
+            value="{{ old($inputFor) }}" />
+    @error($inputFor)
+    <div>
+        <span class="text-red-600" role="alert">
+        <strong>{{ $message }}</strong>
+        </span>
+    </div>
+    @enderror
 
-<!-- <input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'mb-4 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50']) !!}> -->
+</div>

@@ -4,7 +4,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Edit makarons {{ $id }}
         </h2>
-        <form method="POST" action="{{ action([App\Http\Controllers\MakaroniController::class, 'destroy'], $id) }}">
+        <form method="POST" action="{{ route('makaroni.destroy', $id) }}">
             @csrf
             <input type="hidden" name="_method" value="delete">
             <button class="btn btn-warning">
@@ -13,17 +13,17 @@
         </form>
     </div>
     </x-slot>
-    <form method="POST" action="{{ action([App\Http\Controllers\MakaroniController::class, 'update'], $id) }}">
+    <form method="POST" action="{{ route('makaroni.update', $id) }}">
         @method('PUT')
         @csrf
 
-        <x-input inputFor="name" :errors="$errors" required>Name</x-input>
-        <x-input inputFor="quantity" :errors="$errors" required>Quantity</x-input>
-        <x-input inputFor="price" :errors="$errors" required>Price</x-input>
-        <x-input inputFor="shape" :errors="$errors" required>Shape</x-input>
-        <x-input inputFor="color" :errors="$errors" required>Color</x-input>
-        <x-input inputFor="length" :errors="$errors" required>Length</x-input>
-        <x-input inputFor="popularity" :errors="$errors" required>Popularity</x-input>
+        <x-input inputFor="name" required>Name</x-input>
+        <x-input inputFor="quantity" required>Quantity</x-input>
+        <x-input inputFor="price" required>Price</x-input>
+        <x-input inputFor="shape" required>Shape</x-input>
+        <x-input inputFor="color" required>Color</x-input>
+        <x-input inputFor="length" required>Length</x-input>
+        <x-input inputFor="popularity" required>Popularity</x-input>
 
         <x-submit-btn />
     </form>

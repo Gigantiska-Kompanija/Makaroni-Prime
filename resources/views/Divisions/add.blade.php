@@ -4,12 +4,12 @@
             Add division
         </h2>
     </x-slot>
-    <form method="POST" action="{{ action([App\Http\Controllers\DivisionController::class, 'store']) }}">
+    <form method="POST" action="{{ route('divisions.store') }}">
         @csrf
 
-        <x-input inputFor="name" :errors="$errors" required>Name</x-input>
-        <x-input inputFor="location" :errors="$errors" required>Location</x-input>
-        <x-input inputFor="isOperating" :errors="$errors" required>Is operating</x-input>
+        <x-input inputFor="name" required>Name</x-input>
+        <x-input inputFor="location" required>Location</x-input>
+        <x-input inputFor="isOperating" required>Is operating</x-input>
 
         <x-submit-btn />
     </form>

@@ -4,7 +4,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Edit discount {{ $id }}
         </h2>
-        <form method="POST" action="{{ action([App\Http\Controllers\DiscountController::class, 'destroy'], $id) }}">
+        <form method="POST" action="{{ route('discounts.destroy', $id) }}">
             @csrf
             <input type="hidden" name="_method" value="delete">
             <button class="btn btn-warning">
@@ -13,14 +13,14 @@
         </form>
     </div>
     </x-slot>
-    <form method="POST" action="{{ action([App\Http\Controllers\DiscountController::class, 'update'], $id) }}">
+    <form method="POST" action="{{ route('discounts.update', $id) }}">
         @method('PUT')
         @csrf
 
-        <x-input inputFor="code" :errors="$errors" required>Code</x-input>
-        <x-input inputFor="amount" :errors="$errors" required>Amount</x-input>
-        <x-input inputFor="startDate" :errors="$errors" required>Start date</x-input>
-        <x-input inputFor="endDate" :errors="$errors" required>End date</x-input>
+        <x-input inputFor="code" required>Code</x-input>
+        <x-input inputFor="amount" required>Amount</x-input>
+        <x-input inputFor="startDate" required>Start date</x-input>
+        <x-input inputFor="endDate" required>End date</x-input>
 
         <x-submit-btn />
     </form>

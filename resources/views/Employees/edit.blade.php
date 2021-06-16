@@ -4,7 +4,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Edit employee {{ $id }}
         </h2>
-        <form method="POST" action="{{ action([App\Http\Controllers\EmployeeController::class, 'destroy'], $id) }}">
+        <form method="POST" action="{{ route('employees.destroy', $id) }}">
             @csrf
             <input type="hidden" name="_method" value="delete">
             <button class="btn btn-warning">
@@ -13,19 +13,19 @@
         </form>
     </div>
     </x-slot>
-    <form method="POST" action="{{ action([App\Http\Controllers\EmployeeController::class, 'update'], $id) }}">
+    <form method="POST" action="{{ route('employees.update', $id) }}">
         @method('PUT')
         @csrf
 
-        <x-input inputFor="personalId" :errors="$errors" required>Personal ID</x-input>
-        <x-input inputFor="firstName" :errors="$errors" required>First name</x-input>
-        <x-input inputFor="lastName" :errors="$errors" required>Last name</x-input>
-        <x-input inputFor="email" :errors="$errors" required>Email</x-input>
-        <x-input inputFor="phoneNumber" :errors="$errors" required>Phone number</x-input>
-        <x-input inputFor="position" :errors="$errors" required>Position</x-input>
-        <x-input inputFor="pay" :errors="$errors" required>Salary</x-input>
-        <x-input inputFor="joinDate" :errors="$errors" required>Join date</x-input>
-        <x-input inputFor="leaveDate" :errors="$errors" required>Leave date</x-input>
+        <x-input inputFor="personalId" required>Personal ID</x-input>
+        <x-input inputFor="firstName" required>First name</x-input>
+        <x-input inputFor="lastName" required>Last name</x-input>
+        <x-input inputFor="email" required>Email</x-input>
+        <x-input inputFor="phoneNumber" required>Phone number</x-input>
+        <x-input inputFor="position" required>Position</x-input>
+        <x-input inputFor="pay" required>Salary</x-input>
+        <x-input inputFor="joinDate" required>Join date</x-input>
+        <x-input inputFor="leaveDate" required>Leave date</x-input>
 
         <x-submit-btn />
     </form>

@@ -4,13 +4,12 @@
             Add ingredient
         </h2>
     </x-slot>
-    <form method="POST" action="{{ action([App\Http\Controllers\IngredientController::class, 'store']) }}">
+    <form method="POST" action="{{ route('ingredients.store') }}">
         @csrf
-
-        <x-input inputFor="name" :errors="$errors" required>Name</x-input>
-        <x-input inputFor="price" :errors="$errors" required>Price</x-input>
-        <x-input inputFor="quantity" :errors="$errors" required>Quantity</x-input>
-        <x-input inputFor="minimum" :errors="$errors" required>Minimum</x-input>
+        <x-input inputFor="name" required>Name</x-input>
+        <x-input inputFor="price" type="number" required>Price</x-input>
+        <x-input inputFor="quantity" type="number" required>Quantity</x-input>
+        <x-input inputFor="minimum" type="number" required>Minimum</x-input>
 
         <x-submit-btn />
     </form>

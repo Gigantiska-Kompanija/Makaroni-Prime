@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\RawMaterial;
 
 class IngredientController extends Controller
 {
@@ -44,7 +45,13 @@ class IngredientController extends Controller
      */
     public function store(Request $request)
     {
-        $ingredient = new Ingredient();
+        $validated = $request->validate([
+            'name' => 'required|unique:rawmaterial|max:191',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|numeric|integer|min:0',
+            'minimum' => 'required|numeric|integer|min:0',
+        ]);
+        $ingredient = new RawMaterial();
         $ingredient->name = $request->name;
         $ingredient->price = $request->price;
         $ingredient->quantity = $request->quantity;

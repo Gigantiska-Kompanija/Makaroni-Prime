@@ -7,8 +7,8 @@
     <form method="POST" action="{{ action([App\Http\Controllers\ReviewController::class, 'store']) }}">
         @csrf
 
-        <x-input inputFor="rating" :errors="$errors" required>Rating</x-input>
-        <x-input inputFor="comment" :errors="$errors" required>Comment</x-input>
+        <x-input inputFor="rating" required>Rating</x-input>
+        <x-input inputFor="comment" required>Comment</x-input>
         
         <x-submit-btn />
     </form>
