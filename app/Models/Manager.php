@@ -31,4 +31,9 @@ class Manager extends Authenticatable {
     public function divisions(): Relation {
         return $this->belongsToMany(Division::class);
     }
+
+
+    public function getAuthIdentifier() {
+        return $this->employee()->email->get();
+    }
 }
