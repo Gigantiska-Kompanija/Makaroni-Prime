@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class Makarons extends Model {
     use HasFactory;
 
+    protected $table = 'makarons';
+
     public function reviews(): Relation {
         return $this->hasMany(Review::class);
     }

@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class Discount extends Model {
     use HasFactory;
 
+    protected $table = 'discount';
+
     public function makaroni(): Relation {
         return $this->belongsToMany(Makarons::class);
     }

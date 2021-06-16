@@ -9,6 +9,20 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class Employee extends Model {
     use HasFactory;
 
+    protected $table = 'employee';
+
+    protected $fillable = [
+        'personalId',
+        'firstName',
+        'lastName',
+        'email',
+        'phoneNumber',
+        'joinDate',
+        'leaveDate',
+        'position',
+        'pay',
+    ];
+
     public function manager(): Relation {
         return $this->hasOne(Manager::class);
     }

@@ -10,6 +10,8 @@ use Illuminate\Notifications\Notifiable;
 class Client extends Authenticatable {
     use HasFactory, Notifiable;
 
+    protected $table = 'client';
+
     protected $guard = 'client';
 
     protected $fillable = [

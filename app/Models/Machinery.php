@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class Machinery extends Model {
     use HasFactory;
 
+    protected $table = 'machinery';
+
     public function located(): Relation {
         return $this->belongsTo(Division::class);
     }

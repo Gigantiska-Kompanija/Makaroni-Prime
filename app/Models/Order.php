@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class Order extends Model {
     use HasFactory;
 
+    protected $table = 'order';
+
     public function client(): Relation {
         return $this->belongsTo(Client::class);
     }

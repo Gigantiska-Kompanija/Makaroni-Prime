@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class Review extends Model {
     use HasFactory;
 
+    protected $table = 'review';
+
     public function client(): Relation {
         return $this->belongsTo(Client::class);
     }

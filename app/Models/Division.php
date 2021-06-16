@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class Division extends Model {
     use HasFactory;
 
+    protected $table = 'division';
+
     public function machinery(): Relation {
         return $this->hasMany(Machinery::class);
     }

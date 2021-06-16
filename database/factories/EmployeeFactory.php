@@ -3,18 +3,18 @@
 namespace Database\Factories;
 
 use App\Models\Client;
+use App\Models\Employee;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class ClientFactory extends Factory
+class EmployeeFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Client::class;
+    protected $model = Employee::class;
 
     /**
      * Define the model's default state.
@@ -23,13 +23,15 @@ class ClientFactory extends Factory
      */
     public function definition(): array {
         return [
+            'personalId' => $this->faker->unique()->numberBetween(10000000000, 100000000000),
             'firstName' => $this->faker->firstName,
             'lastName' => $this->faker->lastName,
-            'registerDate' => now(),
             'email' => $this->faker->unique()->safeEmail,
-            'password' => Hash::make('password'),
             'phoneNumber' => $this->faker->unique()->phoneNumber,
-            'remember_token' => Str::random(10),
+            'joinDate' => now(),
+            'leaveDate' => null,
+            'position' => $this->faker->optional()->randomElement(),
+            'pay' => $this->faker->randomFloat(2, 5, 20),
         ];
     }
 }
