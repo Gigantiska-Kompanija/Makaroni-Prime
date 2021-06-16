@@ -4,14 +4,14 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Store
         </h2>
-        <a class="btn btn-dark" href={{ route("cart.index") }}>Cart</a>
+        <a class="btn btn-dark" href={{ route("cart.index") }}><i class="fas fa-shopping-cart"></i></a>
     </div>
     </x-slot>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         @for ($i = 0; $i < 10; $i++)
             <a class="col" href={{ route("makaroni.show", $i) }}>
                 <div class="card h-100">
-                <img src="https://picsum.photos/200" class="card-img-top" alt="...">
+                <img src="https://picsum.photos/id/{{ $i }}/200" class="card-img-top" alt="...">
                 <div class="card-img-overlay">
                     <h5 class="card-title fs-2 bg-light rounded-circle p-3" style="width: fit-content;">#{{ $i }}</h5>
                 </div>

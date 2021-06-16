@@ -8,7 +8,7 @@
             @csrf
             <input type="hidden" name="_method" value="delete">
             <button class="btn btn-dark">
-                Delete
+                <i class="fas fa-trash-alt"></i>
             </button>
         </form>
     </div>
@@ -25,6 +25,6 @@
         <x-input inputFor="length" :errors="$errors" required>Length</x-input>
         <x-input inputFor="popularity" :errors="$errors" required>Popularity</x-input>
 
-        <x-submit-btn>Save</x-submit-btn>
+        <x-submit-btn />
     </form>
 </x-app-layout>
