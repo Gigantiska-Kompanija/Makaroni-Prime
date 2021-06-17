@@ -10,6 +10,7 @@ class Employee extends Model {
     use HasFactory;
 
     protected $table = 'employee';
+    protected $primaryKey = 'personalId';
 
     protected $fillable = [
         'personalId',
@@ -24,7 +25,7 @@ class Employee extends Model {
     ];
 
     public function manager(): Relation {
-        return $this->hasOne(Manager::class);
+        return $this->hasOne(Manager::class, 'employee', 'personalId');
     }
 
     public function divisions(): Relation {

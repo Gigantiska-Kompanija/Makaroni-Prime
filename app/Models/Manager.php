@@ -25,7 +25,7 @@ class Manager extends Authenticatable {
     ];
 
     public function employee(): Relation {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(Employee::class, 'employee', 'personalId');
     }
 
     public function divisions(): Relation {
@@ -34,6 +34,6 @@ class Manager extends Authenticatable {
 
 
     public function getAuthIdentifier() {
-        return $this->employee()->email->get();
+        return $this->employee()->first()->email;
     }
 }

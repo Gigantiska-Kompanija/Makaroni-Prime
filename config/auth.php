@@ -77,7 +77,7 @@ return [
 
     'providers' => [
         'managers' => [
-            'driver' => 'eloquent',
+            'driver' => 'custom',
             'model' => App\Models\Manager::class,
         ],
 
