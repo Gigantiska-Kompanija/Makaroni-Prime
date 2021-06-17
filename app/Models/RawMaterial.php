@@ -10,6 +10,7 @@ class RawMaterial extends Model {
     use HasFactory;
 
     protected $table = 'rawMaterial';
+    public $primaryKey  = 'name';
 
     public function machinery(): Relation {
         return $this->belongsToMany(Machinery::class);

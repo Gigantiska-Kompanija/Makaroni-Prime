@@ -10,6 +10,7 @@ class Machinery extends Model {
     use HasFactory;
 
     protected $table = 'machinery';
+    public $primaryKey  = 'serialNumber';
 
     public function located(): Relation {
         return $this->belongsTo(Division::class);

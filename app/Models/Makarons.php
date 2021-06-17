@@ -10,6 +10,7 @@ class Makarons extends Model {
     use HasFactory;
 
     protected $table = 'makarons';
+    public $primaryKey  = 'name';
 
     public function reviews(): Relation {
         return $this->hasMany(Review::class);

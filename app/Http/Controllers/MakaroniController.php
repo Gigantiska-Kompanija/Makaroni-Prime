@@ -14,7 +14,19 @@ class MakaroniController extends Controller
      */
     public function index()
     {
-        return view('makaroni.list');
+        $makaroni = Makarons::orderBy('name')->get();
+        return view('makaroni.list', compact('makaroni'));
+    }
+
+    /**
+     * List all MAKARONI.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeView()
+    {
+        $makaroni = Makarons::orderBy('popularity')->get();
+        return view('store', compact('makaroni'));
     }
     
     /**
@@ -54,7 +66,7 @@ class MakaroniController extends Controller
         $makarons->length = $request->length;
         $makarons->popularity = $request->popularity;
         $makarons->save();
-        return view('makaroni.list');
+        return $this->index();
     }
     
     /**
@@ -65,7 +77,8 @@ class MakaroniController extends Controller
      */
     public function show($id)
     {
-        return view('makaroni.info', compact('id'));
+        $makarons = Makarons::findOrFail($id);
+        return view('makaroni.info', compact('makarons'));
     }
 
     /**
@@ -76,7 +89,8 @@ class MakaroniController extends Controller
      */
     public function edit($id)
     {
-        return view('makaroni.edit', compact('id'));
+        $makarons = Makarons::findOrFail($id);
+        return view('makaroni.edit', compact('makarons'));
     }
 
     /**
@@ -97,7 +111,7 @@ class MakaroniController extends Controller
         $makarons->length = $request->length;
         $makarons->popularity = $request->popularity;
         $makarons->save();
-        return view('makaroni.info', compact('id'));
+        return $this->index();
     }
 
     /**
@@ -109,6 +123,6 @@ class MakaroniController extends Controller
     public function destroy($id)
     {
         Makarons::findOrFail($id)->delete();
-        return view('makaroni.list');
+        return $this->index();
     }
 }

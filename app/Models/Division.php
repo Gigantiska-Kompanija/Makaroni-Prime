@@ -10,6 +10,7 @@ class Division extends Model {
     use HasFactory;
 
     protected $table = 'division';
+    public $primaryKey  = 'name';
 
     public function machinery(): Relation {
         return $this->hasMany(Machinery::class);

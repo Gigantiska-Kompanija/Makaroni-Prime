@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    return view('store');
-})->name('store'); //->middleware(['auth'])
+Route::get('/', 'MakaroniController@storeView')->name('store'); //->middleware(['auth'])
 
 Route::resource('makaroni', 'MakaroniController');
 Route::resource('employees', 'EmployeeController');
@@ -30,6 +28,7 @@ Route::resource('discounts', 'DiscountController');
 Route::get('cart', 'CartController@index')->name('cart.index');
 Route::get('form-order', 'CartController@order')->name('form.order');
 Route::post('form-order', 'CartController@storeOrder')->name('form.storeOrder');
-Route::resource('review', 'ReviewController', ['only' => ['create', 'store']]);
+Route::get('review/{$id}', 'ReviewController@create')->name('review.create');
+Route::post('review/{$id}', 'ReviewController@create')->name('review.store');
 
 require __DIR__.'/auth.php';

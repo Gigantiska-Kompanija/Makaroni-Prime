@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Review;
+use App\Models\Makarons;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -32,9 +34,9 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view("add-review");
+        return view("add-review", compact('id'));
     }
 
     /**
@@ -46,6 +48,8 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $review = new Review();
+        $review->clientID = Auth::id();
+        $review->productName = $request->name;
         $review->rating = $request->rating;
         $review->comment = $request->comment;
         $review->save();

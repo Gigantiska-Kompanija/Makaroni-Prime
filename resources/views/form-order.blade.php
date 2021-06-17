@@ -4,7 +4,7 @@
             Checkout
         </h2>
     </x-slot>
-    <form method="POST" action="{{ action([App\Http\Controllers\CartController::class, 'storeOrder']) }}">
+    <form method="POST" action="{{ route('form.storeOrder') }}">
         @csrf
 
         <x-input inputFor="cardNr" required>Credit card number</x-input>

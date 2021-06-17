@@ -4,7 +4,7 @@
             Add machine
         </h2>
     </x-slot>
-    <form method="POST" action="{{ action([App\Http\Controllers\ReviewController::class, 'store']) }}">
+    <form method="POST" action="{{ route('review.store') }}">
         @csrf
 
         <x-input inputFor="rating" required>Rating</x-input>

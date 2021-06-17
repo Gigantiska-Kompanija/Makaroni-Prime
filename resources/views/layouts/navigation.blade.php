@@ -36,6 +36,12 @@
                     <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
                         {{ __('Clients') }}
                     </x-nav-link>
+                    <x-nav-link>
+                        <select class="selectpicker" data-width="fit">
+                            <option data-content='English'>English</option>
+                            <option  data-content='Latviešu'>Latviešu</option>
+                        </select>
+                    </x-nav-link>
                 </div>
             </div>
 
