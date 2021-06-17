@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Review;
 
 class ReviewController extends Controller
 {
@@ -44,6 +45,10 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
+        $review = new Review();
+        $review->rating = $request->rating;
+        $review->comment = $request->comment;
+        $review->save();
         return view("store");
     }
 

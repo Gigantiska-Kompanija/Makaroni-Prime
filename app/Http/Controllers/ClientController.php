@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Client;
 
 class ClientController extends Controller
 {
@@ -86,6 +87,14 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $client = Client::findOrFail($id);
+        $client->firstName = $request->firstName;
+        $client->lastName = $request->lastName;
+        $client->registerDate = $request->registerDate;
+        $client->email = $request->email;
+        $client->password = Hash::make($request->password);
+        $client->phoneNumber = $request->phoneNumber;
+        $client->save();
         return view('clients.info', compact('id'));
     }
 
@@ -97,6 +106,7 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
+        Client::findOrFail($id)->delete();
         return view('clients.list');
     }
 }

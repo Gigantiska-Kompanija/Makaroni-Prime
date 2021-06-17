@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Makarons;
 
 class MakaroniController extends Controller
 {
@@ -87,6 +88,15 @@ class MakaroniController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $makarons = Makarons::findOrFail($id);
+        $makarons->name = $request->name;
+        $makarons->quantity = $request->quantity;
+        $makarons->price = $request->price;
+        $makarons->shape = $request->shape;
+        $makarons->color = $request->color;
+        $makarons->length = $request->length;
+        $makarons->popularity = $request->popularity;
+        $makarons->save();
         return view('makaroni.info', compact('id'));
     }
 
@@ -98,6 +108,7 @@ class MakaroniController extends Controller
      */
     public function destroy($id)
     {
+        Makarons::findOrFail($id)->delete();
         return view('makaroni.list');
     }
 }

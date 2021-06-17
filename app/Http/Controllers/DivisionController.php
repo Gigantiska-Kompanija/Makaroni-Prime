@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Division;
 
 class DivisionController extends Controller
 {
@@ -83,6 +84,11 @@ class DivisionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $division = Division::findOrFail($id);
+        $division->name = $request->name;
+        $division->location = $request->location;
+        $division->isOperationg = $request->isOperationg;
+        $division->save();
         return view('divisions.info', compact('id'));
     }
 
@@ -94,6 +100,7 @@ class DivisionController extends Controller
      */
     public function destroy($id)
     {
+        Division::findOrFail($id)->delete();
         return view('divisions.list');
     }
 }

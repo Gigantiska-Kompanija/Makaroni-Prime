@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Discount;
 
 class DiscountController extends Controller
 {
@@ -84,6 +85,12 @@ class DiscountController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $discount = Discount::findOrFail($id);
+        $discount->code = $request->code;
+        $discount->amount = $request->amount;
+        $discount->startDate = $request->startDate;
+        $discount->endDate = $request->endDate;
+        $discount->save();
         return view('discounts.info', compact('id'));
     }
 
@@ -95,6 +102,7 @@ class DiscountController extends Controller
      */
     public function destroy($id)
     {
+        Discount::findOrFail($id)->delete();
         return view('discounts.list');
     }
 }

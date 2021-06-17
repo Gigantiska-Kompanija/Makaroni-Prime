@@ -91,6 +91,18 @@ class IngredientController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'name' => 'required|unique:rawmaterial|max:191',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|numeric|integer|min:0',
+            'minimum' => 'required|numeric|integer|min:0',
+        ]);
+        $ingredient = RawMaterial::findOrFail($id);
+        $ingredient->name = $request->name;
+        $ingredient->price = $request->price;
+        $ingredient->quantity = $request->quantity;
+        $ingredient->minimum = $request->minimum;
+        $ingredient->save();
         return view('ingredients.info', compact('id'));
     }
 
@@ -102,6 +114,7 @@ class IngredientController extends Controller
      */
     public function destroy($id)
     {
+        RawMaterial::findOrFail($id)->delete();
         return view('ingredients.list');
     }
 }

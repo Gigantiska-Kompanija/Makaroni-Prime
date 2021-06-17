@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Employee;
 
 class EmployeeController extends Controller
 {
@@ -79,6 +80,17 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $employee = Employee::findOrFail($id);
+        $employee->personalId = $request->personalId;
+        $employee->firstName = $request->firstName;
+        $employee->lastName = $request->lastName;
+        $employee->email = $request->email;
+        $employee->phoneNumber = $request->phoneNumber;
+        $employee->position = $request->position;
+        $employee->pay = $request->pay;
+        $employee->joinDate = $request->joinDate;
+        $employee->leaveDate = $request->leaveDate;
+        $employee->save();
         return view('employees.info', compact('id'));
     }
 
@@ -90,6 +102,7 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
+        Employee::findOrFail($id)->delete();
         return view('employees.list');
     }
 }

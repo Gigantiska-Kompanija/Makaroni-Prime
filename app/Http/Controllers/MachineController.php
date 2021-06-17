@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Machine;
 
 class MachineController extends Controller
 {
@@ -90,6 +91,17 @@ class MachineController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $machine = Machine::findOrFail($id);
+        $machine->serialNumber = $request->serialNumber;
+        $machine->function = $request->function;
+        $machine->located = $request->located;
+        $machine->model = $request->model;
+        $machine->isOperating = $request->isOperating;
+        $machine->lastServiced = $request->lastServiced;
+        $machine->needsMaintenance = $request->needsMaintenance;
+        $machine->purchaseDate = $request->purchaseDate;
+        $machine->decommissionDate = $request->decommissionDate;
+        $machine->save();
         return view('machines.info', compact('id'));
     }
 
@@ -101,6 +113,7 @@ class MachineController extends Controller
      */
     public function destroy($id)
     {
+        Machine::findOrFail($id)->delete();
         return view('machines.list');
     }
 }
