@@ -12,7 +12,7 @@ class CreateMakaroniPrimeTables extends Migration {
      */
     public function up() {
         Schema::create('employee', function (Blueprint $table) {
-            $table->string('personalId', 11)->primary();
+            $table->char('personalId', 11)->unique()->primary();
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email')->unique();
@@ -24,21 +24,21 @@ class CreateMakaroniPrimeTables extends Migration {
             $table->timestamps();
         });
         Schema::create('division', function (Blueprint $table) {
-            $table->string('name')->primary();
+            $table->string('name')->unique()->primary();
             $table->string('location');
             $table->boolean('isOperating')->default(true);
             $table->timestamps();
         });
         Schema::create('rawMaterial', function (Blueprint $table) {
-            $table->string('name')->primary();
+            $table->string('name')->unique()->primary();
             $table->decimal('price', 10);
             $table->bigInteger('quantity')->default(0);
             $table->bigInteger('minimum')->default(0);
             $table->timestamps();
         });
         Schema::create('machinery', function (Blueprint $table) {
-            $table->string('serialNumber')->primary();
-            $table->string('function')->nullable();
+            $table->string('serialNumber')->unique()->primary();
+            $table->mediumText('function')->nullable();
             $table->string('located');
             $table->string('model')->nullable();
             $table->boolean('isOperating')->default(true);
@@ -51,7 +51,7 @@ class CreateMakaroniPrimeTables extends Migration {
             $table->foreign('located')->references('name')->on('division')->onDelete('cascade');
         });
         Schema::create('manager', function (Blueprint $table) {
-            $table->string('employee', 11)->primary();
+            $table->char('employee', 11)->unique()->primary();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
@@ -59,7 +59,7 @@ class CreateMakaroniPrimeTables extends Migration {
             $table->foreign('employee')->references('personalId')->on('employee')->onDelete('cascade');
         });
         Schema::create('client', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unique();
             $table->string('firstName');
             $table->string('lastName');
             $table->timestamp('registerDate')->useCurrent();
@@ -70,7 +70,7 @@ class CreateMakaroniPrimeTables extends Migration {
             $table->timestamps();
         });
         Schema::create('makarons', function (Blueprint $table) {
-            $table->string('name')->primary();
+            $table->string('name')->unique()->primary();
             $table->bigInteger('quantity')->default(0);
             $table->decimal('price');
             $table->string('shape');
@@ -80,28 +80,28 @@ class CreateMakaroniPrimeTables extends Migration {
             $table->timestamps();
         });
         Schema::create('discount', function (Blueprint $table) {
-            $table->string('code')->primary();
+            $table->string('code')->unique()->primary();
             $table->decimal('amount', 2);
             $table->dateTime('startDate');
             $table->dateTime('endDate');
             $table->timestamps();
         });
         Schema::create('review', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unique();
             $table->foreignId('clientID');
             $table->string('productName');
             $table->integer('rating');
-            $table->multiLineString('comment');
+            $table->longText('comment');
             $table->timestamp('date')->useCurrent();
             $table->timestamps();
 
             $table->foreign('productName')->references('name')->on('makarons')->onDelete('cascade');
         });
         Schema::create('order', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unique();
             $table->foreignId('clientID');
             $table->timestamp('orderDate')->useCurrent();
-            $table->decimal('total');
+            $table->decimal('total', 12);
             $table->timestamps();
         });
 
@@ -128,7 +128,7 @@ class CreateMakaroniPrimeTables extends Migration {
             $table->id();
             $table->timestamps();
             $table->string('division');
-            $table->string('employee', 11);
+            $table->char('employee', 11);
 
             $table->foreign('division')->references('name')->on('division')->onDelete('cascade');
             $table->foreign('employee')->references('personalId')->on('employee')->onDelete('cascade');
@@ -163,7 +163,7 @@ class CreateMakaroniPrimeTables extends Migration {
         Schema::create('employee_machinery', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('employee', 11);
+            $table->char('employee', 11);
             $table->string('machinery');
 
             $table->foreign('employee')->references('personalId')->on('employee')->onDelete('cascade');

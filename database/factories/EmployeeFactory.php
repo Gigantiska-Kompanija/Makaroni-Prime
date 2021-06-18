@@ -2,13 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\Client;
 use App\Models\Employee;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
-class EmployeeFactory extends Factory
-{
+class EmployeeFactory extends Factory {
     /**
      * The name of the factory's corresponding model.
      *
@@ -22,16 +19,17 @@ class EmployeeFactory extends Factory
      * @return array
      */
     public function definition(): array {
+        $joinDate = $this->faker->dateTimeBetween('-10 years', '-1 week');
         return [
-            'personalId' => $this->faker->unique()->numberBetween(10000000000, 100000000000),
+            'personalId' => (string) $this->faker->unique()->numberBetween(10000000000, 100000000000),
             'firstName' => $this->faker->firstName,
             'lastName' => $this->faker->lastName,
             'email' => $this->faker->unique()->safeEmail,
             'phoneNumber' => $this->faker->unique()->phoneNumber,
-            'joinDate' => now(),
-            'leaveDate' => null,
+            'joinDate' => $joinDate,
+            'leaveDate' => $this->faker->optional(.1)->dateTimeBetween($joinDate),
             'position' => $this->faker->optional()->randomElement(),
-            'pay' => $this->faker->randomFloat(2, 5, 20),
+            'pay' => $this->faker->optional(.8)->randomFloat(2, 5, 20),
         ];
     }
 }

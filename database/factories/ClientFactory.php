@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class ClientFactory extends Factory
-{
+class ClientFactory extends Factory {
     /**
      * The name of the factory's corresponding model.
      *

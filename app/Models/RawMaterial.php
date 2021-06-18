@@ -10,9 +10,18 @@ class RawMaterial extends Model {
     use HasFactory;
 
     protected $table = 'rawMaterial';
-    public $primaryKey  = 'name';
+    protected $primaryKey = 'name';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected $fillable = [
+        'name',
+        'price',
+        'quantity',
+        'minimum',
+    ];
 
     public function machinery(): Relation {
-        return $this->belongsToMany(Machinery::class);
+        return $this->belongsToMany(Machinery::class, 'machinery_rawMaterial', 'rawMaterial', 'machinery');
     }
 }

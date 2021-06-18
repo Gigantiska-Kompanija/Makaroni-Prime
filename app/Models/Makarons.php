@@ -10,22 +10,34 @@ class Makarons extends Model {
     use HasFactory;
 
     protected $table = 'makarons';
-    public $primaryKey  = 'name';
+    protected $primaryKey = 'name';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected $fillable = [
+        'name',
+        'quantity',
+        'price',
+        'shape',
+        'color',
+        'length',
+        'popularity',
+    ];
 
     public function reviews(): Relation {
         return $this->hasMany(Review::class);
     }
 
     public function orders(): Relation {
-        return $this->belongsToMany(Order::class)
+        return $this->belongsToMany(Order::class, 'makarons_order', 'makarons', 'orderID')
             ->withPivot('amount', 'price');
     }
 
     public function discounts(): Relation {
-        return $this->belongsToMany(Discount::class);
+        return $this->belongsToMany(Discount::class, 'discount_makarons', 'makarons', 'code');
     }
 
     public function machinery(): Relation {
-        return $this->belongsToMany(Machinery::class);
+        return $this->belongsToMany(Machinery::class, 'machinery_makarons', 'makarons', 'machinery');
     }
 }

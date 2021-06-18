@@ -11,12 +11,18 @@ class Order extends Model {
 
     protected $table = 'order';
 
+    protected $fillable = [
+        'clientID',
+        'orderDate',
+        'total',
+    ];
+
     public function client(): Relation {
         return $this->belongsTo(Client::class);
     }
 
     public function makaroni(): Relation {
-        return $this->belongsToMany(Makarons::class)
+        return $this->belongsToMany(Makarons::class, 'makarons_order', 'orderID', 'makarons')
             ->withPivot('amount', 'price');
     }
 }

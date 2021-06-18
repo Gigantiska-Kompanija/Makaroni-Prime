@@ -10,21 +10,35 @@ class Machinery extends Model {
     use HasFactory;
 
     protected $table = 'machinery';
-    public $primaryKey  = 'serialNumber';
+    protected $primaryKey = 'serialNumber';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected $fillable = [
+        'serialNumber',
+        'function',
+        'located',
+        'model',
+        'isOperating',
+        'lastServiced',
+        'needsMaintenance',
+        'purchaseDate',
+        'decommissionDate',
+    ];
 
     public function located(): Relation {
-        return $this->belongsTo(Division::class);
+        return $this->belongsTo(Division::class, 'located', 'name');
     }
 
     public function rawMaterials(): Relation {
-        return $this->belongsToMany(RawMaterial::class);
+        return $this->belongsToMany(RawMaterial::class, 'machinery_rawMaterial', 'machinery', 'rawMaterial');
     }
 
     public function makaroni(): Relation {
-        return $this->belongsToMany(Makarons::class);
+        return $this->belongsToMany(Makarons::class, 'machinery_makarons', 'machinery', 'makarons');
     }
 
     public function employees(): Relation {
-        return $this->belongsToMany(Employee::class);
+        return $this->belongsToMany(Employee::class, 'employee_machinery', 'machinery', 'employee');
     }
 }

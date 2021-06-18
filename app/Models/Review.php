@@ -11,6 +11,14 @@ class Review extends Model {
 
     protected $table = 'review';
 
+    protected $fillable = [
+        'clientID',
+        'productName',
+        'rating',
+        'comment',
+        'date',
+    ];
+
     public function client(): Relation {
         return $this->belongsTo(Client::class);
     }

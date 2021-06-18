@@ -10,9 +10,18 @@ class Discount extends Model {
     use HasFactory;
 
     protected $table = 'discount';
-    public $primaryKey  = 'code';
+    protected $primaryKey = 'code';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected $fillable = [
+        'code',
+        'amount',
+        'startDate',
+        'endDate',
+    ];
 
     public function makaroni(): Relation {
-        return $this->belongsToMany(Makarons::class);
+        return $this->belongsToMany(Makarons::class, 'discount_makarons', 'code', 'makarons');
     }
 }

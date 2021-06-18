@@ -10,17 +10,25 @@ class Division extends Model {
     use HasFactory;
 
     protected $table = 'division';
-    public $primaryKey  = 'name';
+    protected $primaryKey = 'name';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected $fillable = [
+        'name',
+        'location',
+        'isOperating',
+    ];
 
     public function machinery(): Relation {
         return $this->hasMany(Machinery::class);
     }
 
     public function employees(): Relation {
-        return $this->belongsToMany(Employee::class);
+        return $this->belongsToMany(Employee::class, 'division_employee', 'division', 'employee');
     }
 
     public function managers(): Relation {
-        return $this->belongsToMany(Manager::class);
+        return $this->belongsToMany(Manager::class, 'division_manager', 'division', 'manager');
     }
 }

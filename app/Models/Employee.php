@@ -11,6 +11,8 @@ class Employee extends Model {
 
     protected $table = 'employee';
     protected $primaryKey = 'personalId';
+    protected $keyType = 'char';
+    public $incrementing = false;
 
     protected $fillable = [
         'personalId',
@@ -29,10 +31,10 @@ class Employee extends Model {
     }
 
     public function divisions(): Relation {
-        return $this->belongsToMany(Division::class);
+        return $this->belongsToMany(Division::class, 'division_employee', 'employee', 'division');
     }
 
     public function machinery(): Relation {
-        return $this->belongsToMany(Machinery::class);
+        return $this->belongsToMany(Machinery::class, 'employee_machinery', 'employee', 'machinery');
     }
 }

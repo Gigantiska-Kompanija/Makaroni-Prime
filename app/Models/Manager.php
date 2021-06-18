@@ -11,6 +11,9 @@ class Manager extends Authenticatable {
     use HasFactory, Notifiable;
 
     protected $table = 'manager';
+    protected $primaryKey = 'employee';
+    protected $keyType = 'char';
+    public $incrementing = false;
 
     protected $guard = 'manager';
 
@@ -29,7 +32,7 @@ class Manager extends Authenticatable {
     }
 
     public function divisions(): Relation {
-        return $this->belongsToMany(Division::class);
+        return $this->belongsToMany(Division::class, 'division_manager', 'manager', 'division');
     }
 
 
