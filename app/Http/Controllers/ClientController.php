@@ -45,6 +45,14 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'firstName' => 'required|max:191',
+            'lastName' => 'required|max:191',
+            'registerDate' => '',
+            'email' => 'required|unique:client|max:191',
+            'password' => 'required|min:8|max:191',
+            'phoneNumber' => 'required|max:191',
+        ]);
         $client = new Client();
         $client->firstName = $request->firstName;
         $client->lastName = $request->lastName;
@@ -87,6 +95,14 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'firstName' => 'required|max:191',
+            'lastName' => 'required|max:191',
+            'registerDate' => '',
+            'email' => 'required|unique:client|max:191',
+            'password' => 'required|min:8|max:191',
+            'phoneNumber' => 'required|max:191',
+        ]);
         $client = Client::findOrFail($id);
         $client->firstName = $request->firstName;
         $client->lastName = $request->lastName;

@@ -47,6 +47,11 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'productName' => 'required|unique:makarons|max:191',
+            'rating' => 'required|numeric|integer|min:0',
+            'comment' => 'required',
+        ]);
         $review = new Review();
         $review->clientID = Auth::id();
         $review->productName = $request->name;

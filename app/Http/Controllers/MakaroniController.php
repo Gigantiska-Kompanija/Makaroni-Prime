@@ -57,6 +57,15 @@ class MakaroniController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|unique:makarons|max:191',
+            'quantity' => 'required|numeric|integer|min:0',
+            'price' => 'required|numeric',
+            'shape' => 'required|max:191',
+            'color' => 'required|max:191',
+            'length' => 'required|numeric|integer|min:0',
+            'popularity' => 'required|numeric|integer|min:0',
+        ]);
         $makarons = new Makarons();
         $makarons->name = $request->name;
         $makarons->quantity = $request->quantity;
@@ -102,6 +111,15 @@ class MakaroniController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'name' => 'required|unique:makarons|max:191',
+            'quantity' => 'required|numeric|integer|min:0',
+            'price' => 'required|numeric',
+            'shape' => 'required|max:191',
+            'color' => 'required|max:191',
+            'length' => 'required|numeric|integer|min:0',
+            'popularity' => 'required|numeric|integer|min:0',
+        ]);
         $makarons = Makarons::findOrFail($id);
         $makarons->name = $request->name;
         $makarons->quantity = $request->quantity;

@@ -45,6 +45,12 @@ class DiscountController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'code' => 'required|unique:discount|max:191',
+            'amount' => 'required|numeric',
+            'startDate' => 'required',
+            'endDate' => 'required',
+        ]);
         $discount = new Discount();
         $discount->code = $request->code;
         $discount->amount = $request->amount;
@@ -85,6 +91,12 @@ class DiscountController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'code' => 'required|unique:discount|max:191',
+            'amount' => 'required|numeric',
+            'startDate' => 'required',
+            'endDate' => 'required',
+        ]);
         $discount = Discount::findOrFail($id);
         $discount->code = $request->code;
         $discount->amount = $request->amount;

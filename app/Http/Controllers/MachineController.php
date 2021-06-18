@@ -45,7 +45,17 @@ class MachineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'serialNumber' => 'required|unique:machine|max:191',
+            'function' => 'max:191',
+            'located' => 'required|max:191',
+            'model' => 'required|max:191',
+            'isOperating' => 'required|tinyint|min:0|max:1',
+            'lastServiced' => '',
+            'needsMaintenance' => 'required|tinyint|min:0|max:1',
+            'purchaseDate' => '',
+            'decommissionDate' => '',
+        ]);
         $machine = new Employee();
         $machine->serialNumber = $request->serialNumber;
         $machine->function = $request->function;
@@ -91,6 +101,17 @@ class MachineController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'serialNumber' => 'required|unique:machine|max:191',
+            'function' => 'max:191',
+            'located' => 'required|max:191',
+            'model' => 'required|max:191',
+            'isOperating' => 'required|tinyint|min:0|max:1',
+            'lastServiced' => '',
+            'needsMaintenance' => 'required|tinyint|min:0|max:1',
+            'purchaseDate' => '',
+            'decommissionDate' => '',
+        ]);
         $machine = Machine::findOrFail($id);
         $machine->serialNumber = $request->serialNumber;
         $machine->function = $request->function;

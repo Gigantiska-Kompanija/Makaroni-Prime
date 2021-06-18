@@ -35,6 +35,17 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'personalId' => 'required|unique:employee|max:11',
+            'firstName' => 'required|max:191',
+            'lastName' => 'required|max:191',
+            'email' => 'required|max:191',
+            'phoneNumber' => 'required|max:191',
+            'position' => 'required|max:191',
+            'pay' => 'required|decimal(8,2)',
+            'joinDate' => '',
+            'leaveDate' => '',
+        ]);
         $employee = new Employee();
         $employee->personalId = $request->personalId;
         $employee->firstName = $request->firstName;
@@ -80,6 +91,17 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'personalId' => 'required|unique:employee|max:11',
+            'firstName' => 'required|max:191',
+            'lastName' => 'required|max:191',
+            'email' => 'required|max:191',
+            'phoneNumber' => 'required|max:191',
+            'position' => 'required|max:191',
+            'pay' => 'required|decimal(8,2)',
+            'joinDate' => '',
+            'leaveDate' => '',
+        ]);
         $employee = Employee::findOrFail($id);
         $employee->personalId = $request->personalId;
         $employee->firstName = $request->firstName;

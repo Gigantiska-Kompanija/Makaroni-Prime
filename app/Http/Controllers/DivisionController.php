@@ -45,6 +45,11 @@ class DivisionController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|unique:division|max:191',
+            'location' => 'required|max:191',
+            'isOperating' => 'required|tinyint|min:0|max:1',
+        ]);
         $division = new Division();
         $division->name = $request->name;
         $division->location = $request->location;
@@ -84,6 +89,11 @@ class DivisionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'name' => 'required|unique:division|max:191',
+            'location' => 'required|max:191',
+            'isOperating' => 'required|tinyint|min:0|max:1',
+        ]);
         $division = Division::findOrFail($id);
         $division->name = $request->name;
         $division->location = $request->location;
