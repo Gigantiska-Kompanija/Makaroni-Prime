@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Makroni" pattern="!file[Makaroni-Prime]:.idea//*&amp;&amp;!file[Makaroni-Prime]:bootstrap/cache//*&amp;&amp;!file[Makaroni-Prime]:tests//*&amp;&amp;!file[Makaroni-Prime]:public//*&amp;&amp;!file[Makaroni-Prime]:storage//*" />
+</component>
