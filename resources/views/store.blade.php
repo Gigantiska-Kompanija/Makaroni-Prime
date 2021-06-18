@@ -11,7 +11,11 @@
         @foreach($makaroni as $makarons)
             <a class="col" href={{ route("makaroni.show", $makarons->name) }}>
                 <div class="card h-100">
-                <img src="https://picsum.photos/id/10/200" class="card-img-top" alt="...">
+                @if (file_exists(public_path('assets/images/'.$makarons->name.'.jpg')))
+                    <img src="{{ asset('assets/images/'.$makarons->name.'.jpg') }}" class="card-img-top">
+                @else
+                    <img src="{{ asset('assets/images/default.jpg') }}" class="card-img-top">
+                @endif
                 <div class="card-img-overlay">
                     <h5 class="card-title fs-2 btn-warning rounded-circle p-3" style="width: fit-content;">#{{ $makarons->popularity }}</h5>
                 </div>

@@ -13,7 +13,7 @@
         </form>
     </div>
     </x-slot>
-    <form method="POST" action="{{ route('makaroni.update', $makarons->name) }}">
+    <form method="POST" action="{{ route('makaroni.update', $makarons->name) }}" enctype="multipart/form-data">
         @method('PUT')
         @csrf
 
@@ -24,6 +24,7 @@
         <x-input inputFor="color" val="{{ $makarons->color }}" required>{{ __('Color') }}</x-input>
         <x-input inputFor="length" val="{{ $makarons->length }}" required>{{ __('Length') }}</x-input>
         <x-input inputFor="popularity" val="{{ $makarons->popularity }}" required>{{ __('Popularity') }}</x-input>
+        <x-input inputFor="image" type="file">Image</x-input>
 
         <x-submit-btn />
     </form>

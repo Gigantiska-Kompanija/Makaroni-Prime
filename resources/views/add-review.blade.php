@@ -4,7 +4,7 @@
             {{ __('Add review') }}
         </h2>
     </x-slot>
-    <form method="POST" action="{{ route('review.store') }}">
+    <form method="POST" action="{{ route('review.store', $id) }}">
         @csrf
 
         <x-input inputFor="rating" required>{{ __('Rating') }}</x-input>

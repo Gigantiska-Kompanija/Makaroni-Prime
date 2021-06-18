@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\Models\Makarons;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class MakaroniController extends Controller
 {
@@ -55,7 +58,13 @@ class MakaroniController extends Controller
             'color' => 'required|max:191',
             'length' => 'required|numeric|integer|min:0',
             'popularity' => 'required|numeric|integer|min:0',
+            'image'  => 'image|mimes:jpg|max:2048'
         ]);
+        $image = $request->file('image');
+        if($image) {
+            $new_name = $request->name . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('assets/images'), $new_name);
+        }
         $makarons = new Makarons();
         $makarons->name = $request->name;
         $makarons->quantity = $request->quantity;
@@ -65,7 +74,7 @@ class MakaroniController extends Controller
         $makarons->length = $request->length;
         $makarons->popularity = $request->popularity;
         $makarons->save();
-        return $this->index();
+        return redirect(route('makaroni.show', $request->name));
     }
     
     /**
@@ -77,7 +86,8 @@ class MakaroniController extends Controller
     public function show($id)
     {
         $makarons = Makarons::findOrFail($id);
-        return view('makaroni.info', compact('makarons'));
+        $reviews = $makarons->reviews()->orderBy('date', 'DESC')->get();
+        return view('makaroni.info', compact('makarons', 'reviews'));
     }
 
     /**
@@ -101,16 +111,28 @@ class MakaroniController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $makarons = Makarons::findOrFail($id);
         $validated = $request->validate([
-            'name' => 'required|unique:makarons|max:191',
+            'name' => ['required', 'max:191', Rule::unique('makarons', 'name')->ignore($makarons->name, 'name')],
             'quantity' => 'required|numeric|integer|min:0',
             'price' => 'required|numeric',
             'shape' => 'required|max:191',
             'color' => 'required|max:191',
             'length' => 'required|numeric|integer|min:0',
             'popularity' => 'required|numeric|integer|min:0',
+            'image'  => 'image|mimes:jpg|max:2048'
         ]);
-        $makarons = Makarons::findOrFail($id);
+        $image = $request->file('image');
+        $old_name = $makarons->name . '.jpg';
+        $new_name = $request->name . '.jpg';
+        if($image){
+            if($old_name != $new_name) {
+                unlink(public_path('assets/images/' . $old_name));
+            }
+            $image->move(public_path('assets/images'), $new_name);
+        } else if(file_exists(public_path('assets/images/' . $old_name))) {
+            rename(public_path('assets/images/' . $old_name), public_path('assets/images/' . $new_name));
+        }
         $makarons->name = $request->name;
         $makarons->quantity = $request->quantity;
         $makarons->price = $request->price;
@@ -119,7 +141,7 @@ class MakaroniController extends Controller
         $makarons->length = $request->length;
         $makarons->popularity = $request->popularity;
         $makarons->save();
-        return $this->index();
+        return redirect(route('makaroni.show', $request->name));
     }
 
     /**
@@ -131,6 +153,8 @@ class MakaroniController extends Controller
     public function destroy($id)
     {
         Makarons::findOrFail($id)->delete();
-        return $this->index();
+        $old_name = $id . '.jpg';
+        unlink(public_path('assets/images/' . $old_name));
+        return redirect(route('makaroni.index'));
     }
 }

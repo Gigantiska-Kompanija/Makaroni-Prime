@@ -48,7 +48,7 @@ class DiscountController extends Controller
         $discount->startDate = $request->startDate;
         $discount->endDate = $request->endDate;
         $discount->save();
-        return $this->index();
+        return redirect(route('discounts.show', $request->code));
     }
     
     /**
@@ -94,7 +94,7 @@ class DiscountController extends Controller
         $discount->startDate = $request->startDate;
         $discount->endDate = $request->endDate;
         $discount->save();
-        return view('discounts.info', compact('id'));
+        return redirect(route('discounts.show', $request->code));
     }
 
     /**
@@ -106,6 +106,6 @@ class DiscountController extends Controller
     public function destroy($id)
     {
         Discount::findOrFail($id)->delete();
-        return $this->index();
+        return redirect(route('discounts.index'));
     }
 }

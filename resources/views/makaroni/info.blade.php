@@ -13,7 +13,11 @@
     <div class="card mb-3 border-0">
         <div class="row g-0">
             <div class="col-md-4">
-            <img src="https://picsum.photos/id/10/400" class="card-img" alt="...">
+            @if (file_exists(public_path('assets/images/'.$makarons->name.'.jpg')))
+                    <img src="{{ asset('assets/images/'.$makarons->name.'.jpg') }}" class="card-img-top">
+                @else
+                    <img src="{{ asset('assets/images/default.jpg') }}" class="card-img-top">
+                @endif
             <div class="card-img-overlay">
                 <h5 class="card-title fs-2 btn-warning rounded-circle p-3" style="width: fit-content;">#{{ $makarons->popularity }}</h5>
             </div>
@@ -42,17 +46,42 @@
             <h2 class="fs-2">{{ __('Reviews') }}:</h2>
             <a class="btn btn-warning ml-1" href={{ route("review.create", $makarons->name) }}><i class="fas fa-plus"></i></a>
         </div>
-        @for ($i = 0; $i < 5; $i++)
+        @foreach($reviews as $review)
             <div class="card mt-4">
                 <div class="d-flex justify-content-between align-items-center card-header">
-                    <h5>user {{ $i }}</h5>
-                    <h5>date {{ $i }}</h5>
+                    <h5>{{ $review->clientID }}</h5>
+                    <div class="d-flex align-items-center">
+                        <button class="delete-review btn btn-warning mr-4" id={{ $review->id }}><i class="fas fa-trash-alt"></i></button>
+                        <h5>{{ $review->date }}</h5>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">rating {{ $i }}</h5>
-                    <p class="card-text">comment {{ $i }}</p>
+                    <h5 class="card-title">Rating: {{ $review->rating }}</h5>
+                    <p class="card-text">Comment: {{ $review->comment }}</p>
                 </div>
             </div>
-        @endfor
+        @endforeach
     </div>
+    <script>
+        $(document).ready(function () {
+            $(".delete-review").each(function(index) {
+                $(this).on("click", function() {
+                    var url = '{{ route("review.destroy", ":id") }}';
+                    url = url.replace(':id', $(this).attr('id'));
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        data: {_token: CSRF_TOKEN },
+                        success: function (data) {
+                            location.reload();
+                        },
+                        error: function (data) {
+                            console.log('Error:', data);
+                        }
+                    });
+                });
+            });
+        });  
+    </script>
 </x-app-layout>

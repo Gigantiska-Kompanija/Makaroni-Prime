@@ -48,7 +48,7 @@ class IngredientController extends Controller
         $ingredient->quantity = $request->quantity;
         $ingredient->minimum = $request->minimum;
         $ingredient->save();
-        return $this->index();
+        return redirect(route('ingrediants.show', $request->name));
     }
     
     /**
@@ -94,7 +94,7 @@ class IngredientController extends Controller
         $ingredient->quantity = $request->quantity;
         $ingredient->minimum = $request->minimum;
         $ingredient->save();
-        return view('ingredients.info', compact('id'));
+        return redirect(route('ingredients.show', $request->name));
     }
 
     /**
@@ -106,6 +106,6 @@ class IngredientController extends Controller
     public function destroy($id)
     {
         RawMaterial::findOrFail($id)->delete();
-        return $this->index();
+        return redirect(route('machines.index'));
     }
 }

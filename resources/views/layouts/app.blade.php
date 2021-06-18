@@ -12,10 +12,11 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}?v=0">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}?v=3">
         @include('feed::links')
 
         <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">

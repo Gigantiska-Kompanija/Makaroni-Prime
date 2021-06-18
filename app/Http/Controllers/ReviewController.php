@@ -35,20 +35,19 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $validated = $request->validate([
-            'productName' => 'required|unique:makarons|max:191',
-            'rating' => 'required|numeric|integer|min:0',
+            'rating' => 'required|numeric|integer|min:0|max:5',
             'comment' => 'required',
         ]);
         $review = new Review();
         $review->clientID = Auth::id();
-        $review->productName = $request->name;
+        $review->productName = $id;
         $review->rating = $request->rating;
         $review->comment = $request->comment;
         $review->save();
-        return view("store");
+        return redirect(route('makaroni.show', $id));
     }
 
     /**
@@ -59,6 +58,6 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Review::findOrFail($id)->delete();
     }
 }

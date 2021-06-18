@@ -28,8 +28,9 @@ Route::resource('discounts', 'DiscountController');
 Route::get('cart', 'CartController@index')->name('cart.index');
 Route::get('form-order', 'CartController@order')->name('form.order');
 Route::post('form-order', 'CartController@storeOrder')->name('form.storeOrder');
-Route::get('review/{$id}', 'ReviewController@create')->name('review.create');
-Route::post('review/{$id}', 'ReviewController@create')->name('review.store');
+Route::get('review/{id}', 'ReviewController@create')->name('review.create');
+Route::post('review/{id}', 'ReviewController@store')->name('review.store');
+Route::delete('review/{id}', 'ReviewController@destroy')->name('review.destroy');
 
 Route::feeds();
 

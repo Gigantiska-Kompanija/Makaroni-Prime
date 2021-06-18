@@ -5,7 +5,7 @@
     <input {{ $required ? 'required' : '' }} 
             class="form-control {{ $errors->get($inputFor) ? 'border-danger' : '' }}" 
             id={{ $inputFor }} 
-            name={{ $inputFor }}  b
+            name={{ $inputFor }}
             type={{ $type }}
             value="{{ old($inputFor) ?? $val }}" />
     @error($inputFor)

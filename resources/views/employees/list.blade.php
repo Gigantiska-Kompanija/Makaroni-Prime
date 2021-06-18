@@ -18,15 +18,15 @@
             </tr>
         </thead>
         <tbody>
-        @for ($i = 0; $i < 10; $i++)
+        @foreach($employees as $employee)
             <tr>
-                <th><a href={{ route("employees.show", $i) }}>id {{ $i }}</a></th>
-                <td><a href={{ route("employees.show", $i) }}>name {{ $i }}</a></td>
-                <td><a href={{ route("employees.show", $i) }}>lastname {{ $i }}</a></td>
-                <td><a href={{ route("employees.show", $i) }}>position {{ $i }}</a></td>
-                <td><a href={{ route("employees.show", $i) }}>phone number {{ $i }}</a></td>
+                <th><a href={{ route("employees.show", $employee->personalId) }}>{{ $employee->personalId }}</a></th>
+                <td><a href={{ route("employees.show", $employee->personalId) }}>{{ $employee->firstName }}</a></td>
+                <td><a href={{ route("employees.show", $employee->personalId) }}>{{ $employee->lastName }}</a></td>
+                <td><a href={{ route("employees.show", $employee->personalId) }}>{{ $employee->position }}</a></td>
+                <td><a href={{ route("employees.show", $employee->personalId) }}>{{ $employee->phoneNumber }}</a></td>
             </tr>
-        @endfor
+            @endforeach
         </tbody>
     </table>
 </x-app-layout>

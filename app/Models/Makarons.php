@@ -27,7 +27,7 @@ class Makarons extends Model implements Feedable {
     ];
 
     public function reviews(): Relation {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class, 'productName', 'name');
     }
 
     public function orders(): Relation {

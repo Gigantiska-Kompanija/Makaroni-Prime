@@ -4,7 +4,7 @@
             {{ __('Add Makarons') }}
         </h2>
     </x-slot>
-    <form method="POST" action="{{ route('makaroni.store') }}">
+    <form method="POST" action="{{ route('makaroni.store') }}" enctype="multipart/form-data">
         @csrf
 
         <x-input inputFor="name" required>{{ __('Name') }}</x-input>
@@ -14,6 +14,7 @@
         <x-input inputFor="color" required>{{ __('Color') }}</x-input>
         <x-input inputFor="length" required>{{ __('Length') }}</x-input>
         <x-input inputFor="popularity" required>{{ __('Popularity') }}</x-input>
+        <x-input inputFor="image" type="file">Image</x-input>
 
         <x-submit-btn />
     </form>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Machine;
+use App\Models\Machinery;
 
 class MachineController extends Controller
 {
@@ -14,7 +14,7 @@ class MachineController extends Controller
      */
     public function index()
     {
-        $machines = Employee::orderBy('serialNumber')->get();
+        $machines = Machinery::orderBy('serialNumber')->get();
         return view('machines.list', compact('machines'));
     }
 
@@ -47,7 +47,7 @@ class MachineController extends Controller
             'purchaseDate' => '',
             'decommissionDate' => '',
         ]);
-        $machine = new Employee();
+        $machine = new Machinery();
         $machine->serialNumber = $request->serialNumber;
         $machine->function = $request->function;
         $machine->located = $request->located;
@@ -58,7 +58,7 @@ class MachineController extends Controller
         $machine->purchaseDate = $request->purchaseDate;
         $machine->decommissionDate = $request->decommissionDate;
         $machine->save();
-        return $this->index();
+        return redirect(route('machines.show', $request->serialNumber));
     }
     
     /**
@@ -103,7 +103,7 @@ class MachineController extends Controller
             'purchaseDate' => '',
             'decommissionDate' => '',
         ]);
-        $machine = Machine::findOrFail($id);
+        $machine = Machinery::findOrFail($id);
         $machine->serialNumber = $request->serialNumber;
         $machine->function = $request->function;
         $machine->located = $request->located;
@@ -114,7 +114,7 @@ class MachineController extends Controller
         $machine->purchaseDate = $request->purchaseDate;
         $machine->decommissionDate = $request->decommissionDate;
         $machine->save();
-        return view('machines.info', compact('id'));
+        return redirect(route('machines.show', $request->serialNumber));
     }
 
     /**
@@ -125,7 +125,7 @@ class MachineController extends Controller
      */
     public function destroy($id)
     {
-        Machine::findOrFail($id)->delete();
-        return $this->index();
+        Machinery::findOrFail($id)->delete();
+        return redirect(route('machines.index'));
     }
 }

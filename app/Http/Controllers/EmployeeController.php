@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use Illuminate\Validation\Rule;
 
 class EmployeeController extends Controller
 {
@@ -14,7 +15,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::orderBy('id')->get();
+        $employees = Employee::orderBy('personalId')->get();
         return view('employees.list', compact('employees'));
     }
 
@@ -43,7 +44,7 @@ class EmployeeController extends Controller
             'email' => 'required|max:191',
             'phoneNumber' => 'required|max:191',
             'position' => 'required|max:191',
-            'pay' => 'required|decimal(8,2)',
+            'pay' => 'required|numeric',
             'joinDate' => '',
             'leaveDate' => '',
         ]);
@@ -58,7 +59,7 @@ class EmployeeController extends Controller
         $employee->joinDate = $request->joinDate;
         $employee->leaveDate = $request->leaveDate;
         $employee->save();
-        return $this->index();
+        return redirect(route('employees.show', $request->personalId));
     }
     
     /**
@@ -69,7 +70,8 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        return view('employees.info', compact('id'));
+        $employee = Employee::findOrFail($id);
+        return view('employees.info', compact('employee'));
     }
 
     /**
@@ -80,7 +82,8 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        return view('employees.edit', compact('id'));
+        $employee = Employee::findOrFail($id);
+        return view('employees.edit', compact('employee'));
     }
 
     /**
@@ -92,18 +95,18 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $employee = Employee::findOrFail($id);
         $validated = $request->validate([
-            'personalId' => 'required|unique:employee|max:11',
+            'personalId' => ['required', Rule::unique('employee', 'personalId')->ignore($employee->personalId, 'personalId')],
             'firstName' => 'required|max:191',
             'lastName' => 'required|max:191',
             'email' => 'required|max:191',
             'phoneNumber' => 'required|max:191',
             'position' => 'required|max:191',
-            'pay' => 'required|decimal(8,2)',
+            'pay' => 'required|numeric',
             'joinDate' => '',
             'leaveDate' => '',
         ]);
-        $employee = Employee::findOrFail($id);
         $employee->personalId = $request->personalId;
         $employee->firstName = $request->firstName;
         $employee->lastName = $request->lastName;
@@ -114,7 +117,7 @@ class EmployeeController extends Controller
         $employee->joinDate = $request->joinDate;
         $employee->leaveDate = $request->leaveDate;
         $employee->save();
-        return view('employees.info', compact('id'));
+        return redirect(route('employees.show', $request->personalId));
     }
 
     /**
@@ -126,6 +129,6 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         Employee::findOrFail($id)->delete();
-        return $this->index();
+        return redirect(route('employees.index'));
     }
 }

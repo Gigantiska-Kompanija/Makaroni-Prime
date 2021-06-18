@@ -46,7 +46,7 @@ class DivisionController extends Controller
         $division->location = $request->location;
         $division->isOperationg = $request->isOperationg;
         $division->save();
-        return $this->index();
+        return redirect(route('divisions.show', $request->name));
     }
     
     /**
@@ -90,7 +90,7 @@ class DivisionController extends Controller
         $division->location = $request->location;
         $division->isOperationg = $request->isOperationg;
         $division->save();
-        return view('divisions.info', compact('id'));
+        return redirect(route('divisions.show', $request->name));
     }
 
     /**
@@ -102,6 +102,6 @@ class DivisionController extends Controller
     public function destroy($id)
     {
         Division::findOrFail($id)->delete();
-        return $this->index();
+        return redirect(route('divisions.index'));
     }
 }
