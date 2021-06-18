@@ -13,18 +13,18 @@
             @csrf
 
             <!-- Name -->
-            <x-input inputFor="name" required >Name</x-input>
+            <x-input inputFor="name" required >{{ __('Name') }}</x-input>
 
             <!-- Email Address -->
-            <x-input inputFor="email" type="email" required >Email</x-input>
+            <x-input inputFor="email" type="email" required >{{ __('Email') }}</x-input>
 
             <!-- Password -->
             <x-input inputFor="password" type="password" required autocomplete="current-password" >
-                Password
+                {{ __('Password') }}
             </x-input>
 
             <!-- Confirm Password -->
-            <x-input inputFor="password_confirmation" type="password" required >Confirm Password</x-input>
+            <x-input inputFor="password_confirmation" type="password" required >{{ __('Confirm Password') }}</x-input>
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">

@@ -2,7 +2,7 @@
     <x-slot name="header">
     <div class="d-flex justify-content-between align-items-center">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Store
+            {{ __('Store') }}
         </h2>
         <a class="btn btn-warning" href={{ route("cart.index") }}><i class="fas fa-shopping-cart"></i></a>
     </div>
@@ -21,13 +21,13 @@
                         <h5 class="card-title fs-2">{{ $makarons->price }}$</h5>
                     </div>
                     <ul>
-                        <li>Shape: shape {{ $makarons->shape }}</li>
-                        <li>Color: color {{ $makarons->color }}</li>
-                        <li>Length: length {{ $makarons->length }}</li>
+                        <li>{{ __('Shape') }}: {{ $makarons->shape }}</li>
+                        <li>{{ __('Color') }}: {{ $makarons->color }}</li>
+                        <li>{{ __('Length') }}: {{ $makarons->length }}</li>
                     </ul>
                 </div>
                 <div class="card-footer">
-                    <p class="text-muted">In stock: {{ $makarons->quantity }}</p>
+                    <p class="text-muted">{{ __('In stock') }}: {{ $makarons->quantity }}</p>
                 </div>
                 </div>
             </a>

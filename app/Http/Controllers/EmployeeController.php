@@ -14,7 +14,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('employees.list');
+        $employees = Employee::orderBy('id')->get();
+        return view('employees.list', compact('employees'));
     }
 
     /**
@@ -57,7 +58,7 @@ class EmployeeController extends Controller
         $employee->joinDate = $request->joinDate;
         $employee->leaveDate = $request->leaveDate;
         $employee->save();
-        return view('employees.list');
+        return $this->index();
     }
     
     /**
@@ -125,6 +126,6 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         Employee::findOrFail($id)->delete();
-        return view('employees.list');
+        return $this->index();
     }
 }

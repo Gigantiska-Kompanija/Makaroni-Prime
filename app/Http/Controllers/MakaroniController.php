@@ -28,16 +28,6 @@ class MakaroniController extends Controller
         $makaroni = Makarons::orderBy('popularity')->get();
         return view('store', compact('makaroni'));
     }
-    
-    /**
-     * Filter MAKARONI by name.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function search()
-    {
-        //
-    }
 
     /**
      * Create a MAKARONI.

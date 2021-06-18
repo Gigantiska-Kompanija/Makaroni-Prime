@@ -18,16 +18,6 @@ class ReviewController extends Controller
     {
         //
     }
-    
-    /**
-     * Filter reviews by rating.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function search()
-    {
-        //
-    }
 
     /**
      * Add a review.

@@ -14,17 +14,8 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        return view('ingredients.list');
-    }
-    
-    /**
-     * Filter ingredients by name and amount.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function search()
-    {
-        //
+        $ingredients = RawMaterial::orderBy('name')->get();
+        return view('ingredients.list', compact('ingredients'));
     }
 
     /**
@@ -57,7 +48,7 @@ class IngredientController extends Controller
         $ingredient->quantity = $request->quantity;
         $ingredient->minimum = $request->minimum;
         $ingredient->save();
-        return view('ingredients.list');
+        return $this->index();
     }
     
     /**
@@ -115,6 +106,6 @@ class IngredientController extends Controller
     public function destroy($id)
     {
         RawMaterial::findOrFail($id)->delete();
-        return view('ingredients.list');
+        return $this->index();
     }
 }

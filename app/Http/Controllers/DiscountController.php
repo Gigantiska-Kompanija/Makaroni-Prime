@@ -14,17 +14,8 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        return view('discounts.list');
-    }
-    
-    /**
-     * Filter discounts by code.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function search()
-    {
-        //
+        $discounts = Discount::orderBy('code')->get();
+        return view('discounts.list', compact('discounts'));
     }
 
     /**
@@ -57,7 +48,7 @@ class DiscountController extends Controller
         $discount->startDate = $request->startDate;
         $discount->endDate = $request->endDate;
         $discount->save();
-        return view('discounts.list');
+        return $this->index();
     }
     
     /**
@@ -115,6 +106,6 @@ class DiscountController extends Controller
     public function destroy($id)
     {
         Discount::findOrFail($id)->delete();
-        return view('discounts.list');
+        return $this->index();
     }
 }

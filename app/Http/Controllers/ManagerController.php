@@ -16,16 +16,6 @@ class ManagerController extends Controller
     {
         //
     }
-    
-    /**
-     * Filter managers by division or name.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function search()
-    {
-        //
-    }
 
     /**
      * Add a manager.

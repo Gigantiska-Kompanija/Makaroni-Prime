@@ -14,17 +14,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('clients.list');
-    }
-    
-    /**
-     * Filter clients by name and surname.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function search()
-    {
-        //
+        $clients = Client::orderBy('id')->get();
+        return view('clients.list', compact('clients'));
     }
 
     /**
@@ -61,7 +52,7 @@ class ClientController extends Controller
         $client->password = Hash::make($request->password);
         $client->phoneNumber = $request->phoneNumber;
         $client->save();
-        return view('clients.list');
+        return $this->index();
     }
     
     /**
@@ -123,6 +114,6 @@ class ClientController extends Controller
     public function destroy($id)
     {
         Client::findOrFail($id)->delete();
-        return view('clients.list');
+        return $this->index();
     }
 }

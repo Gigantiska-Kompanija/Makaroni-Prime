@@ -14,17 +14,8 @@ class DivisionController extends Controller
      */
     public function index()
     {
-        return view('divisions.list');
-    }
-    
-    /**
-     * Filter divisions by name.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function search()
-    {
-        //
+        $divisions = Division::orderBy('name')->get();
+        return view('divisions.list', compact('divisions'));
     }
 
     /**
@@ -55,7 +46,7 @@ class DivisionController extends Controller
         $division->location = $request->location;
         $division->isOperationg = $request->isOperationg;
         $division->save();
-        return view('divisions.list');
+        return $this->index();
     }
     
     /**
@@ -111,6 +102,6 @@ class DivisionController extends Controller
     public function destroy($id)
     {
         Division::findOrFail($id)->delete();
-        return view('divisions.list');
+        return $this->index();
     }
 }

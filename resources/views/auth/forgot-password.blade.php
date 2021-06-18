@@ -20,7 +20,7 @@
             @csrf
 
             <!-- Email Address -->
-            <x-input inputFor="email" type="email" required >Email</x-input>
+            <x-input inputFor="email" type="email" required >{{ __('Email') }}</x-input>
 
             <div class="flex items-center justify-end">
                 <button class="btn btn-warning">

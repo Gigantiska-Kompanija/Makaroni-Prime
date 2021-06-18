@@ -14,17 +14,8 @@ class MachineController extends Controller
      */
     public function index()
     {
-        return view('machines.list');
-    }
-    
-    /**
-     * Filter machines by name or serial number.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function search()
-    {
-        //
+        $machines = Employee::orderBy('serialNumber')->get();
+        return view('machines.list', compact('machines'));
     }
 
     /**
@@ -67,7 +58,7 @@ class MachineController extends Controller
         $machine->purchaseDate = $request->purchaseDate;
         $machine->decommissionDate = $request->decommissionDate;
         $machine->save();
-        return view('machines.list');
+        return $this->index();
     }
     
     /**
@@ -135,6 +126,6 @@ class MachineController extends Controller
     public function destroy($id)
     {
         Machine::findOrFail($id)->delete();
-        return view('machines.list');
+        return $this->index();
     }
 }
