@@ -16,11 +16,11 @@
             @csrf
 
             <!-- Email Address -->
-            <x-input inputFor="email" type="email" required >Email</x-input>
+            <x-input inputFor="email" type="email" required >{{ __('Email') }}</x-input>
 
             <!-- Password -->
             <x-input inputFor="password" type="password" required autocomplete="current-password" >
-                Password
+                {{ __('Password') }}
             </x-input>
 
             <!-- Remember Me -->
