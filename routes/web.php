@@ -31,4 +31,6 @@ Route::post('form-order', 'CartController@storeOrder')->name('form.storeOrder');
 Route::get('review/{$id}', 'ReviewController@create')->name('review.create');
 Route::post('review/{$id}', 'ReviewController@create')->name('review.store');
 
+Route::feeds();
+
 require __DIR__.'/auth.php';
