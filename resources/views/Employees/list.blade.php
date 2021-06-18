@@ -11,7 +11,7 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Fist name</th>
+                <th>First name</th>
                 <th>Last name</th>
                 <th>Position</th>
                 <th>Phone number</th>
