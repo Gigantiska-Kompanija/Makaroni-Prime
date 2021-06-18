@@ -53,7 +53,7 @@ return [
     'Add Makarons' => 'Pievienot Makaronu',
     'Register date' => 'Reģistrācijas datums',
     'Add client' => 'Pievienot klientu',
-    'Password' => 'parole',
+    'Password' => 'Parole',
     'Remember me' => 'Atcerēties mani',
     'Forgot your password?' => 'Aizmirsāt paroli?',
     'Confirm Password' => 'Apstiprināt paroli',
