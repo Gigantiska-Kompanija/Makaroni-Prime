@@ -18,7 +18,7 @@
         @csrf
 
         <x-input inputFor="name" val="{{ $makarons->name }}" required>{{ __('Name') }}</x-input>
-        <x-input inputFor="quantity" val="{{ $makarons->quantity }}" required>{{ __('Quantity') }}</x-input>
+        <x-input inputFor="quantity" val="{{ $makarons->quantity }}">{{ __('Quantity') }}</x-input>
         <x-input inputFor="price" val="{{ $makarons->price }}" required>{{ __('Price') }}</x-input>
         <x-input inputFor="shape" val="{{ $makarons->shape }}" required>{{ __('Shape') }}</x-input>
         <x-input inputFor="color" val="{{ $makarons->color }}" required>{{ __('Color') }}</x-input>

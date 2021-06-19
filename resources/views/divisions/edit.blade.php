@@ -19,7 +19,7 @@
 
         <x-input inputFor="name" val="{{ $division->name }}" required>{{ __('Name') }}</x-input>
         <x-input inputFor="location" val="{{ $division->location }}" required>{{ __('Location') }}</x-input>
-        <x-input inputFor="isOperating" val="{{ $division->isOperating }}" required>{{ __('Is operating') }}</x-input>
+        <x-input inputFor="isOperating" val="{{ $division->isOperating }}">{{ __('Is operating') }}</x-input>
 
         <x-submit-btn />
     </form>

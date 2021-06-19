@@ -12,10 +12,10 @@
         <x-input inputFor="lastName" required>{{ __('Last name') }}</x-input>
         <x-input inputFor="email" required>{{ __('Email') }}</x-input>
         <x-input inputFor="phoneNumber" required>{{ __('Phone number') }}</x-input>
-        <x-input inputFor="position" required>{{ __('Position') }}</x-input>
-        <x-input inputFor="pay" required>{{ __('Salary') }}</x-input>
-        <x-input inputFor="joinDate" required>{{ __('Join date') }}</x-input>
-        <x-input inputFor="leaveDate" required>{{ __('Leave date') }}</x-input>
+        <x-input inputFor="position">{{ __('Position') }}</x-input>
+        <x-input inputFor="pay">{{ __('Salary') }}</x-input>
+        <x-input inputFor="joinDate">{{ __('Join date') }}</x-input>
+        <x-input inputFor="leaveDate">{{ __('Leave date') }}</x-input>
 
         <x-submit-btn />
     </form>

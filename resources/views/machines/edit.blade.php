@@ -18,14 +18,14 @@
         @csrf
 
         <x-input inputFor="serialNumber" val="{{ $machine->serialNumber }}" required>{{ __('Serial number') }}</x-input>
-        <x-input inputFor="function" val="{{ $machine->function }}" required>{{ __('Function') }}</x-input>
+        <x-input inputFor="function" val="{{ $machine->function }}">{{ __('Function') }}</x-input>
         <x-input inputFor="located" val="{{ $machine->located }}" required>{{ __('Located') }}</x-input>
-        <x-input inputFor="model" val="{{ $machine->model }}" required>{{ __('Model') }}</x-input>
-        <x-input inputFor="isOperating" val="{{ $machine->isOperating }}" required>{{ __('Is operating') }}</x-input>
-        <x-input inputFor="lastServiced" val="{{ $machine->lastServiced }}" required>{{ __('Last serviced') }}</x-input>
-        <x-input inputFor="needsMaintenance" val="{{ $machine->needsMaintenance }}" required>{{ __('Needs maintenance') }}</x-input>
-        <x-input inputFor="purchaseDate" val="{{ $machine->purchaseDate }}" required>{{ __('Purchase date') }}</x-input>
-        <x-input inputFor="decommissionDate" val="{{ $machine->decommissionDate }}" required>{{ __('Decommission date') }}</x-input>
+        <x-input inputFor="model" val="{{ $machine->model }}">{{ __('Model') }}</x-input>
+        <x-input inputFor="isOperating" val="{{ $machine->isOperating }}">{{ __('Is operating') }}</x-input>
+        <x-input inputFor="lastServiced" val="{{ $machine->lastServiced }}">{{ __('Last serviced') }}</x-input>
+        <x-input inputFor="needsMaintenance" val="{{ $machine->needsMaintenance }}">{{ __('Needs maintenance') }}</x-input>
+        <x-input inputFor="purchaseDate" val="{{ $machine->purchaseDate }}">{{ __('Purchase date') }}</x-input>
+        <x-input inputFor="decommissionDate" val="{{ $machine->decommissionDate }}">{{ __('Decommission date') }}</x-input>
 
         <x-submit-btn />
     </form>

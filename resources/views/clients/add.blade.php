@@ -9,7 +9,7 @@
 
         <x-input inputFor="firstName" required>{{ __('First name') }}</x-input>
         <x-input inputFor="lastName" required>{{ __('Last name') }}</x-input>
-        <x-input inputFor="registerDate" required>{{ __('Register date') }}</x-input>
+        <x-input inputFor="registerDate">{{ __('Register date') }}</x-input>
         <x-input inputFor="email" required>{{ __('Email') }}</x-input>
         <x-input inputFor="password" required>{{ __('Password') }}</x-input>
         <x-input inputFor="phoneNumber" required>{{ __('Phone number') }}</x-input>
