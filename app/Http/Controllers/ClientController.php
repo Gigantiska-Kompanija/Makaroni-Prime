@@ -75,7 +75,8 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        return view('clients.edit', compact('id'));
+        $client = Client::findOrFail($id);
+        return view('clients.edit', compact('client'));
     }
 
     /**
@@ -91,7 +92,7 @@ class ClientController extends Controller
             'firstName' => 'required|max:191',
             'lastName' => 'required|max:191',
             'registerDate' => '',
-            'email' => 'required|unique:client|max:191',
+            'email' => 'required|max:191',
             'password' => 'required|min:8|max:191',
             'phoneNumber' => 'required|max:191',
         ]);

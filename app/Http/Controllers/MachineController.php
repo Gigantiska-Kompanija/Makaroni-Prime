@@ -41,9 +41,9 @@ class MachineController extends Controller
             'function' => 'max:191',
             'located' => 'required|max:191',
             'model' => 'required|max:191',
-            'isOperating' => 'required|tinyint|min:0|max:1',
+            'isOperating' => 'required|numeric|integer|min:0|max:1',
             'lastServiced' => '',
-            'needsMaintenance' => 'required|tinyint|min:0|max:1',
+            'needsMaintenance' => 'required|numeric|integer|min:0|max:1',
             'purchaseDate' => '',
             'decommissionDate' => '',
         ]);
@@ -81,7 +81,8 @@ class MachineController extends Controller
      */
     public function edit($id)
     {
-        return view('machines.edit', compact('id'));
+        $machine = Machinery::findOrFail($id);
+        return view('machines.edit', compact('machine'));
     }
 
     /**
@@ -98,9 +99,9 @@ class MachineController extends Controller
             'function' => 'max:191',
             'located' => 'required|max:191',
             'model' => 'required|max:191',
-            'isOperating' => 'required|tinyint|min:0|max:1',
+            'isOperating' => 'required|numeric|integer|min:0|max:1',
             'lastServiced' => '',
-            'needsMaintenance' => 'required|tinyint|min:0|max:1',
+            'needsMaintenance' => 'required|numeric|integer|min:0|max:1',
             'purchaseDate' => '',
             'decommissionDate' => '',
         ]);

@@ -71,7 +71,8 @@ class DiscountController extends Controller
      */
     public function edit($id)
     {
-        return view('discounts.edit', compact('id'));
+        $discount = Discount::findOrFail($id);
+        return view('discounts.edit', compact('discount'));
     }
 
     /**
