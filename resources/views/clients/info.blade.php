@@ -9,11 +9,11 @@
     </x-slot>
     <dl class="row">
         
-        <x-info-label value="First name">{{ $client->firstName }}</x-info-label>
-        <x-info-label value="Last name">{{ $client->lastName }}</x-info-label>
-        <x-info-label value="Register date">{{ $client->registerDate }}</x-info-label>
-        <x-info-label value="Email">{{ $client->email }}</x-info-label>
-        <x-info-label value="Phone number">{{ $client->phoneNumber }}</x-info-label>
+        <x-info-label value="{{ __('Name') }}">{{ $client->firstName }}</x-info-label>
+        <x-info-label value="{{ __('Last name') }}">{{ $client->lastName }}</x-info-label>
+        <x-info-label value="{{ __('Register date') }}">{{ $client->registerDate }}</x-info-label>
+        <x-info-label value="{{ __('Email') }}">{{ $client->email }}</x-info-label>
+        <x-info-label value="{{ __('Phone number') }}">{{ $client->phoneNumber }}</x-info-label>
 
     </dl>
 </x-app-layout>

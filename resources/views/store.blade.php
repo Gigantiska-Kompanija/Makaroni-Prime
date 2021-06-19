@@ -17,7 +17,7 @@
                     <img src="{{ asset('assets/images/default.jpg') }}" class="card-img-top">
                 @endif
                 <div class="card-img-overlay">
-                    <h5 class="card-title fs-2 btn-warning rounded-circle p-3" style="width: fit-content;">#{{ $makarons->popularity }}</h5>
+                    <h5 class="card-title fs-2 btn-warning rounded-pill p-3" style="width: fit-content;">#{{ $makarons->popularity }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-between">

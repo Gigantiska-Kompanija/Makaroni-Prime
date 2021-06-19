@@ -10,10 +10,10 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Code</th>
-                <th>Amount</th>
-                <th>Start date</th>
-                <th>End date</th>
+                <th>{{ __('Code') }}</th>
+                <th>{{ __('Amount') }}</th>
+                <th>{{ __('Start date') }}</th>
+                <th>{{ __('End date') }}</th>
             </tr>
         </thead>
         <tbody>

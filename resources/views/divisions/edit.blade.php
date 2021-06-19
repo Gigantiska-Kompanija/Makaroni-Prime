@@ -2,7 +2,7 @@
     <x-slot name="header">
     <div class="d-flex justify-content-between align-items-center">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit division :id', ['id' => $division->name]) }}
+            {{ __('Edit division') }} {{ $division->name }}
         </h2>
         <form method="POST" action="{{ route('divisions.destroy', $division->name) }}">
             @csrf

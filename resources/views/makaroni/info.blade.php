@@ -21,7 +21,7 @@
                     <img src="{{ asset('assets/images/default.jpg') }}" class="card-img-top">
                 @endif
             <div class="card-img-overlay">
-                <h5 class="card-title fs-2 btn-warning rounded-circle p-3" style="width: fit-content;">#{{ $makarons->popularity }}</h5>
+                <h5 class="card-title fs-2 btn-warning rounded-pill p-3" style="width: fit-content;">#{{ $makarons->popularity }}</h5>
             </div>
             </div>
             <div class="col-md-8">
@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">{{ __('Rating') }}: {{ $review->rating }}</h5>
+                    <h5 class="card-title">{{ __('Rating') }}: {{ $review->rating }}/5</h5>
                     <p class="card-text">{{ __('Comment') }}: {{ $review->comment }}</p>
                 </div>
             </div>

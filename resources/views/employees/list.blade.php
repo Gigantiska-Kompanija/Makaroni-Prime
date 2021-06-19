@@ -11,10 +11,10 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Fist name</th>
-                <th>Last name</th>
-                <th>Position</th>
-                <th>Phone number</th>
+                <th>{{ __('Name') }}</th>
+                <th>{{ __('Last name') }}</th>
+                <th>{{ __('Position') }}</th>
+                <th>{{ __('Phone number') }}</th>
             </tr>
         </thead>
         <tbody>

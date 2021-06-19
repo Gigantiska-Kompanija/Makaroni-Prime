@@ -11,9 +11,9 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
+                <th>{{ __('Name') }}</th>
+                <th>{{ __('Last name') }}</th>
+                <th>{{ __('Email') }}</th>
             </tr>
         </thead>
         <tbody>

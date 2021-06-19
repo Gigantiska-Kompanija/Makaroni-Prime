@@ -2,7 +2,7 @@
     <x-slot name="header">
     <div class="d-flex justify-content-between align-items-center">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit :name', ['name' => $makarons->name]) }}
+            {{ __('Edit') }} {{ $makarons->name }}
         </h2>
         <form method="POST" action="{{ route('makaroni.destroy', $makarons->name) }}">
             @csrf
