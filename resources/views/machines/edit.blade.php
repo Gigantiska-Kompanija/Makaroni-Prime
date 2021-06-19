@@ -22,10 +22,10 @@
         <x-input inputFor="located" val="{{ $machine->located }}" required>{{ __('Located') }}</x-input>
         <x-input inputFor="model" val="{{ $machine->model }}">{{ __('Model') }}</x-input>
         <x-input inputFor="isOperating" val="{{ $machine->isOperating }}">{{ __('Is operating') }}</x-input>
-        <x-input inputFor="lastServiced" val="{{ $machine->lastServiced }}">{{ __('Last serviced') }}</x-input>
-        <x-input inputFor="needsMaintenance" val="{{ $machine->needsMaintenance }}">{{ __('Needs maintenance') }}</x-input>
-        <x-input inputFor="purchaseDate" val="{{ $machine->purchaseDate }}">{{ __('Purchase date') }}</x-input>
-        <x-input inputFor="decommissionDate" val="{{ $machine->decommissionDate }}">{{ __('Decommission date') }}</x-input>
+        <x-input inputFor="lastServiced" type="date" val="{{ $machine->lastServiced }}">{{ __('Last serviced') }}</x-input>
+        <x-input inputFor="needsMaintenance" type="date" val="{{ $machine->needsMaintenance }}">{{ __('Needs maintenance') }}</x-input>
+        <x-input inputFor="purchaseDate" type="date" val="{{ $machine->purchaseDate }}">{{ __('Purchase date') }}</x-input>
+        <x-input inputFor="decommissionDate" type="date" val="{{ $machine->decommissionDate }}">{{ __('Decommission date') }}</x-input>
 
         <x-submit-btn />
     </form>

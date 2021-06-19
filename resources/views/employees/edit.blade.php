@@ -24,8 +24,8 @@
         <x-input inputFor="phoneNumber" val="{{ $employee->phoneNumber }}" required>{{ __('Phone number') }}</x-input>
         <x-input inputFor="position" val="{{ $employee->position }}">{{ __('Position') }}</x-input>
         <x-input inputFor="pay" val="{{ $employee->pay }}">{{ __('Salary') }}</x-input>
-        <x-input inputFor="joinDate" val="{{ $employee->joinDate }}">{{ __('Join date') }}</x-input>
-        <x-input inputFor="leaveDate" val="{{ $employee->leaveDate }}">{{ __('Leave date') }}</x-input>
+        <x-input inputFor="joinDate" type="date" val="{{ $employee->joinDate }}">{{ __('Join date') }}</x-input>
+        <x-input inputFor="leaveDate" type="date" val="{{ $employee->leaveDate }}">{{ __('Leave date') }}</x-input>
 
         <x-submit-btn />
     </form>
