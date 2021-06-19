@@ -10,9 +10,9 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
+                <th>{{ __('Name') }}</th>
+                <th>{{ __('Quantity') }}</th>
+                <th>{{ __('Price') }}</th>
             </tr>
         </thead>
         <tbody>

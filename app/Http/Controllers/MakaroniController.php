@@ -8,8 +8,11 @@ use App\Models\Makarons;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 
-class MakaroniController extends Controller
-{
+class MakaroniController extends Controller {
+    public function __construct() {
+        $this->middleware('auth:manager', ['except' => ['index', 'show', 'storeView']]);
+    }
+
     /**
      * List all MAKARONI.
      *
