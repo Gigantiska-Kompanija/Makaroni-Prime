@@ -6,7 +6,9 @@
         </h2>
         <div>
             <a class="btn btn-warning" href={{ route("makaroni.edit", $makarons->name) }}><i class="fas fa-cart-plus"></i></a>
+            @auth('manager')
             <a class="btn btn-warning ml-1" href={{ route("makaroni.edit", $makarons->name) }}><i class="fas fa-pen"></i></a>
+            @endauth
         </div>
     </div>
     </x-slot>
@@ -44,20 +46,24 @@
     <div class="mt-4">
         <div class="d-flex justify-content-between align-items-center">
             <h2 class="fs-2">{{ __('Reviews') }}:</h2>
+            @auth
             <a class="btn btn-warning ml-1" href={{ route("review.create", $makarons->name) }}><i class="fas fa-plus"></i></a>
+            @endauth
         </div>
         @foreach($reviews as $review)
             <div class="card mt-4">
                 <div class="d-flex justify-content-between align-items-center card-header">
                     <h5>{{ $review->clientID }}</h5>
                     <div class="d-flex align-items-center">
+                        @auth('manager')
                         <button class="delete-review btn btn-warning mr-4" id={{ $review->id }}><i class="fas fa-trash-alt"></i></button>
+                        @endauth
                         <h5>{{ $review->date }}</h5>
                     </div>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Rating: {{ $review->rating }}</h5>
-                    <p class="card-text">Comment: {{ $review->comment }}</p>
+                    <h5 class="card-title">{{ __('Rating') }}: {{ $review->rating }}</h5>
+                    <p class="card-text">{{ __('Comment') }}: {{ $review->comment }}</p>
                 </div>
             </div>
         @endforeach
@@ -82,6 +88,6 @@
                     });
                 });
             });
-        });  
+        });
     </script>
 </x-app-layout>

@@ -37,7 +37,7 @@ class IngredientController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|unique:rawmaterial|max:191',
+            'name' => 'required|unique:rawMaterial|max:191',
             'price' => 'required|numeric|min:0',
             'quantity' => 'required|numeric|integer|min:0',
             'minimum' => 'required|numeric|integer|min:0',
@@ -48,9 +48,9 @@ class IngredientController extends Controller
         $ingredient->quantity = $request->quantity;
         $ingredient->minimum = $request->minimum;
         $ingredient->save();
-        return redirect(route('ingrediants.show', $request->name));
+        return redirect(route('ingredients.show', $request->name));
     }
-    
+
     /**
      * Display an ingredient.
      *
@@ -85,7 +85,7 @@ class IngredientController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required|unique:rawmaterial|max:191',
+            'name' => 'required|unique:rawMaterial|max:191',
             'price' => 'required|numeric|min:0',
             'quantity' => 'required|numeric|integer|min:0',
             'minimum' => 'required|numeric|integer|min:0',

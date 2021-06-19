@@ -9,7 +9,7 @@
 
         <x-input inputFor="name" required>{{ __('Name') }}</x-input>
         <x-input inputFor="location" required>{{ __('Location') }}</x-input>
-        <x-input inputFor="isOperating" required>{{ __('Is operating') }}</x-input>
+        <x-input inputFor="isOperating">{{ __('Is operating') }}</x-input>
 
         <x-submit-btn />
     </form>

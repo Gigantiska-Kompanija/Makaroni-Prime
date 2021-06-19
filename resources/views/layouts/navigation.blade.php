@@ -15,6 +15,10 @@
                     <x-nav-link :href="route('store')" :active="request()->routeIs('store')">
                         {{ __('Store') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('makaroni.index')" :active="request()->routeIs('makaroni.index')">
+                        {{ __('Makaroni') }}
+                    </x-nav-link>
+                    @auth('manager')
                     <x-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.index')">
                         {{ __('Employees') }}
                     </x-nav-link>
@@ -30,16 +34,14 @@
                     <x-nav-link :href="route('discounts.index')" :active="request()->routeIs('discounts.index')">
                         {{ __('Discounts') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('makaroni.index')" :active="request()->routeIs('makaroni.index')">
-                        {{ __('Makaroni') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
                         {{ __('Clients') }}
                     </x-nav-link>
+                    @endauth
                     <x-nav-link>
-                        <select class="selectpicker" data-width="fit">
-                            <option data-content='English'>English</option>
-                            <option  data-content='Latviešu'>Latviešu</option>
+                        <select class="selectpicker" data-width="fit" id="language-picker">
+                            <option data-content='English' value="en" {{ Lang::locale() == 'en' ? 'selected' : ''}}>English</option>
+                            <option data-content='Latviešu' value="lv" {{ Lang::locale() == 'lv' ? 'selected' : '' }}>Latviešu</option>
                         </select>
                     </x-nav-link>
                 </div>
@@ -52,7 +54,13 @@
                     <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div>
+                                @auth('manager')
+                                    {{ Auth::user()->employee }}
+                                @elseauth('client')
+                                    {{ Auth::user()->email }}
+                                @endauth
+                            </div>
 
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -64,7 +72,7 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ Auth::user()->email ? route('logout') : route('manager.logout') }}">
                             @csrf
 
                             <x-dropdown-link :href="route('logout')"
@@ -76,10 +84,10 @@
                     </x-slot>
                     </x-dropdown>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">{{ __('Log in') }}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">{{ __('Register') }}</a>
                         @endif
                     @endauth
                 @endif
@@ -133,3 +141,20 @@
         </div>
     </div>
 </nav>
+<script>
+    $('#language-picker').change(function (e) {
+        var url = '{{ route('lang.switch') }}'
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {_token: CSRF_TOKEN, lang: e.target.value},
+            success: function (ignored) {
+                location.reload();
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    });
+</script>

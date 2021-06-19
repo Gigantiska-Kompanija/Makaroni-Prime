@@ -11,7 +11,7 @@ data storage using appropriate MVC means.
 - [x] The system developed is non-trivial (not blog with 1 form), by adding some additional effort, one could
 create a usable web application. All 4 CRUD functions (create, read, update, and delete) must be
 implemented.
-- [ ] ... Localization pattern is applied in the system, users can switch languages.
+- [x] Localization pattern is applied in the system, users can switch languages.
 - [x] *The system has user authentication mechanism. Each registered user is included in some role, permissions
 are assigned to user roles. At least two roles of registered users must be implemented. The permissions
 assigned to all roles and to quest users must be different.
@@ -32,11 +32,11 @@ what's shown on the first page – most recent items or most interesting items).
 - [ ] The system adapts to user actions by providing content suitable to a current user (e.g., views like “my
 recent requests”, “other users who were looking for this book, opened this item as well...”)
 - [ ] The system stores audit logs of user actions. Third party plug-ins are not evaluated for this requirement.
-- [ ] ... The system adjusts to user's “accept-language” and automatically provides content in the most
+- [x] The system adjusts to user's “accept-language” and automatically provides content in the most
 appropriate language.
 - [x] The system includes communication interfaces other than standard web / HTML (for instance, email
 notifications, RSS or ATOM feeds, RESTful interface, SOAP web services).
-- [ ] The system utilizes file manipulation (upload, processing, display / download, e.g., image gallery, data
+- [x] The system utilizes file manipulation (upload, processing, display / download, e.g., image gallery, data
 import, file format conversion).
 - [x] AJAX mechanism is used
 

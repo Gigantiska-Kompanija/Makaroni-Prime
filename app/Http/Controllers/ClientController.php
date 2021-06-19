@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
@@ -54,7 +55,7 @@ class ClientController extends Controller
         $client->save();
         return $this->index();
     }
-    
+
     /**
      * Display a client.
      *

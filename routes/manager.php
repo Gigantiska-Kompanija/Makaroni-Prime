@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::name('manager.')->prefix('manager')->group(function() {
 
-    Route::namespace('Auth')->middleware('guest:manager')->group(function() {
+    Route::namespace('Auth')->middleware('guest')->group(function() {
         Route::get('/login', 'ManagerLoginController@login')->name('login');
         Route::post('/login', 'ManagerLoginController@processLogin');
     });

@@ -4,7 +4,9 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Makaroni') }}
             </h2>
+            @auth('manager')
             <a class="btn btn-warning" href={{ route("makaroni.create") }}><i class="fas fa-plus"></i></a>
+            @endauth
         </div>
     </x-slot>
     <table class="table table-striped table-hover">

@@ -39,16 +39,16 @@ class DivisionController extends Controller
         $validated = $request->validate([
             'name' => 'required|unique:division|max:191',
             'location' => 'required|max:191',
-            'isOperating' => 'required|numeric|integer|min:0|max:1',
+            'isOperating' => 'nullable|numeric|integer|min:0|max:1',
         ]);
         $division = new Division();
         $division->name = $request->name;
         $division->location = $request->location;
-        $division->isOperating = $request->isOperating;
+        $division->isOperating = $request->isOperating != null ? $request->isOperating : 1;
         $division->save();
         return redirect(route('divisions.show', $request->name));
     }
-    
+
     /**
      * Display a division.
      *
@@ -85,12 +85,12 @@ class DivisionController extends Controller
         $validated = $request->validate([
             'name' => 'required|unique:division|max:191',
             'location' => 'required|max:191',
-            'isOperating' => 'required|numeric|integer|min:0|max:1',
+            'isOperating' => 'nullable|numeric|integer|min:0|max:1',
         ]);
         $division = Division::findOrFail($id);
         $division->name = $request->name;
         $division->location = $request->location;
-        $division->isOperating = $request->isOperating;
+        if ($request->isOperating != null) $division->isOperating = $request->isOperating;
         $division->save();
         return redirect(route('divisions.show', $request->name));
     }

@@ -19,18 +19,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'MakaroniController@storeView')->name('store'); //->middleware(['auth'])
 
 Route::resource('makaroni', 'MakaroniController');
-Route::resource('employees', 'EmployeeController');
-Route::resource('machines', 'MachineController');
-Route::resource('ingredients', 'IngredientController');
-Route::resource('divisions', 'DivisionController');
-Route::resource('clients', 'ClientController');
-Route::resource('discounts', 'DiscountController');
+Route::resource('employees', 'EmployeeController')->middleware('auth:manager');
+Route::resource('machines', 'MachineController')->middleware('auth:manager');
+Route::resource('ingredients', 'IngredientController')->middleware('auth:manager');
+Route::resource('divisions', 'DivisionController')->middleware('auth:manager');
+Route::resource('clients', 'ClientController')->middleware('auth:manager');
+Route::resource('discounts', 'DiscountController')->middleware('auth:manager');
 Route::get('cart', 'CartController@index')->name('cart.index');
-Route::get('form-order', 'CartController@order')->name('form.order');
-Route::post('form-order', 'CartController@storeOrder')->name('form.storeOrder');
-Route::get('review/{id}', 'ReviewController@create')->name('review.create');
-Route::post('review/{id}', 'ReviewController@store')->name('review.store');
-Route::delete('review/{id}', 'ReviewController@destroy')->name('review.destroy');
+Route::get('form-order', 'CartController@order')->middleware('auth')->name('form.order');
+Route::post('form-order', 'CartController@storeOrder')->middleware('auth')->name('form.storeOrder');
+Route::get('review/{id}', 'ReviewController@create')->middleware('auth')->name('review.create');
+Route::post('review/{id}', 'ReviewController@store')->middleware('auth')->name('review.store');
+Route::delete('review/{id}', 'ReviewController@destroy')->middleware('auth:manager')->name('review.destroy');
+Route::post('switchLang', 'LocaleController@set')->name('lang.switch');
 
 Route::feeds();
 
