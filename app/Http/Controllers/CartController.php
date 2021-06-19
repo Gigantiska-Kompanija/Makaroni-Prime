@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Makarons;
 
 class CartController extends Controller
 {
@@ -13,7 +14,12 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('cart');
+        if (session()->has('makaroni')){
+            $cartItems = Makarons::whereIn('makaroni', session()->get('makaroni'))->get();
+        }
+        else $cartItems = [];
+        return view('cart', compact('cartItems'));
+        //return view('cart');
     }
 
     /**
@@ -31,8 +37,10 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function storeOrder()
+    public function store($name)
     {
+        //$makarons = Makarons::findOrFail($name);
+        session()->push('makaroni',$name);
         return view('store');
     }
 
@@ -42,17 +50,6 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
-    }
-
-    /**
-     * Save a cart.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
     {
         //
     }

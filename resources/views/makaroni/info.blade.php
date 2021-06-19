@@ -5,7 +5,7 @@
             {{ $makarons->name }}
         </h2>
         <div>
-            <a class="btn btn-warning" href={{ route("makaroni.edit", $makarons->name) }}><i class="fas fa-cart-plus"></i></a>
+            <a class="btn btn-warning" href={{ route("cart.store", $makarons->name) }}><i class="fas fa-cart-plus"></i></a>
             @auth('manager')
             <a class="btn btn-warning ml-1" href={{ route("makaroni.edit", $makarons->name) }}><i class="fas fa-pen"></i></a>
             @endauth

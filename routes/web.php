@@ -19,13 +19,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'MakaroniController@storeView')->name('store'); //->middleware(['auth'])
 
 Route::resource('makaroni', 'MakaroniController');
+Route::resource('cart', 'CartController');
 Route::resource('employees', 'EmployeeController')->middleware('auth:manager');
 Route::resource('machines', 'MachineController')->middleware('auth:manager');
 Route::resource('ingredients', 'IngredientController')->middleware('auth:manager');
 Route::resource('divisions', 'DivisionController')->middleware('auth:manager');
 Route::resource('clients', 'ClientController')->middleware('auth:manager');
 Route::resource('discounts', 'DiscountController')->middleware('auth:manager');
-Route::get('cart', 'CartController@index')->name('cart.index');
+//Route::get('cart', 'CartController@index')->name('cart.index');
 Route::get('form-order', 'CartController@order')->middleware('auth')->name('form.order');
 Route::post('form-order', 'CartController@storeOrder')->middleware('auth')->name('form.storeOrder');
 Route::get('review/{id}', 'ReviewController@create')->middleware('auth')->name('review.create');
