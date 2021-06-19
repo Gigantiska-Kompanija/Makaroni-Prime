@@ -17,7 +17,7 @@ are assigned to user roles. At least two roles of registered users must be imple
 assigned to all roles and to quest users must be different.
 - [x] User passwords are not stored in plain text.
 - [x] HTML and CSS validates. It is requirement from “Web technologies I” course.
-- [x] ? UTF-8 text encoding is used throughout the system.
+- [x] UTF-8 text encoding is used throughout the system.
 - [x] ”Nice URLs” are used in the system (addresses do not contain script names, e.g., index.php, GET
 parameters are not used when not appropriate).
 - [x] Version control is used (also for applications developed by a single developer). There are at least 3
@@ -42,7 +42,7 @@ import, file format conversion).
 
 ## i-option requirements
 In addition to the basic and advanced requirements, the following 3requirements must be fulfilled:
-- [ ] ... The system is deployed to an Internet-connected host and demonstrated using delegated domain /
+- [x] The system is deployed to an Internet-connected host and demonstrated using delegated domain /
 subdomain in the browser on a separate computer.
 - [x] Protection against CSRF / XSRF attacks must be built into the system.
 - [x] The algorithm or method used for protection must be described in the description students submit in

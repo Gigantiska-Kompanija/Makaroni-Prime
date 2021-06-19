@@ -2,73 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Manager;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 
-class ManagerController extends Controller
-{
+class ManagerController extends Controller {
     /**
      * List all managers.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+        $makaroni = Manager::all();
+        return view('manager.list', compact('makaroni'));
     }
 
     /**
      * Add a manager.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('manager.add');
     }
 
     /**
      * Save a manager.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Edit a manager.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Save changes to a manager.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function store(Request $request) {
+        $request->validate([
+            'employee' => 'required|exists:employee|max:191',
+            'password' => 'required|min:8|max:191',
+        ]);
+        $makarons = new Manager();
+        $makarons->employee = $request->employee;
+        $makarons->password = Hash::make($request->password);
+        $makarons->save();
+        return redirect(route('managers.index'));
     }
 
     /**
      * Destroy a manager.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id) {
+        Manager::findOrFail($id)->delete();
+        return $this->index();
     }
 }

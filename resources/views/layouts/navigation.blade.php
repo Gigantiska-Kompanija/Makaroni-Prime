@@ -57,7 +57,7 @@
                             <div>
                                 @auth('manager')
                                     {{ Auth::user()->employee }}
-                                @elseauth('client')
+                                @else('client')
                                     {{ Auth::user()->email }}
                                 @endauth
                             </div>
@@ -111,33 +111,63 @@
             <x-responsive-nav-link :href="route('store')" :active="request()->routeIs('store')">
                 {{ __('Store') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('makaroni.index')" :active="request()->routeIs('makaroni.index')">
+                {{ __('Makaroni') }}
+            </x-responsive-nav-link>
+            @auth('manager')
+            <x-responsive-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.index')">
+                {{ __('Employees') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('divisions.index')" :active="request()->routeIs('divisions.index')">
+                {{ __('Divisions') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('ingredients.index')" :active="request()->routeIs('ingredients.index')">
+                {{ __('Ingredients') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('machines.index')" :active="request()->routeIs('machines.index')">
+                {{ __('Machines') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('discounts.index')" :active="request()->routeIs('discounts.index')">
+                {{ __('Discounts') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
+                {{ __('Clients') }}
+            </x-responsive-nav-link>
+            @endauth
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
+        <div class="pt-4 pb-4 border-t border-gray-200">
             <div class="flex items-center px-4">
-                <div class="flex-shrink-0">
-                    <svg class="h-10 w-10 fill-current text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                </div>
+            @auth
+                <div class="space-y-1 mr-4">
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
 
-                <div class="ml-3">
+                        <x-responsive-nav-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log out') }}
+                        </x-responsive-nav-link>
+                    </form>
                 </div>
+                <div>
+                    @auth('manager')
+                        {{ Auth::user()->employee }}
+                    @else('client')
+                        {{ Auth::user()->email }}
+                    @endauth
+                </div>
+            @else
+                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">{{ __('Log in') }}</a>
+
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">{{ __('Register') }}</a>
+                @endif
+            @endauth
             </div>
 
-            <div class="mt-3 space-y-1">
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log out') }}
-                    </x-responsive-nav-link>
-                </form>
-            </div>
         </div>
     </div>
 </nav>

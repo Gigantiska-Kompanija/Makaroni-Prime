@@ -40,15 +40,15 @@ class ClientController extends Controller
         $validated = $request->validate([
             'firstName' => 'required|max:191',
             'lastName' => 'required|max:191',
-            'registerDate' => '',
+            'registerDate' => 'nullable|time',
             'email' => 'required|unique:client|max:191',
             'password' => 'required|min:8|max:191',
-            'phoneNumber' => 'required|max:191',
+            'phoneNumber' => 'required|unique:client|max:191',
         ]);
         $client = new Client();
         $client->firstName = $request->firstName;
         $client->lastName = $request->lastName;
-        $client->registerDate = $request->registerDate;
+        if ($request->registerDate !== null) $client->registerDate = $request->registerDate;
         $client->email = $request->email;
         $client->password = Hash::make($request->password);
         $client->phoneNumber = $request->phoneNumber;
@@ -92,15 +92,15 @@ class ClientController extends Controller
         $validated = $request->validate([
             'firstName' => 'required|max:191',
             'lastName' => 'required|max:191',
-            'registerDate' => '',
-            'email' => 'required|max:191',
+            'registerDate' => 'nullable|time',
+            'email' => 'required|unique:client|max:191',
             'password' => 'required|min:8|max:191',
-            'phoneNumber' => 'required|max:191',
+            'phoneNumber' => 'required|unique:client|max:191',
         ]);
         $client = Client::findOrFail($id);
         $client->firstName = $request->firstName;
         $client->lastName = $request->lastName;
-        $client->registerDate = $request->registerDate;
+        if ($request->registerDate !== null) $client->registerDate = $request->registerDate;
         $client->email = $request->email;
         $client->password = Hash::make($request->password);
         $client->phoneNumber = $request->phoneNumber;

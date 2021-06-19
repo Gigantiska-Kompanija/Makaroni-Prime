@@ -2,7 +2,7 @@
     <x-slot name="header">
     <div class="d-flex justify-content-between align-items-center">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit ingredient :id', ['id' => $ingredient->name]) }}
+            {{ __('Edit ingredient') }} {{ $ingredient->name }}
         </h2>
         <form method="POST" action="{{ route('ingredients.destroy', $ingredient->name) }}">
             @csrf
@@ -19,8 +19,8 @@
 
         <x-input inputFor="name" val="{{ $ingredient->name }}" required>{{ __('Name') }}</x-input>
         <x-input inputFor="price" val="{{ $ingredient->price }}" required>{{ __('Price') }}</x-input>
-        <x-input inputFor="quantity" val="{{ $ingredient->quantity }}" required>{{ __('Quantity') }}</x-input>
-        <x-input inputFor="minimum" val="{{ $ingredient->minimum }}" required>{{ __('Minimum') }}</x-input>
+        <x-input inputFor="quantity" val="{{ $ingredient->quantity }}">{{ __('Quantity') }}</x-input>
+        <x-input inputFor="minimum" val="{{ $ingredient->minimum }}">{{ __('Minimum') }}</x-input>
 
         <x-submit-btn />
     </form>

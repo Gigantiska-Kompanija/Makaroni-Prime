@@ -10,11 +10,11 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Serial Number</th>
-                <th>Located</th>
-                <th>Model</th>
-                <th>Is operating</th>
-                <th>Needs maintenance</th>
+                <th>{{ __('Serial Number') }}</th>
+                <th>{{ __('Location') }}</th>
+                <th>{{ __('Model') }}</th>
+                <th>{{ __('Is operating') }}</th>
+                <th>{{ __('Needs maintenance') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -23,8 +23,8 @@
                 <th><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->serialNumber }}</a></th>
                 <td><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->located }}</a></td>
                 <td><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->model }}</a></td>
-                <td><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->isOperating }}</a></td>
-                <td><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->needsMaintenance }}</a></td>
+                <td><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->isOperating ? __('Yes') : __('No') }}</a></td>
+                <td><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->needsMaintenance ? __('Yes') : __('No') }}</a></td>
             </tr>
         @endforeach
         </tbody>

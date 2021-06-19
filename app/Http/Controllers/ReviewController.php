@@ -39,7 +39,7 @@ class ReviewController extends Controller
     {
         $validated = $request->validate([
             'rating' => 'required|numeric|integer|min:0|max:5',
-            'comment' => 'required',
+            'comment' => 'required|string|max:10000',
         ]);
         $review = new Review();
         $review->clientID = Auth::id();

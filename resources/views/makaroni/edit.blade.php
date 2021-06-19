@@ -2,7 +2,7 @@
     <x-slot name="header">
     <div class="d-flex justify-content-between align-items-center">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit :name', ['name' => $makarons->name]) }}
+            {{ __('Edit') }} {{ $makarons->name }}
         </h2>
         <form method="POST" action="{{ route('makaroni.destroy', $makarons->name) }}">
             @csrf
@@ -18,7 +18,7 @@
         @csrf
 
         <x-input inputFor="name" val="{{ $makarons->name }}" required>{{ __('Name') }}</x-input>
-        <x-input inputFor="quantity" val="{{ $makarons->quantity }}" required>{{ __('Quantity') }}</x-input>
+        <x-input inputFor="quantity" val="{{ $makarons->quantity }}">{{ __('Quantity') }}</x-input>
         <x-input inputFor="price" val="{{ $makarons->price }}" required>{{ __('Price') }}</x-input>
         <x-input inputFor="shape" val="{{ $makarons->shape }}" required>{{ __('Shape') }}</x-input>
         <x-input inputFor="color" val="{{ $makarons->color }}" required>{{ __('Color') }}</x-input>

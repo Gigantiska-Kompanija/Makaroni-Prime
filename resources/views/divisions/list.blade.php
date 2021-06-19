@@ -10,9 +10,9 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Location</th>
-                <th>Is operating</th>
+                <th>{{ __('Name') }}</th>
+                <th>{{ __('Location') }}</th>
+                <th>{{ __('Is operating') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +20,7 @@
             <tr>
                 <th><a href={{ route("divisions.show", $division->name) }}>{{ $division->name }}</a></th>
                 <td><a href={{ route("divisions.show", $division->name) }}>{{ $division->location }}</a></td>
-                <td><a href={{ route("divisions.show", $division->name) }}>{{ $division->isOperating }}</a></td>
+                <td><a href={{ route("divisions.show", $division->name) }}>{{ $division->isOperating ? __('Yes') : __('No') }}</a></td>
             </tr>
         @endforeach
         </tbody>
