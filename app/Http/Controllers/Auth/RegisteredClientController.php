@@ -35,14 +35,19 @@ class RegisteredClientController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:client',
+            'phone' => 'required|string|max:255|unique:client,phoneNumber',
             'password' => 'required|string|confirmed|min:8',
         ]);
 
         // fixme: firstName & lastName
 
+        $fullName = explode(' ', $request->name, 2);
+
         $user = Client::create([
-            'name' => $request->name,
+            'firstName' => $fullName[0],
+            'lastName' => $fullName[1],
             'email' => $request->email,
+            'phoneNumber' => $request->phone,
             'password' => Hash::make($request->password),
         ]);
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Makarons;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class CartController extends Controller
 {
@@ -14,6 +15,8 @@ class CartController extends Controller
      */
     public function index()
     {
+//        session()->push('makaroni', 'aaa');
+//        dd(session()->has('makaroni'));
         if (session()->has('makaroni')){
             $cartItems = Makarons::whereIn('makaroni', session()->get('makaroni'))->get();
         }

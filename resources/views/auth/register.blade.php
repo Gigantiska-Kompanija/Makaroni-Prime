@@ -18,6 +18,9 @@
             <!-- Email Address -->
             <x-input inputFor="email" type="email" required >{{ __('Email') }}</x-input>
 
+            <!-- Phone Number -->
+            <x-input inputFor="phone" type="phone" required >{{ __('Phone') }}</x-input>
+
             <!-- Password -->
             <x-input inputFor="password" type="password" required autocomplete="current-password" >
                 {{ __('Password') }}
