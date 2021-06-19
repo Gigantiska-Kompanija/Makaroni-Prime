@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Division;
+use Illuminate\Validation\Rule;
 
 class DivisionController extends Controller
 {
@@ -44,7 +45,7 @@ class DivisionController extends Controller
         $division = new Division();
         $division->name = $request->name;
         $division->location = $request->location;
-        $division->isOperating = $request->isOperating != null ? $request->isOperating : 1;
+        if ($request->isOperating !== null) $division->isOperating = $request->isOperating;
         $division->save();
         return redirect(route('divisions.show', $request->name));
     }
@@ -82,15 +83,15 @@ class DivisionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $division = Division::findOrFail($id);
         $validated = $request->validate([
-            'name' => 'required|unique:division|max:191',
+            'name' => ['required', 'max:191', Rule::unique('division', 'name')->ignore($division->name, 'name')],
             'location' => 'required|max:191',
             'isOperating' => 'nullable|numeric|integer|min:0|max:1',
         ]);
-        $division = Division::findOrFail($id);
         $division->name = $request->name;
         $division->location = $request->location;
-        if ($request->isOperating != null) $division->isOperating = $request->isOperating;
+        if ($request->isOperating !== null) $division->isOperating = $request->isOperating;
         $division->save();
         return redirect(route('divisions.show', $request->name));
     }

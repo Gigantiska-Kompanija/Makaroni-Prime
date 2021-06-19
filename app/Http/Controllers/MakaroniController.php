@@ -52,7 +52,7 @@ class MakaroniController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|unique:makarons|max:191',
-            'quantity' => 'required|numeric|integer|min:0',
+            'quantity' => 'nullable|numeric|integer|min:0',
             'price' => 'required|numeric',
             'shape' => 'required|max:191',
             'color' => 'required|max:191',
@@ -67,7 +67,7 @@ class MakaroniController extends Controller
         }
         $makarons = new Makarons();
         $makarons->name = $request->name;
-        $makarons->quantity = $request->quantity;
+        if ($request->quantity !== null) $makarons->quantity = $request->quantity;
         $makarons->price = $request->price;
         $makarons->shape = $request->shape;
         $makarons->color = $request->color;
@@ -76,7 +76,7 @@ class MakaroniController extends Controller
         $makarons->save();
         return redirect(route('makaroni.show', $request->name));
     }
-    
+
     /**
      * Display a MAKARONI.
      *
@@ -114,7 +114,7 @@ class MakaroniController extends Controller
         $makarons = Makarons::findOrFail($id);
         $validated = $request->validate([
             'name' => ['required', 'max:191', Rule::unique('makarons', 'name')->ignore($makarons->name, 'name')],
-            'quantity' => 'required|numeric|integer|min:0',
+            'quantity' => 'nullable|numeric|integer|min:0',
             'price' => 'required|numeric',
             'shape' => 'required|max:191',
             'color' => 'required|max:191',
@@ -134,7 +134,7 @@ class MakaroniController extends Controller
             rename(public_path('assets/images/' . $old_name), public_path('assets/images/' . $new_name));
         }
         $makarons->name = $request->name;
-        $makarons->quantity = $request->quantity;
+        if ($request->quantity !== null) $makarons->quantity = $request->quantity;
         $makarons->price = $request->price;
         $makarons->shape = $request->shape;
         $makarons->color = $request->color;

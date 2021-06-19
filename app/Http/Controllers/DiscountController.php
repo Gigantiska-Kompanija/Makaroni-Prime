@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Discount;
+use Illuminate\Validation\Rule;
 
 class DiscountController extends Controller
 {
@@ -50,7 +51,7 @@ class DiscountController extends Controller
         $discount->save();
         return redirect(route('discounts.show', $request->code));
     }
-    
+
     /**
      * Display a discount.
      *
@@ -84,13 +85,13 @@ class DiscountController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $discount = Discount::findOrFail($id);
         $validated = $request->validate([
-            'code' => 'required|unique:discount|max:191',
+            'code' => ['required', 'max:191', Rule::unique('discount', 'code')->ignore($discount->code, 'code')],
             'amount' => 'required|numeric',
             'startDate' => 'required',
             'endDate' => 'required',
         ]);
-        $discount = Discount::findOrFail($id);
         $discount->code = $request->code;
         $discount->amount = $request->amount;
         $discount->startDate = $request->startDate;

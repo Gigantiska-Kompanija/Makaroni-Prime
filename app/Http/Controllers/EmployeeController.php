@@ -41,12 +41,12 @@ class EmployeeController extends Controller
             'personalId' => 'required|unique:employee|max:11',
             'firstName' => 'required|max:191',
             'lastName' => 'required|max:191',
-            'email' => 'required|max:191',
-            'phoneNumber' => 'required|max:191',
-            'position' => 'required|max:191',
-            'pay' => 'required|numeric',
-            'joinDate' => '',
-            'leaveDate' => '',
+            'email' => 'required|unique:employee|max:191',
+            'phoneNumber' => 'required|unique:employee|max:191',
+            'position' => 'nullable|string|max:191',
+            'pay' => 'nullable|numeric',
+            'joinDate' => 'nullable|date',
+            'leaveDate' => 'nullable|date',
         ]);
         $employee = new Employee();
         $employee->personalId = $request->personalId;
@@ -54,14 +54,14 @@ class EmployeeController extends Controller
         $employee->lastName = $request->lastName;
         $employee->email = $request->email;
         $employee->phoneNumber = $request->phoneNumber;
-        $employee->position = $request->position;
-        $employee->pay = $request->pay;
-        $employee->joinDate = $request->joinDate;
-        $employee->leaveDate = $request->leaveDate;
+        if ($request->position !== null) $employee->position = $request->position;
+        if ($request->pay !== null) $employee->pay = $request->pay;
+        if ($request->joinDate !== null) $employee->joinDate = $request->joinDate;
+        if ($request->leaveDate !== null) $employee->leaveDate = $request->leaveDate;
         $employee->save();
         return redirect(route('employees.show', $request->personalId));
     }
-    
+
     /**
      * Display an employee.
      *
@@ -100,22 +100,22 @@ class EmployeeController extends Controller
             'personalId' => ['required', Rule::unique('employee', 'personalId')->ignore($employee->personalId, 'personalId')],
             'firstName' => 'required|max:191',
             'lastName' => 'required|max:191',
-            'email' => 'required|max:191',
-            'phoneNumber' => 'required|max:191',
-            'position' => 'required|max:191',
-            'pay' => 'required|numeric',
-            'joinDate' => '',
-            'leaveDate' => '',
+            'email' => 'required|unique:employee|max:191',
+            'phoneNumber' => 'required|unique:employee|max:191',
+            'position' => 'nullable|string|max:191',
+            'pay' => 'nullable|numeric',
+            'joinDate' => 'nullable|date',
+            'leaveDate' => 'nullable|date',
         ]);
         $employee->personalId = $request->personalId;
         $employee->firstName = $request->firstName;
         $employee->lastName = $request->lastName;
         $employee->email = $request->email;
         $employee->phoneNumber = $request->phoneNumber;
-        $employee->position = $request->position;
-        $employee->pay = $request->pay;
-        $employee->joinDate = $request->joinDate;
-        $employee->leaveDate = $request->leaveDate;
+        if ($request->position !== null) $employee->position = $request->position;
+        if ($request->pay !== null) $employee->pay = $request->pay;
+        if ($request->joinDate !== null) $employee->joinDate = $request->joinDate;
+        if ($request->leaveDate !== null) $employee->leaveDate = $request->leaveDate;
         $employee->save();
         return redirect(route('employees.show', $request->personalId));
     }

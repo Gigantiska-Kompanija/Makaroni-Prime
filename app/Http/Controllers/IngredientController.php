@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RawMaterial;
+use Illuminate\Validation\Rule;
 
 class IngredientController extends Controller
 {
@@ -39,14 +40,14 @@ class IngredientController extends Controller
         $validated = $request->validate([
             'name' => 'required|unique:rawMaterial|max:191',
             'price' => 'required|numeric|min:0',
-            'quantity' => 'required|numeric|integer|min:0',
-            'minimum' => 'required|numeric|integer|min:0',
+            'quantity' => 'nullable|numeric|integer|min:0',
+            'minimum' => 'nullable|numeric|integer|min:0',
         ]);
         $ingredient = new RawMaterial();
         $ingredient->name = $request->name;
         $ingredient->price = $request->price;
-        $ingredient->quantity = $request->quantity;
-        $ingredient->minimum = $request->minimum;
+        if ($request->quantity !== null) $ingredient->quantity = $request->quantity;
+        if ($request->minimum !== null) $ingredient->minimum = $request->minimum;
         $ingredient->save();
         return redirect(route('ingredients.show', $request->name));
     }
@@ -84,17 +85,17 @@ class IngredientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'name' => 'required|unique:rawMaterial|max:191',
-            'price' => 'required|numeric|min:0',
-            'quantity' => 'required|numeric|integer|min:0',
-            'minimum' => 'required|numeric|integer|min:0',
-        ]);
         $ingredient = RawMaterial::findOrFail($id);
+        $validated = $request->validate([
+            'name' => ['required', 'max:191', Rule::unique('rawMaterial', 'name')->ignore($ingredient->name, 'name')],
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'nullable|numeric|integer|min:0',
+            'minimum' => 'nullable|numeric|integer|min:0',
+        ]);
         $ingredient->name = $request->name;
         $ingredient->price = $request->price;
-        $ingredient->quantity = $request->quantity;
-        $ingredient->minimum = $request->minimum;
+        if($request->quantity !== null) $ingredient->quantity = $request->quantity;
+        if($request->minimum !== null) $ingredient->minimum = $request->minimum;
         $ingredient->save();
         return redirect(route('ingredients.show', $request->name));
     }

@@ -42,7 +42,7 @@ import, file format conversion).
 
 ## i-option requirements
 In addition to the basic and advanced requirements, the following 3requirements must be fulfilled:
-- [ ] ... The system is deployed to an Internet-connected host and demonstrated using delegated domain /
+- [x] The system is deployed to an Internet-connected host and demonstrated using delegated domain /
 subdomain in the browser on a separate computer.
 - [x] Protection against CSRF / XSRF attacks must be built into the system.
 - [x] The algorithm or method used for protection must be described in the description students submit in

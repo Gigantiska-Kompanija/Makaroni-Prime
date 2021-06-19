@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Machinery;
+use Illuminate\Validation\Rule;
 
 class MachineController extends Controller
 {
@@ -49,14 +50,14 @@ class MachineController extends Controller
         ]);
         $machine = new Machinery();
         $machine->serialNumber = $request->serialNumber;
-        $machine->function = $request->function;
+        if ($request->function !== null) $machine->function = $request->function;
         $machine->located = $request->located;
-        $machine->model = $request->model;
+        if ($request->model !== null) $machine->model = $request->model;
         if ($request->isOperating !== null) $machine->isOperating = $request->isOperating;
-        $machine->lastServiced = $request->lastServiced;
+        if ($request->lastServiced !== null) $machine->lastServiced = $request->lastServiced;
         if ($request->needsMaintenance !== null) $machine->needsMaintenance = $request->needsMaintenance;
         if ($request->purchaseDate !== null) $machine->purchaseDate = $request->purchaseDate;
-        $machine->decommissionDate = $request->decommissionDate;
+        if ($request->decommissionDate !== null) $machine->decommissionDate = $request->decommissionDate;
         $machine->save();
         return redirect(route('machines.show', $request->serialNumber));
     }
@@ -94,27 +95,27 @@ class MachineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'serialNumber' => 'required|unique:machinery|max:191',
-            'function' => 'max:2000',
-            'located' => 'required|exists:division,name|max:191',
-            'model' => 'max:191',
-            'isOperating' => 'numeric|integer|min:0|max:1',
-            'lastServiced' => 'date|max:now',
-            'needsMaintenance' => 'numeric|integer|min:0|max:1',
-            'purchaseDate' => 'date|max:now',
-            'decommissionDate' => 'date|max:now',
-        ]);
         $machine = Machinery::findOrFail($id);
+        $validated = $request->validate([
+            'serialNumber' => ['required', 'max:191', Rule::unique('machinery', 'serialNumber')->ignore($machine->serialNumber, 'serialNumber')],
+            'function' => 'nullable|max:2000',
+            'located' => 'required|exists:division,name|max:191',
+            'model' => 'nullable|max:191',
+            'isOperating' => 'nullable|numeric|boolean',
+            'lastServiced' => 'nullable|date|max:now',
+            'needsMaintenance' => 'nullable|numeric|boolean',
+            'purchaseDate' => 'nullable|date|max:now',
+            'decommissionDate' => 'nullable|date|max:now',
+        ]);
         $machine->serialNumber = $request->serialNumber;
-        $machine->function = $request->function;
+        if ($request->function !== null) $machine->function = $request->function;
         $machine->located = $request->located;
-        $machine->model = $request->model;
-        $machine->isOperating = $request->isOperating;
-        $machine->lastServiced = $request->lastServiced;
-        $machine->needsMaintenance = $request->needsMaintenance;
-        $machine->purchaseDate = $request->purchaseDate;
-        $machine->decommissionDate = $request->decommissionDate;
+        if ($request->model !== null) $machine->model = $request->model;
+        if ($request->isOperating !== null) $machine->isOperating = $request->isOperating;
+        if ($request->lastServiced !== null) $machine->lastServiced = $request->lastServiced;
+        if ($request->needsMaintenance !== null) $machine->needsMaintenance = $request->needsMaintenance;
+        if ($request->purchaseDate !== null) $machine->purchaseDate = $request->purchaseDate;
+        if ($request->decommissionDate !== null) $machine->decommissionDate = $request->decommissionDate;
         $machine->save();
         return redirect(route('machines.show', $request->serialNumber));
     }

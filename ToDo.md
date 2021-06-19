@@ -8,4 +8,4 @@
 - [x] middlewares
 - [x] locales
 - [ ] cart
-- [ ] editing
+- [x] editing
