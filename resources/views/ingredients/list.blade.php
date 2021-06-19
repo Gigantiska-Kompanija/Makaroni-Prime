@@ -16,13 +16,13 @@
             </tr>
         </thead>
         <tbody>
-        @for ($i = 0; $i < 10; $i++)
+        @foreach($ingredients as $ingredient)
             <tr>
-                <th><a href={{ route("ingredients.show", $i) }}>name {{ $i }}</a></th>
-                <td><a href={{ route("ingredients.show", $i) }}>price {{ $i }}</a></td>
-                <td><a href={{ route("ingredients.show", $i) }}>quantity {{ $i }}</a></td>
+                <th><a href={{ route("ingredients.show", $ingredient->name) }}>{{ $ingredient->name }}</a></th>
+                <td><a href={{ route("ingredients.show", $ingredient->name) }}>{{ $ingredient->price }}</a></td>
+                <td><a href={{ route("ingredients.show", $ingredient->name) }}>{{ $ingredient->quantity }}</a></td>
             </tr>
-        @endfor
+        @endforeach
         </tbody>
     </table>
 </x-app-layout>

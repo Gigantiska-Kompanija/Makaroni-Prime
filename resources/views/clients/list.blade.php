@@ -17,14 +17,14 @@
             </tr>
         </thead>
         <tbody>
-        @for ($i = 0; $i < 10; $i++)
+        @foreach($clients as $client)
             <tr>
-                <th><a href={{ route("clients.show", $i) }}>id {{ $i }}</a></th>
-                <td><a href={{ route("clients.show", $i) }}>firstName {{ $i }}</a></td>
-                <td><a href={{ route("clients.show", $i) }}>lastName {{ $i }}</a></td>
-                <td><a href={{ route("clients.show", $i) }}>email {{ $i }}</a></td>
+                <th><a href={{ route("clients.show", $client->id) }}>{{ $client->id }}</a></th>
+                <td><a href={{ route("clients.show", $client->id) }}>{{ $client->firstName }}</a></td>
+                <td><a href={{ route("clients.show", $client->id) }}>{{ $client->lastName }}</a></td>
+                <td><a href={{ route("clients.show", $client->id) }}>{{ $client->email }}</a></td>
             </tr>
-        @endfor
+        @endforeach
         </tbody>
     </table>
 </x-app-layout>

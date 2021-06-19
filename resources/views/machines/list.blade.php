@@ -18,15 +18,15 @@
             </tr>
         </thead>
         <tbody>
-        @for ($i = 0; $i < 10; $i++)
+        @foreach($machines as $machine)
             <tr>
-                <th><a href={{ route("machines.show", $i) }}>serialNumber {{ $i }}</a></th>
-                <td><a href={{ route("machines.show", $i) }}>located {{ $i }}</a></td>
-                <td><a href={{ route("machines.show", $i) }}>model {{ $i }}</a></td>
-                <td><a href={{ route("machines.show", $i) }}>isOperating {{ $i }}</a></td>
-                <td><a href={{ route("machines.show", $i) }}>needsMaintenance {{ $i }}</a></td>
+                <th><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->serialNumber }}</a></th>
+                <td><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->located }}</a></td>
+                <td><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->model }}</a></td>
+                <td><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->isOperating }}</a></td>
+                <td><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->needsMaintenance }}</a></td>
             </tr>
-        @endfor
+        @endforeach
         </tbody>
     </table>
 </x-app-layout>

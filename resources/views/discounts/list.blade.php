@@ -17,14 +17,14 @@
             </tr>
         </thead>
         <tbody>
-        @for ($i = 0; $i < 10; $i++)
+        @foreach($discounts as $discount)
             <tr>
-                <th><a href={{ route("discounts.show", $i) }}>code {{ $i }}</a></th>
-                <td><a href={{ route("discounts.show", $i) }}>amount {{ $i }}</a></td>
-                <td><a href={{ route("discounts.show", $i) }}>startDate {{ $i }}</a></td>
-                <td><a href={{ route("discounts.show", $i) }}>endDate {{ $i }}</a></td>
+                <th><a href={{ route("discounts.show", $discount->code) }}>{{ $discount->code }}</a></th>
+                <td><a href={{ route("discounts.show", $discount->code) }}>{{ $discount->amount }}</a></td>
+                <td><a href={{ route("discounts.show", $discount->code) }}>{{ $discount->startDate }}</a></td>
+                <td><a href={{ route("discounts.show", $discount->code) }}>{{ $discount->endDate }}</a></td>
             </tr>
-        @endfor
+        @endforeach
         </tbody>
     </table>
 </x-app-layout>

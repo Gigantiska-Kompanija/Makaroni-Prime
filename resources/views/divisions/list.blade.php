@@ -16,13 +16,13 @@
             </tr>
         </thead>
         <tbody>
-        @for ($i = 0; $i < 10; $i++)
+        @foreach($divisions as $division)
             <tr>
-                <th><a href={{ route("divisions.show", $i) }}>name {{ $i }}</a></th>
-                <td><a href={{ route("divisions.show", $i) }}>location {{ $i }}</a></td>
-                <td><a href={{ route("divisions.show", $i) }}>isOperating {{ $i }}</a></td>
+                <th><a href={{ route("divisions.show", $division->name) }}>{{ $division->name }}</a></th>
+                <td><a href={{ route("divisions.show", $division->name) }}>{{ $division->location }}</a></td>
+                <td><a href={{ route("divisions.show", $division->name) }}>{{ $division->isOperating }}</a></td>
             </tr>
-        @endfor
+        @endforeach
         </tbody>
     </table>
 </x-app-layout>
