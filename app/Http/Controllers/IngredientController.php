@@ -59,7 +59,8 @@ class IngredientController extends Controller
      */
     public function show($id)
     {
-        return view('ingredients.info', compact('id'));
+        $ingredient = RawMaterial::findOrFail($id);
+        return view('ingredients.info', compact('ingredient'));
     }
 
     /**

@@ -69,7 +69,8 @@ class MachineController extends Controller
      */
     public function show($id)
     {
-        return view('machines.info', compact('id'));
+        $machine = Machinery::findOrFail($id);
+        return view('machines.info', compact('machine'));
     }
 
     /**
