@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class ClientController extends Controller
 {
@@ -89,15 +90,15 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $client = Client::findOrFail($id);
         $validated = $request->validate([
             'firstName' => 'required|max:191',
             'lastName' => 'required|max:191',
             'registerDate' => 'nullable|time',
-            'email' => 'required|unique:client|max:191',
+            'email' => ['required', 'max:191', Rule::unique('client', 'email')->ignore($client->personalId, 'email')],
+            'phoneNumber' => ['required', 'max:191', Rule::unique('client', 'phoneNumber')->ignore($client->personalId, 'phoneNumber')],
             'password' => 'required|min:8|max:191',
-            'phoneNumber' => 'required|unique:client|max:191',
         ]);
-        $client = Client::findOrFail($id);
         $client->firstName = $request->firstName;
         $client->lastName = $request->lastName;
         if ($request->registerDate !== null) $client->registerDate = $request->registerDate;
