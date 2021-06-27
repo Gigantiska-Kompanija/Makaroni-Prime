@@ -13,10 +13,19 @@ class MachineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $machines = Machinery::orderBy('serialNumber')->get();
-        return view('machines.list', compact('machines'));
+        $locations = Machinery::select('located')->distinct()->get()->toArray();
+        $serialNumber = $request->serialNumber ?? '';
+        $isOperating = $request->isOperating ?? null;
+        $needsMaintenance = $request->needsMaintenance ?? null;
+        $machines = Machinery::query()
+        ->where('serialNumber','LIKE','%'.$serialNumber.'%')
+        ->where('located','LIKE',$request->location ?? '%')
+        ->where('isOperating','LIKE',$isOperating ?? '%')
+        ->where('needsMaintenance','LIKE',$needsMaintenance ?? '%')
+        ->get();
+        return view('machines.list', compact('machines', 'serialNumber', 'locations', 'isOperating', 'needsMaintenance'));
     }
 
     /**

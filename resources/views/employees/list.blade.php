@@ -7,6 +7,18 @@
             <a class="btn btn-warning" href={{ route("employees.create") }}><i class="fas fa-plus"></i></a>
         </div>
     </x-slot>
+    <form method="GET" action="{{ route('employees.index') }}">
+    <div class="input-group mb-3">
+        <input type="text" placeholder="{{ __('Name') }}" class="form-control" name="personalId" value="{{ $personalId }}" aria-describedby="button-addon2">
+        <select class="form-select" name="position">
+            <option value="">{{ __('Position') }}</option>
+            @foreach($positions as $position)
+                <option value="{{$position['position']}}" {{ isset($_GET['position']) && $_GET['position'] == $position['position'] ? 'selected' : '' }}>{{ $position['position'] }}</option>
+            @endforeach
+        </select>
+        <button class="btn btn-warning" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
+    </div>
+    </form>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -29,4 +41,7 @@
             @endforeach
         </tbody>
     </table>
+    <div>
+        {{ __('Total').': '.count($employees) }}
+    </div>
 </x-app-layout>

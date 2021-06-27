@@ -20,7 +20,7 @@ class RawMaterialFactory extends Factory {
      */
     public function definition(): array {
         return [
-            'name' => join(" ", $this->faker->unique()->words),
+            'name' => $this->faker->unique()->text(1),
             'price' => $this->faker->randomFloat(2, 0, 10000),
             'quantity' => $this->faker->numberBetween(0, 2000),
             'minimum' => $this->faker->numberBetween(0, 3000),

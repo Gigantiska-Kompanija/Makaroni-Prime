@@ -13,10 +13,13 @@ class IngredientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $ingredients = RawMaterial::orderBy('name')->get();
-        return view('ingredients.list', compact('ingredients'));
+        $name = $request->name ?? '';
+        $ingredients = RawMaterial::query()
+        ->where('name','LIKE','%'.$name.'%')
+        ->get();
+        return view('ingredients.list', compact('ingredients', 'name'));
     }
 
     /**

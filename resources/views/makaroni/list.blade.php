@@ -9,6 +9,24 @@
             @endauth
         </div>
     </x-slot>
+    <form method="GET" action="{{ route('makaroni.index') }}">
+    <div class="input-group mb-3">
+        <input type="text" placeholder="{{ __('Name') }}" class="form-control" name="name" value="{{ $name }}" aria-describedby="button-addon2">
+        <select class="form-select" name="shape">
+            <option value="">{{ __('Shape') }}</option>
+            @foreach($shapes as $shape)
+                <option value="{{$shape['shape']}}" {{ isset($_GET['shape']) && $_GET['shape'] == $shape['shape'] ? 'selected' : '' }}>{{ $shape['shape'] }}</option>
+            @endforeach
+        </select>
+        <select class="form-select" name="color">
+            <option value="">{{ __('Color') }}</option>
+            @foreach($colors as $color)
+                <option value="{{$color['color']}}" {{ isset($_GET['color']) && $_GET['color'] == $color['color'] ? 'selected' : '' }}>{{ $color['color'] }}</option>
+            @endforeach
+        </select>
+        <button class="btn btn-warning" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
+    </div>
+    </form>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -29,4 +47,7 @@
         @endforeach
         </tbody>
     </table>
+    <div>
+        {{ __('Total').': '.count($makaroni) }}
+    </div>
 </x-app-layout>

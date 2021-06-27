@@ -72,6 +72,9 @@
     "Image": "Attēls",
     "Log out": "Iziet",
     "Yes": "Jā",
-    "No": "Nē"
+    "No": "Nē",
+    "Total": "Kopā",
+    "Image": "Attēls",
+    "Image must be <2MB and .jpg": "Attēlam jābūt <2MB un .jpg"
 }
 

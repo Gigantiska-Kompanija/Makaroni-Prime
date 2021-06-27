@@ -18,10 +18,17 @@ class MakaroniController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $makaroni = Makarons::orderBy('name')->get();
-        return view('makaroni.list', compact('makaroni'));
+        $shapes = Makarons::select('shape')->distinct()->get()->toArray();
+        $colors = Makarons::select('color')->distinct()->get()->toArray();
+        $name = $request->name ?? '';
+        $makaroni = Makarons::query()
+        ->where('name','LIKE','%'.$name.'%')
+        ->where('shape','LIKE',$request->shape ?? '%')
+        ->where('color','LIKE',$request->color ?? '%')
+        ->get();
+        return view('makaroni.list', compact('makaroni', 'name', 'shapes', 'colors'));
     }
 
     /**
@@ -123,7 +130,7 @@ class MakaroniController extends Controller {
             'color' => 'required|max:191',
             'length' => 'required|numeric|integer|min:0',
             'popularity' => 'required|numeric|integer|min:0',
-            'image'  => 'image|mimes:jpg|max:2048'
+            'image'  => 'image|mimes:jpg|max:2048' // php.ini jānomaina post_max_size uz 100M. upload_max_filesize uz 100M.
         ]);
         $image = $request->file('image');
         $old_name = $makarons->name . '.jpg';

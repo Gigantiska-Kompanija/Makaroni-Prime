@@ -12,7 +12,7 @@
             <a class="col" href={{ route("makaroni.show", $makarons->name) }}>
                 <div class="card h-100">
                 @if (file_exists(public_path('assets/images/'.$makarons->name.'.jpg')))
-                    <img src="{{ asset('assets/images/'.$makarons->name.'.jpg') }}" class="card-img-top">
+                    <img src="{{ asset('assets/images/'.$makarons->name.'.jpg') }}" class="card-img-top" style="height:100%;">
                 @else
                     <img src="{{ asset('assets/images/default.jpg') }}" class="card-img-top">
                 @endif

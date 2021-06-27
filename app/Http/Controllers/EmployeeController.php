@@ -13,10 +13,16 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $employees = Employee::orderBy('personalId')->get();
-        return view('employees.list', compact('employees'));
+        $positions = Employee::select('position')->distinct()->get()->toArray();
+        $positions = array_filter($positions, function($el) {return $el['position'];});
+        $personalId = $request->personalId ?? '';
+        $employees = Employee::query()->where('personalId','LIKE','%'.$personalId.'%');
+        $employees = $employees->where('position','LIKE',$request->position);
+        if(!$request->position) $employees = $employees->orWhereNull('position');
+        $employees = $employees->get();
+        return view('employees.list', compact('employees', 'personalId', 'positions'));
     }
 
     /**
@@ -100,8 +106,8 @@ class EmployeeController extends Controller
             'personalId' => ['required', Rule::unique('employee', 'personalId')->ignore($employee->personalId, 'personalId')],
             'firstName' => 'required|max:191',
             'lastName' => 'required|max:191',
-            'email' => ['required', 'max:191', Rule::unique('employee', 'email')->ignore($employee->personalId, 'email')],
-            'phoneNumber' => ['required', 'max:191', Rule::unique('employee', 'phoneNumber')->ignore($employee->personalId, 'phoneNumber')],
+            'email' => ['required', 'max:191', Rule::unique('employee', 'email')->ignore($employee->email, 'email')],
+            'phoneNumber' => ['required', 'max:191', Rule::unique('employee', 'phoneNumber')->ignore($employee->phoneNumber, 'phoneNumber')],
             'position' => 'nullable|string|max:191',
             'pay' => 'nullable|numeric',
             'joinDate' => 'nullable|date',

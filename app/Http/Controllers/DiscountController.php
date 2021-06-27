@@ -13,10 +13,13 @@ class DiscountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $discounts = Discount::orderBy('code')->get();
-        return view('discounts.list', compact('discounts'));
+        $code = $request->code ?? '';
+        $discounts = Discount::query()
+        ->where('code','LIKE','%'.$code.'%')
+        ->get();
+        return view('discounts.list', compact('discounts', 'code'));
     }
 
     /**

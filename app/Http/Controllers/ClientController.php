@@ -14,10 +14,17 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $clients = Client::orderBy('id')->get();
-        return view('clients.list', compact('clients'));
+        $id = $request->id ?? '';
+        $firstName = $request->firstName ?? '';
+        $lastName = $request->lastName ?? '';
+        $clients = Client::query()
+        ->where('id','LIKE','%'.$id.'%')
+        ->where('firstName','LIKE','%'.$firstName.'%')
+        ->where('lastName','LIKE','%'.$lastName.'%')
+        ->get();
+        return view('clients.list', compact('clients', 'id', 'firstName', 'lastName'));
     }
 
     /**
@@ -95,8 +102,8 @@ class ClientController extends Controller
             'firstName' => 'required|max:191',
             'lastName' => 'required|max:191',
             'registerDate' => 'nullable|time',
-            'email' => ['required', 'max:191', Rule::unique('client', 'email')->ignore($client->personalId, 'email')],
-            'phoneNumber' => ['required', 'max:191', Rule::unique('client', 'phoneNumber')->ignore($client->personalId, 'phoneNumber')],
+            'email' => ['required', 'max:191', Rule::unique('client', 'email')->ignore($client->email, 'email')],
+            'phoneNumber' => ['required', 'max:191', Rule::unique('client', 'phoneNumber')->ignore($client->phoneNumber, 'phoneNumber')],
             'password' => 'required|min:8|max:191',
         ]);
         $client->firstName = $request->firstName;

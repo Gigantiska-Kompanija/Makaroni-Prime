@@ -13,10 +13,17 @@ class DivisionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $divisions = Division::orderBy('name')->get();
-        return view('divisions.list', compact('divisions'));
+        $isOperating = $request->isOperating ?? null;
+        $name = $request->name ?? '';
+        $location = $request->location ?? '';
+        $divisions = Division::query()
+        ->where('name','LIKE','%'.$name.'%')
+        ->where('location','LIKE','%'.$location.'%')
+        ->where('isOperating','LIKE',$isOperating ?? '%')
+        ->get();
+        return view('divisions.list', compact('divisions', 'name', 'location', 'isOperating'));
     }
 
     /**

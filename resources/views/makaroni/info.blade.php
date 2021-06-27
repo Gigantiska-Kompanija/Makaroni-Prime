@@ -16,7 +16,7 @@
         <div class="row g-0">
             <div class="col-md-4">
             @if (file_exists(public_path('assets/images/'.$makarons->name.'.jpg')))
-                    <img src="{{ asset('assets/images/'.$makarons->name.'.jpg') }}" class="card-img-top">
+                    <img src="{{ asset('assets/images/'.$makarons->name.'.jpg') }}" class="card-img-top" style="height:100%;">
                 @else
                     <img src="{{ asset('assets/images/default.jpg') }}" class="card-img-top">
                 @endif

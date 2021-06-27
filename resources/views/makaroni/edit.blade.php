@@ -24,7 +24,8 @@
         <x-input inputFor="color" val="{{ $makarons->color }}" required>{{ __('Color') }}</x-input>
         <x-input inputFor="length" val="{{ $makarons->length }}" required>{{ __('Length') }}</x-input>
         <x-input inputFor="popularity" val="{{ $makarons->popularity }}" required>{{ __('Popularity') }}</x-input>
-        <x-input inputFor="image" type="file">Image</x-input>
+        <x-input inputFor="image" type="file">{{ __('Image') }}</x-input>
+        <small>{{ __('Image must be <2MB and .jpg') }}</small>
 
         <x-submit-btn />
     </form>
