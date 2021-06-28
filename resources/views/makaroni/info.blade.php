@@ -5,7 +5,12 @@
             {{ $makarons->name }}
         </h2>
         <div>
-            <a class="btn btn-warning" href={{ route("cart.store", $makarons->name) }}><i class="fas fa-cart-plus"></i></a>
+            <form method="POST" action="{{ route("cart.store") }}">
+                @method('POST')
+                @csrf
+                <input type="hidden" name="name" value="{{ $makarons->name }}">
+                <button type="submit" class="btn btn-warning"><i class="fas fa-cart-plus"></i></button>
+            </form>
             @auth('manager')
             <a class="btn btn-warning ml-1" href={{ route("makaroni.edit", $makarons->name) }}><i class="fas fa-pen"></i></a>
             @endauth

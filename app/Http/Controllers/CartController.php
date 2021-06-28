@@ -15,14 +15,11 @@ class CartController extends Controller
      */
     public function index()
     {
-//        session()->push('makaroni', 'aaa');
-//        dd(session()->has('makaroni'));
-        if (session()->has('makaroni')){
-            $cartItems = Makarons::whereIn('makaroni', session()->get('makaroni'))->get();
+        if (session()->has('makaroni')){    
+            $cartItems = Makarons::whereIn('name', session()->get('makaroni'))->get();
         }
         else $cartItems = [];
         return view('cart', compact('cartItems'));
-        //return view('cart');
     }
 
     /**
@@ -40,11 +37,13 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store($name)
+    public function store(Request $request)
     {
-        //$makarons = Makarons::findOrFail($name);
-        session()->push('makaroni',$name);
-        return view('store');
+        $name = $request->name;
+        $makarons = Makarons::findOrFail($name);
+        session()->push('makaroni',$makarons);
+        return redirect(route('store'));
+        //return 'pogger';
     }
 
     /**
