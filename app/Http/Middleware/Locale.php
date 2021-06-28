@@ -16,20 +16,11 @@ class Locale {
     ];
 
     public function handle(Request $request, Closure $next) {
-//        $session = $request->session();
-
         if (!$request->hasCookie(self::COOKIE)) {
             $lang = $request->getPreferredLanguage(self::LOCALES);
         } else {
             $lang = $request->cookie(self::COOKIE);
         }
-//
-//        if ($request->has('lang')) {
-//            $lang = $request->get('lang');
-//            if (in_array($lang, self::LOCALES)) {
-//                $request->session()->put(self::SESSION_KEY, $lang);
-//            }
-//        }
 
         App::setLocale($lang);
 

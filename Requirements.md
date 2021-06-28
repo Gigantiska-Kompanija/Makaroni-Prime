@@ -12,7 +12,7 @@ data storage using appropriate MVC means.
 create a usable web application. All 4 CRUD functions (create, read, update, and delete) must be
 implemented.
 - [x] Localization pattern is applied in the system, users can switch languages.
-- [x] *The system has user authentication mechanism. Each registered user is included in some role, permissions
+- [x] The system has user authentication mechanism. Each registered user is included in some role, permissions
 are assigned to user roles. At least two roles of registered users must be implemented. The permissions
 assigned to all roles and to quest users must be different.
 - [x] User passwords are not stored in plain text.
@@ -31,7 +31,7 @@ Fulfilling any single requirement provides no more than 5% of the final grade:
 what's shown on the first page – most recent items or most interesting items).
 - [ ] The system adapts to user actions by providing content suitable to a current user (e.g., views like “my
 recent requests”, “other users who were looking for this book, opened this item as well...”)
-- [ ] The system stores audit logs of user actions. Third party plug-ins are not evaluated for this requirement.
+- [ ] ... The system stores audit logs of user actions. Third party plug-ins are not evaluated for this requirement.
 - [x] The system adjusts to user's “accept-language” and automatically provides content in the most
 appropriate language.
 - [x] The system includes communication interfaces other than standard web / HTML (for instance, email

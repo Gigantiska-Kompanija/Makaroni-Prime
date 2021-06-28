@@ -37,6 +37,11 @@
                     <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
                         {{ __('Clients') }}
                     </x-nav-link>
+                        @if(Auth::guard('manager')->user()->admin)
+                        <x-nav-link :href="route('audit.index')" :active="request()->routeIs('audit.index')">
+                            {{ __('Audit Log') }}
+                        </x-nav-link>
+                        @endif
                     @endauth
                     <x-nav-link>
                         <select class="selectpicker" data-width="fit" id="language-picker">
@@ -50,14 +55,14 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @if (Route::has('login'))
-                    @auth
+                    @if(Auth::check() || Auth::guard('manager')->check())
                     <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             <div>
                                 @auth('manager')
-                                    {{ Auth::user()->employee }}
-                                @else('client')
+                                    {{ Auth::guard('manager')->user()->employee()->first()->email }}
+                                @else
                                     {{ Auth::user()->email }}
                                 @endauth
                             </div>
@@ -72,7 +77,7 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ route(Auth::guard('manager')->check() ? 'manager.logout' : 'logout') }}">
                             @csrf
 
                             <x-dropdown-link :href="route('logout')"
@@ -133,16 +138,21 @@
             <x-responsive-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
                 {{ __('Clients') }}
             </x-responsive-nav-link>
+                @if(Auth::guard('manager')->user()->admin)
+                <x-nav-link :href="route('audit.index')" :active="request()->routeIs('audit.index')">
+                    {{ __('Audit Log') }}
+                </x-nav-link>
+                @endif
             @endauth
         </div>
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-4 border-t border-gray-200">
             <div class="flex items-center px-4">
-            @auth
+            @if(Auth::check() || Auth::guard('manager')->check())
                 <div class="space-y-1 mr-4">
                     <!-- Authentication -->
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route(Auth::guard('manager')->check() ? 'manager.logout' : 'logout') }}">
                         @csrf
 
                         <x-responsive-nav-link :href="route('logout')"
@@ -154,8 +164,8 @@
                 </div>
                 <div>
                     @auth('manager')
-                        {{ Auth::user()->employee }}
-                    @else('client')
+                        {{ Auth::guard('manager')->user()->employee()->first()->email }}
+                    @else
                         {{ Auth::user()->email }}
                     @endauth
                 </div>

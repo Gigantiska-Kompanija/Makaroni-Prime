@@ -9,3 +9,8 @@
 - [x] locales
 - [ ] cart
 - [x] editing
+- [ ] nav improving
+- [ ] audit finishing
+  - [x] list filtering
+  - [ ] to all create, edit, delete
+  - [ ] to login attempts

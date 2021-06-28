@@ -30,7 +30,9 @@ class ManagerAuthProvider implements UserProvider {
     }
 
     public function retrieveByCredentials(array $credentials) {
-        return Employee::firstWhere('email', $credentials['email'])->manager()->first();
+        $e = Employee::firstWhere('email', $credentials['email']);
+        if (!isset($e)) return null;
+        return $e->manager()->firstOrFail();
     }
 
     public function validateCredentials(Authenticatable $user, array $credentials): bool {
