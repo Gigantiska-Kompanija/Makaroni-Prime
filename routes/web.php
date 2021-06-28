@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,11 @@ Route::get('review/{id}', 'ReviewController@create')->middleware('auth')->name('
 Route::post('review/{id}', 'ReviewController@store')->middleware('auth')->name('review.store');
 Route::delete('review/{id}', 'ReviewController@destroy')->middleware('auth:manager')->name('review.destroy');
 Route::post('switchLang', 'LocaleController@set')->name('lang.switch');
+
+Route::post('manager/logout', function() {
+    Auth::guard('manager')->logout();
+    return redirect('/');
+})->middleware('auth:manager')->name('manager.logout');
 
 Route::feeds();
 

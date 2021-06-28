@@ -56,8 +56,8 @@
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             <div>
                                 @auth('manager')
-                                    {{ Auth::user()->employee }}
-                                @else('client')
+                                    {{ Auth::user()->employee()->first()->email }}
+                                @elseauth('client')
                                     {{ Auth::user()->email }}
                                 @endauth
                             </div>
@@ -72,7 +72,7 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ route(Auth::guard('client')->check() ? 'logout' : 'manager.logout') }}">
                             @csrf
 
                             <x-dropdown-link :href="route('logout')"
@@ -142,7 +142,7 @@
             @auth
                 <div class="space-y-1 mr-4">
                     <!-- Authentication -->
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route(Auth::guard('client')->check() ? 'logout' : 'manager.logout') }}">
                         @csrf
 
                         <x-responsive-nav-link :href="route('logout')"
@@ -154,8 +154,8 @@
                 </div>
                 <div>
                     @auth('manager')
-                        {{ Auth::user()->employee }}
-                    @else('client')
+                        {{ Auth::user()->employee()->first()->email }}
+                    @elseauth('client')
                         {{ Auth::user()->email }}
                     @endauth
                 </div>
