@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Audit;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -36,8 +38,12 @@ Route::post('review/{id}', 'ReviewController@store')->middleware('auth')->name('
 Route::delete('review/{id}', 'ReviewController@destroy')->middleware('auth:manager')->name('review.destroy');
 Route::post('switchLang', 'LocaleController@set')->name('lang.switch');
 
-Route::post('manager/logout', function() {
+Route::get('audit', 'AuditController@index')->middleware(['admin'])->name('audit.index');
+
+Route::post('manager/logout', function(Request $request) {
+    $email = Auth::guard('manager')->user()->employee()->first()->email;
     Auth::guard('manager')->logout();
+    Audit::create('auth-logout', $request, $email);
     return redirect('/');
 })->middleware('auth:manager')->name('manager.logout');
 
