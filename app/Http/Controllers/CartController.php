@@ -15,6 +15,7 @@ class CartController extends Controller
      */
     public function index()
     {
+        //dd(session()->get('makaroni');
         if (session()->has('makaroni')){    
             $cartItems = Makarons::whereIn('name', session()->get('makaroni'))->get();
         }
@@ -40,10 +41,14 @@ class CartController extends Controller
     public function store(Request $request)
     {
         $name = $request->name;
-        $makarons = Makarons::findOrFail($name);
-        session()->push('makaroni',$makarons);
+        if (session()->has('makaroni') && in_array($name, session()->get('makaroni'))){
+            $makarons = session()->pull('makaroni');
+            unset($makarons[array_search($request->name, $makarons)]);
+            session()->put('makaroni', $makarons);
+        }else{
+            session()->push('makaroni',$name);
+        }
         return redirect(route('store'));
-        //return 'pogger';
     }
 
     /**
