@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Audit;
 use Illuminate\Http\Request;
 use App\Models\Discount;
 use Illuminate\Validation\Rule;
@@ -52,6 +53,7 @@ class DiscountController extends Controller
         $discount->startDate = $request->startDate;
         $discount->endDate = $request->endDate;
         $discount->save();
+        Audit::create('create-discount', $request, null, $discount->code);
         return redirect(route('discounts.show', $request->code));
     }
 
@@ -100,6 +102,7 @@ class DiscountController extends Controller
         $discount->startDate = $request->startDate;
         $discount->endDate = $request->endDate;
         $discount->save();
+        Audit::create('update-discount', $request, null, $discount->code);
         return redirect(route('discounts.show', $request->code));
     }
 
@@ -109,8 +112,9 @@ class DiscountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        Audit::create('destroy-discount', $request, null, $id);
         Discount::findOrFail($id)->delete();
         return redirect(route('discounts.index'));
     }

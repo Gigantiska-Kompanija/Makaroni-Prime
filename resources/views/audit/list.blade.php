@@ -20,6 +20,7 @@
         <tr>
             <th>{{ __('Time') }}</th>
             <th>{{ __('Type') }}</th>
+            <th>{{ __('Details') }}</th>
             <th>{{ __('Email') }}</th>
             <th>{{ __('IP Address') }}</th>
         </tr>
@@ -29,6 +30,7 @@
             <tr>
                 <th>{{ $audit->time }}</th>
                 <td>{{ $audit->type }}</td>
+                <td>{{ $audit->details }}</td>
                 <td>{{ $audit->email }}</td>
                 <td>{{ $audit->ip }}</td>
             </tr>

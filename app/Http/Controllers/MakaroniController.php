@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Models\Audit;
 use App\Models\Makarons;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -83,6 +84,7 @@ class MakaroniController extends Controller {
         $makarons->length = $request->length;
         $makarons->popularity = $request->popularity;
         $makarons->save();
+        Audit::create('create-makarons', $request, null, $makarons->name);
         return redirect(route('makaroni.show', $request->name));
     }
 
@@ -150,6 +152,7 @@ class MakaroniController extends Controller {
         $makarons->length = $request->length;
         $makarons->popularity = $request->popularity;
         $makarons->save();
+        Audit::create('update-makarons', $request, null, $makarons->name);
         return redirect(route('makaroni.show', $request->name));
     }
 
@@ -159,8 +162,9 @@ class MakaroniController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        Audit::create('destroy-makarons', $request, null, $id);
         Makarons::findOrFail($id)->delete();
         $old_name = $id . '.jpg';
         unlink(public_path('assets/images/' . $old_name));

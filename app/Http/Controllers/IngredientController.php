@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Audit;
 use Illuminate\Http\Request;
 use App\Models\RawMaterial;
 use Illuminate\Validation\Rule;
@@ -52,6 +53,7 @@ class IngredientController extends Controller
         if ($request->quantity !== null) $ingredient->quantity = $request->quantity;
         if ($request->minimum !== null) $ingredient->minimum = $request->minimum;
         $ingredient->save();
+        Audit::create('create-ingredient', $request, null, $ingredient->name);
         return redirect(route('ingredients.show', $request->name));
     }
 
@@ -100,6 +102,7 @@ class IngredientController extends Controller
         if($request->quantity !== null) $ingredient->quantity = $request->quantity;
         if($request->minimum !== null) $ingredient->minimum = $request->minimum;
         $ingredient->save();
+        Audit::create('update-ingredient', $request, null, $ingredient->name);
         return redirect(route('ingredients.show', $request->name));
     }
 
@@ -109,8 +112,9 @@ class IngredientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        Audit::create('destroy-ingredient', $request, null, $id);
         RawMaterial::findOrFail($id)->delete();
         return redirect(route('machines.index'));
     }

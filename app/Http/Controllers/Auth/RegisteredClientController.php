@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Audit;
 use App\Models\Client;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -33,7 +34,7 @@ class RegisteredClientController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => ['required', 'string', 'max:255', 'regex:/.+ .+/u'],
             'email' => 'required|string|email|max:255|unique:client',
             'phone' => 'required|string|max:255|unique:client,phoneNumber',
             'password' => 'required|string|confirmed|min:8',
@@ -51,6 +52,7 @@ class RegisteredClientController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        Audit::create('auth-register', $request, $request->email, $user->id);
         event(new Registered($user));
 
         Auth::login($user);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Audit;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use Illuminate\Support\Facades\Hash;
@@ -61,7 +62,8 @@ class ClientController extends Controller
         $client->password = Hash::make($request->password);
         $client->phoneNumber = $request->phoneNumber;
         $client->save();
-        return $this->index();
+        Audit::create('create-client', $request, null, $client->id);
+        return redirect(route('clients.show', $client->id));
     }
 
     /**
@@ -113,7 +115,9 @@ class ClientController extends Controller
         $client->password = Hash::make($request->password);
         $client->phoneNumber = $request->phoneNumber;
         $client->save();
-        return view('clients.info', compact('id'));
+        Audit::create('update-client', $request, null, $client->id);
+//        return view('clients.info', compact('id'));
+        return redirect(route('clients.show', $client->id));
     }
 
     /**
@@ -122,9 +126,10 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        Audit::create('destroy-client', $request, null, $id);
         Client::findOrFail($id)->delete();
-        return $this->index();
+        return redirect(route('clients.index'));
     }
 }

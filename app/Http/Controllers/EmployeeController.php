@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Audit;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use Illuminate\Validation\Rule;
@@ -65,6 +66,7 @@ class EmployeeController extends Controller
         if ($request->joinDate !== null) $employee->joinDate = $request->joinDate;
         if ($request->leaveDate !== null) $employee->leaveDate = $request->leaveDate;
         $employee->save();
+        Audit::create('create-employee', $request, null, $employee->personalId);
         return redirect(route('employees.show', $request->personalId));
     }
 
@@ -123,6 +125,7 @@ class EmployeeController extends Controller
         if ($request->joinDate !== null) $employee->joinDate = $request->joinDate;
         if ($request->leaveDate !== null) $employee->leaveDate = $request->leaveDate;
         $employee->save();
+        Audit::create('update-employee', $request, null, $employee->personalId);
         return redirect(route('employees.show', $request->personalId));
     }
 
@@ -132,8 +135,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        Audit::create('destroy-employee', $request, null, $id);
         Employee::findOrFail($id)->delete();
         return redirect(route('employees.index'));
     }

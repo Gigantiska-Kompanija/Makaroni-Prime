@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Audit;
 use Illuminate\Http\Request;
 use App\Models\Division;
 use Illuminate\Validation\Rule;
@@ -54,6 +55,7 @@ class DivisionController extends Controller
         $division->location = $request->location;
         if ($request->isOperating !== null) $division->isOperating = $request->isOperating;
         $division->save();
+        Audit::create('create-division', $request, null, $division->name);
         return redirect(route('divisions.show', $request->name));
     }
 
@@ -100,6 +102,7 @@ class DivisionController extends Controller
         $division->location = $request->location;
         if ($request->isOperating !== null) $division->isOperating = $request->isOperating;
         $division->save();
+        Audit::create('update-division', $request, null, $division->name);
         return redirect(route('divisions.show', $request->name));
     }
 
@@ -109,9 +112,10 @@ class DivisionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         Division::findOrFail($id)->delete();
+        Audit::create('destroy-division', $request, null, $id);
         return redirect(route('divisions.index'));
     }
 }

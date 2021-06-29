@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Audit;
 use App\Models\Manager;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -39,10 +40,12 @@ class ManagerController extends Controller {
             'password' => 'required|min:8|max:191',
             'admin' => 'nullable|boolean',
         ]);
-        $makarons = new Manager();
-        $makarons->employee = $request->employee;
-        $makarons->password = Hash::make($request->password);
-        $makarons->save();
+        $manager = new Manager();
+        $manager->employee = $request->employee;
+        $manager->password = Hash::make($request->password);
+        $manager->admin = $request->admin;
+        $manager->save();
+        Audit::create('create-manager', $request, null, $manager->employee);
         return redirect(route('managers.index'));
     }
 
@@ -52,7 +55,8 @@ class ManagerController extends Controller {
      * @param int $id
      * @return Response
      */
-    public function destroy($id) {
+    public function destroy(Request $request, $id) {
+        Audit::create('destroy-manager', $request, null, $id);
         Manager::findOrFail($id)->delete();
         return $this->index();
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Audit;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\Makarons;
@@ -47,6 +48,7 @@ class ReviewController extends Controller
         $review->rating = $request->rating;
         $review->comment = $request->comment;
         $review->save();
+        Audit::create('create-review', $request, null, $review->id);
         return redirect(route('makaroni.show', $id));
     }
 
@@ -56,8 +58,9 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        Audit::create('destroy-review', $request, null, $id);
         Review::findOrFail($id)->delete();
     }
 }

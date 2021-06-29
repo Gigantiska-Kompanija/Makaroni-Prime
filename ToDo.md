@@ -10,9 +10,9 @@
 - [ ] ... cart
 - [x] editing
 - [ ] nav improving
-- [ ] audit finishing
+- [x] audit finishing
   - [x] list filtering
-  - [ ] to all create, edit, delete
+  - [x] to all create, edit, delete
   - [x] to login attempts
 - [ ] ? password changing
 - [x] manager listing & creation

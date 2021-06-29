@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Audit;
 use Illuminate\Http\Request;
 use App\Models\Machinery;
 use Illuminate\Validation\Rule;
@@ -68,6 +69,7 @@ class MachineController extends Controller
         if ($request->purchaseDate !== null) $machine->purchaseDate = $request->purchaseDate;
         if ($request->decommissionDate !== null) $machine->decommissionDate = $request->decommissionDate;
         $machine->save();
+        Audit::create('create-machine', $request, null, $machine->serialNumber);
         return redirect(route('machines.show', $request->serialNumber));
     }
 
@@ -126,6 +128,7 @@ class MachineController extends Controller
         if ($request->purchaseDate !== null) $machine->purchaseDate = $request->purchaseDate;
         if ($request->decommissionDate !== null) $machine->decommissionDate = $request->decommissionDate;
         $machine->save();
+        Audit::create('update-machine', $request, null, $machine->serialNumber);
         return redirect(route('machines.show', $request->serialNumber));
     }
 
@@ -135,8 +138,9 @@ class MachineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        Audit::create('destroy-machine', $request, null, $id);
         Machinery::findOrFail($id)->delete();
         return redirect(route('machines.index'));
     }

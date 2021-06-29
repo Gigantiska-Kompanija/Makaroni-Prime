@@ -12,7 +12,7 @@ class Audit extends Model {
 
     protected $table = 'audit_log';
 
-    public static function create(string $type, Request $req, string $email = null) {
+    public static function create(string $type, Request $req, string $email = null, string $details = null) {
         if (!isset($email)) {
             if (Auth::guard('manager')->check()) {
                 $email = Auth::guard('manager')->user()->employee()->first()->email;
@@ -24,6 +24,7 @@ class Audit extends Model {
             'type' => $type,
             'ip' => $req->ip(),
             'email' => $email,
+            'details' => $details,
             'time' => now(),
         ]);
     }
