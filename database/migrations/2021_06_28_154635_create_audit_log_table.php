@@ -17,7 +17,7 @@ class CreateAuditLogTable extends Migration {
             $table->string('type'); // auth-success, auth-fail, register, create-*, edit-*, destroy-*,
             $table->ipAddress('ip');
             $table->string('email')->nullable();
-            $table->timestamp('time');
+            $table->timestamp('time')->useCurrent();
         });
     }
 
