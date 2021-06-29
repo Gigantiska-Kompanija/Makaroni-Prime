@@ -4,25 +4,27 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Cart') }}
             </h2>
-            <a class="btn btn-warning" href={{ route("form.order") }}><i class="fas fa-cash-register"></i></a>
         </div>
     </x-slot>
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>{{ __('Name') }}</th>
-                <th>{{ __('Quantity') }}</th>
-                <th>{{ __('Price') }}</th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach($cartItems as $cartItem)
-            <tr>
-                <th><a href={{ route("makaroni.show", $i) }}>name {{ $cartItem->name }}</a></th>
-                <td><a href={{ route("makaroni.show", $i) }}>quantity {{ $cartItem->quantity }}</a></td>
-                <td><a href={{ route("makaroni.show", $i) }}>price {{ $cartItem->price }}</a></td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+    <form action="{{ route("form.order") }}">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>{{ __('Name') }}</th>
+                    <th>{{ __('Quantity (kg)') }}</th>
+                    <th>{{ __('Price per kg') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($cartItems as $cartItem)
+                <tr>
+                    <th><a href={{ route("makaroni.show", $cartItem->name) }}>{{ $cartItem->name }}</a></th>
+                    <td><input name="quantity" type="number" required min="1" max="{{ $cartItem->quantity }}" value="1"> ({{ $cartItem->quantity }} in stock)</td>
+                    <td><a href={{ route("makaroni.show", $cartItem->name) }}>{{ $cartItem->price }}</a></td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-warning"><i class="fas fa-cash-register"></i></button>
+    </form>
 </x-app-layout>

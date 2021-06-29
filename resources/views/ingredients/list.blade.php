@@ -8,10 +8,12 @@
         </div>
     </x-slot>
     <form method="GET" action="{{ route('ingredients.index') }}">
-    <div class="input-group mb-3">
-        <input type="text" placeholder="{{ __('Name') }}" class="form-control" name="name" value="{{ $name }}" aria-describedby="button-addon2">
-        <button class="btn btn-warning" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
-    </div>
+        <label for="belowMin">{{ __('Show only below minimum') }}</label>
+        <input name="belowMin" id="belowMin" type="checkbox"{{ $belowMin ? ' checked' : '' }}>
+        <div class="input-group mb-3">
+            <input type="text" placeholder="{{ __('Name') }}" class="form-control" name="name" value="{{ $name }}" aria-describedby="button-addon2">
+            <button class="btn btn-warning" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
+        </div>
     </form>
     <table class="table table-striped table-hover">
         <thead>
