@@ -31,7 +31,7 @@ Fulfilling any single requirement provides no more than 5% of the final grade:
 what's shown on the first page – most recent items or most interesting items).
 - [ ] The system adapts to user actions by providing content suitable to a current user (e.g., views like “my
 recent requests”, “other users who were looking for this book, opened this item as well...”)
-- [ ] ... The system stores audit logs of user actions. Third party plug-ins are not evaluated for this requirement.
+- [x] The system stores audit logs of user actions. Third party plug-ins are not evaluated for this requirement.
 - [x] The system adjusts to user's “accept-language” and automatically provides content in the most
 appropriate language.
 - [x] The system includes communication interfaces other than standard web / HTML (for instance, email

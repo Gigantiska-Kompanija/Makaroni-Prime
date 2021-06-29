@@ -89,6 +89,9 @@
                                 {{ __('Log out') }}
                             </x-dropdown-link>
                         </form>
+                        @if(!Auth::guard('manager')->check())
+                            <x-dropdown-link :href="route('clients.show', Auth::user()->id)">{{ __('Profile') }}</x-dropdown-link>
+                        @endif
                     </x-slot>
                     </x-dropdown>
                     @else

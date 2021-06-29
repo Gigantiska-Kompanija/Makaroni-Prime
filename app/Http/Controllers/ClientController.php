@@ -5,11 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Audit;
 use Illuminate\Http\Request;
 use App\Models\Client;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ClientController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth:manager', ['except' => ['show', 'edit', 'update']]);
+    }
+
     /**
      * Show a list of clients.
      *
@@ -74,6 +80,11 @@ class ClientController extends Controller
      */
     public function show($id)
     {
+        if (!Auth::guard('manager')->check()) {
+            if ($id != Auth::user()->id) {
+                throw new NotFoundHttpException();
+            }
+        }
         $client = Client::findOrFail($id);
         return view('clients.info', compact('client'));
     }
@@ -86,6 +97,11 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::guard('manager')->check()) {
+            if ($id != Auth::user()->id) {
+                throw new NotFoundHttpException();
+            }
+        }
         $client = Client::findOrFail($id);
         return view('clients.edit', compact('client'));
     }
@@ -99,6 +115,12 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::guard('manager')->check()) {
+            if ($id != Auth::user()->id) {
+                throw new NotFoundHttpException();
+            }
+        }
+
         $client = Client::findOrFail($id);
         $validated = $request->validate([
             'firstName' => 'required|max:191',
@@ -106,17 +128,14 @@ class ClientController extends Controller
             'registerDate' => 'nullable|time',
             'email' => ['required', 'email', 'max:191', Rule::unique('client', 'email')->ignore($client->email, 'email')],
             'phoneNumber' => ['required', 'max:191', Rule::unique('client', 'phoneNumber')->ignore($client->phoneNumber, 'phoneNumber')],
-            'password' => 'required|min:8|max:191',
         ]);
         $client->firstName = $request->firstName;
         $client->lastName = $request->lastName;
         if ($request->registerDate !== null) $client->registerDate = $request->registerDate;
         $client->email = $request->email;
-        $client->password = Hash::make($request->password);
         $client->phoneNumber = $request->phoneNumber;
         $client->save();
         Audit::create('update-client', $request, null, $client->id);
-//        return view('clients.info', compact('id'));
         return redirect(route('clients.show', $client->id));
     }
 
