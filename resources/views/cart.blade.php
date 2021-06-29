@@ -6,7 +6,8 @@
             </h2>
         </div>
     </x-slot>
-    <form action="{{ route("form.order") }}">
+    <form method="POST" action="{{ route("form.order") }}">
+        @csrf
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -19,7 +20,7 @@
             @foreach($cartItems as $cartItem)
                 <tr>
                     <th><a href={{ route("makaroni.show", $cartItem->name) }}>{{ $cartItem->name }}</a></th>
-                    <td><input name="quantity" type="number" required min="1" max="{{ $cartItem->quantity }}" value="1"> ({{ $cartItem->quantity }} in stock)</td>
+                    <td><input name="{{ $cartItem->name }}" type="number" required min="1" max="{{ $cartItem->quantity }}" value="1"> ({{ $cartItem->quantity }} in stock)</td>
                     <td><a href={{ route("makaroni.show", $cartItem->name) }}>{{ $cartItem->price }}</a></td>
                 </tr>
             @endforeach

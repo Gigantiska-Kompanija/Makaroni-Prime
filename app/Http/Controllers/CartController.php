@@ -15,7 +15,6 @@ class CartController extends Controller
      */
     public function index()
     {
-        //dd(session()->get('makaroni');
         if (session()->has('makaroni')){    
             $cartItems = Makarons::whereIn('name', session()->get('makaroni'))->get();
         }
@@ -28,9 +27,40 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function order()
+    public function order(Request $request)
     {
+        $items = session()->get('makaroni');
+        foreach($items as $name){
+            $quantity[$name] = $request->$name;
+        }
+        foreach($quantity as $a=>$fuck){
+            print_r($a.' '.$fuck);
+        }
+//        $quantity[] = 
         return view('form-order');
+        //return 'pogger';
+    }
+    
+    /**
+     * Show a list of clients.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeOrder(Request $request)
+    {
+        dd($request);
+        $name = "Qui_ut_optio_veniam_";
+        return $request->$name;
+//        $items = session()->get('makaroni');
+//        foreach($items as $name){
+//            $quantity[$name] = $request->$name;
+//        }
+//        foreach($quantity as $a=>$fuck){
+//            print_r($a.' '.$fuck);
+//        }
+//        $quantity[] = 
+        return view('form-order');
+        //return 'pogger';
     }
 
     /**
