@@ -16,11 +16,12 @@ class IngredientController extends Controller
      */
     public function index(Request $request)
     {
+        $belowMin = $request->belowMin ?? false;
         $name = $request->name ?? '';
-        $ingredients = RawMaterial::query()
-        ->where('name','LIKE','%'.$name.'%')
-        ->get();
-        return view('ingredients.list', compact('ingredients', 'name'));
+        $ingredientQuery = RawMaterial::query()->where('name','LIKE','%'.$name.'%');
+        if ($belowMin) $ingredientQuery = $ingredientQuery->whereColumn('minimum', '>', 'quantity');
+        $ingredients = $ingredientQuery->get();
+        return view('ingredients.list', compact('ingredients', 'name', 'belowMin'));
     }
 
     /**
