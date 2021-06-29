@@ -20,7 +20,6 @@
         <x-input inputFor="firstName" val="{{ $client->firstName }}" required>{{ __('First name') }}</x-input>
         <x-input inputFor="lastName" val="{{ $client->lastName }}" required>{{ __('Last name') }}</x-input>
         <x-input inputFor="email" val="{{ $client->email }}" required>{{ __('Email') }}</x-input>
-        <x-input inputFor="password" val="{{ $client->password }}" required>{{ __('Password') }}</x-input>
         <x-input inputFor="phoneNumber" val="{{ $client->phoneNumber }}" required>{{ __('Phone number') }}</x-input>
 
         <x-submit-btn />

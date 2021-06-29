@@ -27,7 +27,7 @@ Route::resource('employees', 'EmployeeController')->middleware('auth:manager');
 Route::resource('machines', 'MachineController')->middleware('auth:manager');
 Route::resource('ingredients', 'IngredientController')->middleware('auth:manager');
 Route::resource('divisions', 'DivisionController')->middleware('auth:manager');
-Route::resource('clients', 'ClientController')->middleware('auth:manager');
+Route::resource('clients', 'ClientController');
 Route::resource('discounts', 'DiscountController')->middleware('auth:manager');
 Route::resource('managers', 'ManagerController')->middleware('auth:manager');
 Route::get('cart', 'CartController@index')->name('cart.index');
