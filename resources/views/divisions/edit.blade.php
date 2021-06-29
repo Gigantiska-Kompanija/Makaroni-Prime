@@ -19,8 +19,13 @@
 
         <x-input inputFor="name" val="{{ $division->name }}" required>{{ __('Name') }}</x-input>
         <x-input inputFor="location" val="{{ $division->location }}" required>{{ __('Location') }}</x-input>
-        <x-input inputFor="isOperating" val="{{ $division->isOperating }}">{{ __('Is operating') }}</x-input>
-
+        <div class="mb-3">
+            <label for="isOperating" class="form-label">{{ __('Is operating') }}</label>
+            <select class="form-select" name="isOperating">
+                <option value="1">{{ __('Yes') }}</option>
+                <option value="0" {{ $division->isOperating ? '' : 'selected'}}>{{ __('No') }}</option>
+            </select>
+        </div>
         <x-submit-btn />
     </form>
 </x-app-layout>

@@ -40,8 +40,8 @@
         @foreach($makaroni as $makarons)
             <tr>
                 <th><a href={{ route("makaroni.show", $makarons->name) }}>{{ $makarons->name }}</a></th>
-                <td><a href={{ route("makaroni.show", $makarons->name) }}>{{ $makarons->quantity }}</a></td>
-                <td><a href={{ route("makaroni.show", $makarons->name) }}>{{ $makarons->price }}</a></td>
+                <td><a href={{ route("makaroni.show", $makarons->name) }}>{{ $makarons->quantity }}kg</a></td>
+                <td><a href={{ route("makaroni.show", $makarons->name) }}>{{ $makarons->price }}$/kg</a></td>
                 <td><a href={{ route("makaroni.show", $makarons->name) }}>{{ $makarons->popularity }}</a></td>
             </tr>
         @endforeach

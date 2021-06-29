@@ -13,9 +13,9 @@
         <x-info-label value="{{ __('Function') }}">{{ $machine->function }}</x-info-label>
         <x-info-label value="{{ __('Location') }}">{{ $machine->located }}</x-info-label>
         <x-info-label value="{{ __('Model') }}">{{ $machine->model }}</x-info-label>
-        <x-info-label value="{{ __('Is operating') }}">{{ $machine->isOperating }}</x-info-label>
+        <x-info-label value="{{ __('Is operating') }}">{{ $machine->isOperating ? __('Yes') : __('No') }}</x-info-label>
         <x-info-label value="{{ __('Last serviced') }}">{{ $machine->lastServiced }}</x-info-label>
-        <x-info-label value="{{ __('Needs maintenance') }}">{{ $machine->needsMaintenance }}</x-info-label>
+        <x-info-label value="{{ __('Needs maintenance') }}">{{ $machine->needsMaintenance ? __('Yes') : __('No') }}</x-info-label>
         <x-info-label value="{{ __('Purchase date') }}">{{ $machine->purchaseDate }}</x-info-label>
         <x-info-label value="{{ __('Decommission date') }}">{{ $machine->decommissionDate }}</x-info-label>
 

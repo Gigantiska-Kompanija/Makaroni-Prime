@@ -18,9 +18,9 @@
         @csrf
 
         <x-input inputFor="name" val="{{ $ingredient->name }}" required>{{ __('Name') }}</x-input>
-        <x-input inputFor="price" val="{{ $ingredient->price }}" required>{{ __('Price') }}</x-input>
-        <x-input inputFor="quantity" val="{{ $ingredient->quantity }}">{{ __('Quantity') }}</x-input>
-        <x-input inputFor="minimum" val="{{ $ingredient->minimum }}">{{ __('Minimum') }}</x-input>
+        <x-input inputFor="price" val="{{ $ingredient->price }}" required>{{ __('Price') }} ($/kg)</x-input>
+        <x-input inputFor="quantity" val="{{ $ingredient->quantity }}">{{ __('Quantity') }} (kg)</x-input>
+        <x-input inputFor="minimum" val="{{ $ingredient->minimum }}">{{ __('Minimum') }} (kg)</x-input>
 
         <x-submit-btn />
     </form>

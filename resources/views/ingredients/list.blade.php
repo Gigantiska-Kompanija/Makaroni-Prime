@@ -25,8 +25,8 @@
         @foreach($ingredients as $ingredient)
             <tr>
                 <th><a href={{ route("ingredients.show", $ingredient->name) }}>{{ $ingredient->name }}</a></th>
-                <td><a href={{ route("ingredients.show", $ingredient->name) }}>{{ $ingredient->price }}</a></td>
-                <td><a href={{ route("ingredients.show", $ingredient->name) }}>{{ $ingredient->quantity }}</a></td>
+                <td><a href={{ route("ingredients.show", $ingredient->name) }}>{{ $ingredient->price }}$/kg</a></td>
+                <td><a href={{ route("ingredients.show", $ingredient->name) }}>{{ $ingredient->quantity }}kg</a></td>
             </tr>
         @endforeach
         </tbody>

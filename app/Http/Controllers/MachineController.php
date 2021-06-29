@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Audit;
 use Illuminate\Http\Request;
 use App\Models\Machinery;
+use App\Models\Division;
 use Illuminate\Validation\Rule;
 
 class MachineController extends Controller
@@ -36,7 +37,8 @@ class MachineController extends Controller
      */
     public function create()
     {
-        return view('machines.add');
+        $locations = Division::select('name')->get()->toArray();
+        return view('machines.add', compact('locations'));
     }
 
     /**
@@ -93,8 +95,9 @@ class MachineController extends Controller
      */
     public function edit($id)
     {
+        $locations = Division::select('name')->get()->toArray();
         $machine = Machinery::findOrFail($id);
-        return view('machines.edit', compact('machine'));
+        return view('machines.edit', compact('machine', 'locations'));
     }
 
     /**
