@@ -41,6 +41,9 @@
                         <x-nav-link :href="route('audit.index')" :active="request()->routeIs('audit.index')">
                             {{ __('Audit Log') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('managers.index')" :active="request()->routeIs('managers.index')">
+                            {{ __('Managers') }}
+                        </x-nav-link>
                         @endif
                     @endauth
                     <x-nav-link>
@@ -139,9 +142,12 @@
                 {{ __('Clients') }}
             </x-responsive-nav-link>
                 @if(Auth::guard('manager')->user()->admin)
-                <x-nav-link :href="route('audit.index')" :active="request()->routeIs('audit.index')">
+                <x-responsive-nav-link :href="route('audit.index')" :active="request()->routeIs('audit.index')">
                     {{ __('Audit Log') }}
-                </x-nav-link>
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('managers.index')" :active="request()->routeIs('managers.index')">
+                    {{ __('Managers') }}
+                </x-responsive-nav-link>
                 @endif
             @endauth
         </div>

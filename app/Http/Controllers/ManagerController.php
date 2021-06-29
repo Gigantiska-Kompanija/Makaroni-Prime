@@ -14,8 +14,8 @@ class ManagerController extends Controller {
      * @return Response
      */
     public function index() {
-        $makaroni = Manager::all();
-        return view('manager.list', compact('makaroni'));
+        $managers = Manager::all();
+        return view('manager.list', compact('managers'));
     }
 
     /**
@@ -35,8 +35,9 @@ class ManagerController extends Controller {
      */
     public function store(Request $request) {
         $request->validate([
-            'employee' => 'required|exists:employee|max:191',
+            'employee' => 'required|exists:employee,personalId|max:191',
             'password' => 'required|min:8|max:191',
+            'admin' => 'nullable|boolean',
         ]);
         $makarons = new Manager();
         $makarons->employee = $request->employee;

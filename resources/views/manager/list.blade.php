@@ -11,12 +11,20 @@
         <thead>
             <tr>
                 <th>{{ __('Personal ID') }}</th>
+                <th>{{ __('Name') }}</th>
+                <th>{{ __('Last name') }}</th>
+                <th>{{ __('Phone number') }}</th>
+                <th>{{ __('Email') }}</th>
             </tr>
         </thead>
         <tbody>
         @foreach($managers as $manager)
             <tr>
-                <th>{{ $manager->employee }}</th>
+                <th><a href="{{ route('employees.show', $manager->employee) }}">{{ $manager->employee }}</a></th>
+                <th><a href="{{ route('employees.show', $manager->employee) }}">{{ $manager->employee()->first()->firstName }}</a></th>
+                <th><a href="{{ route('employees.show', $manager->employee) }}">{{ $manager->employee()->first()->lastName }}</a></th>
+                <th><a href="{{ route('employees.show', $manager->employee) }}">{{ $manager->employee()->first()->phoneNumber }}</a></th>
+                <th><a href="{{ route('employees.show', $manager->employee) }}">{{ $manager->employee()->first()->email }}</a></th>
             </tr>
         @endforeach
         </tbody>

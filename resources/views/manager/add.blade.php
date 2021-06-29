@@ -9,6 +9,7 @@
 
         <x-input inputFor="employee" required>{{ __('Personal ID') }}</x-input>
         <x-input inputFor="password" type="password" required>{{ __('Password') }}</x-input>
+        <x-input inputFor="admin" type="checkbox">{{ __('Administrator') }}</x-input>
 
         <x-submit-btn />
     </form>
