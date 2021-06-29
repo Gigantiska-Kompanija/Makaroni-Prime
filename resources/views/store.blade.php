@@ -21,17 +21,17 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h5 class="card-title fs-2">{{ $makarons->name }}</h5>
-                        <h5 class="card-title fs-2">{{ $makarons->price }}$</h5>
+                        <h5 class="card-title fs-2 mr-2">{{ $makarons->name }}</h5>
+                        <h5 class="card-title fs-2">{{ $makarons->price }}$/kg</h5>
                     </div>
                     <ul>
                         <li>{{ __('Shape') }}: {{ $makarons->shape }}</li>
                         <li>{{ __('Color') }}: {{ $makarons->color }}</li>
-                        <li>{{ __('Length') }}: {{ $makarons->length }}</li>
+                        <li>{{ __('Length') }}: {{ $makarons->length }}mm</li>
                     </ul>
                 </div>
                 <div class="card-footer">
-                    <p class="text-muted">{{ __('In stock') }}: {{ $makarons->quantity }}</p>
+                    <p class="text-muted">{{ __('In stock') }}: {{ $makarons->quantity }}kg</p>
                 </div>
                 </div>
             </a>

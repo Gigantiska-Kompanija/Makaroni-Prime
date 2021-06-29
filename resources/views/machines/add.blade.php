@@ -11,11 +11,23 @@
         <x-input inputFor="function">{{ __('Function') }}</x-input>
         <x-input inputFor="located" required>{{ __('Located') }}</x-input>
         <x-input inputFor="model">{{ __('Model') }}</x-input>
-        <x-input inputFor="isOperating">{{ __('Is operating') }}</x-input>
-        <x-input inputFor="lastServiced">{{ __('Last serviced') }}</x-input>
-        <x-input inputFor="needsMaintenance">{{ __('Needs maintenance') }}</x-input>
-        <x-input inputFor="purchaseDate">{{ __('Purchase date') }}</x-input>
-        <x-input inputFor="decommissionDate">{{ __('Decommission date') }}</x-input>
+        <div class="mb-3">
+            <label for="isOperating" class="form-label">{{ __('Is operating') }}</label>
+            <select class="form-select" name="isOperating">
+                <option value="1">{{ __('Yes') }}</option>
+                <option value="0">{{ __('No') }}</option>
+            </select>
+        </div>
+        <x-input inputFor="lastServiced" type="date">{{ __('Last serviced') }}</x-input>
+        <div class="mb-3">
+            <label for="needsMaintenance" class="form-label">{{ __('Needs maintenance') }}</label>
+            <select class="form-select" name="needsMaintenance">
+                <option value="1">{{ __('Yes') }}</option>
+                <option value="0">{{ __('No') }}</option>
+            </select>
+        </div>
+        <x-input inputFor="purchaseDate" type="date">{{ __('Purchase date') }}</x-input>
+        <x-input inputFor="decommissionDate" type="date">{{ __('Decommission date') }}</x-input>
 
         <x-submit-btn />
     </form>

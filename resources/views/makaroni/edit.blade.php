@@ -18,11 +18,11 @@
         @csrf
 
         <x-input inputFor="name" val="{{ $makarons->name }}" required>{{ __('Name') }}</x-input>
-        <x-input inputFor="quantity" val="{{ $makarons->quantity }}">{{ __('Quantity') }}</x-input>
-        <x-input inputFor="price" val="{{ $makarons->price }}" required>{{ __('Price') }}</x-input>
+        <x-input inputFor="quantity" val="{{ $makarons->quantity }}">{{ __('Quantity') }} (kg)</x-input>
+        <x-input inputFor="price" val="{{ $makarons->price }}" required>{{ __('Price') }} ($/kg)</x-input>
         <x-input inputFor="shape" val="{{ $makarons->shape }}" required>{{ __('Shape') }}</x-input>
         <x-input inputFor="color" val="{{ $makarons->color }}" required>{{ __('Color') }}</x-input>
-        <x-input inputFor="length" val="{{ $makarons->length }}" required>{{ __('Length') }}</x-input>
+        <x-input inputFor="length" val="{{ $makarons->length }}" required>{{ __('Length') }} (mm)</x-input>
         <x-input inputFor="popularity" val="{{ $makarons->popularity }}" required>{{ __('Popularity') }}</x-input>
         <x-input inputFor="image" type="file">{{ __('Image') }}</x-input>
         <small>{{ __('Image must be <2MB and .jpg') }}</small>

@@ -13,9 +13,9 @@
         <x-input inputFor="email" required>{{ __('Email') }}</x-input>
         <x-input inputFor="phoneNumber" required>{{ __('Phone number') }}</x-input>
         <x-input inputFor="position">{{ __('Position') }}</x-input>
-        <x-input inputFor="pay">{{ __('Salary') }}</x-input>
-        <x-input inputFor="joinDate">{{ __('Join date') }}</x-input>
-        <x-input inputFor="leaveDate">{{ __('Leave date') }}</x-input>
+        <x-input inputFor="pay">{{ __('Salary') }} ($/m)</x-input>
+        <x-input inputFor="joinDate" type="date">{{ __('Join date') }}</x-input>
+        <x-input inputFor="leaveDate" type="date">{{ __('Leave date') }}</x-input>
 
         <x-submit-btn />
     </form>

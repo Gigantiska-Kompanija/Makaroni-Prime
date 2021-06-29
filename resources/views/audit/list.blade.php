@@ -7,9 +7,11 @@
         </div>
     </x-slot>
     <form method="GET" action="{{ route('audit.index') }}">
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 align-items-center">
+            <span class="mr-2">No</span>
             <input type="datetime-local" placeholder="{{ __('Time interval start') }}" class="form-control" name="timeStart" value="{{ $timeStart }}"
                    aria-describedby="button-addon2">
+            <span class="mx-2">līdz</span>
             <input type="datetime-local" placeholder="{{ __('Time interval end') }}" class="form-control" name="timeEnd" value="{{ $timeEnd }}"
                    aria-describedby="button-addon2">
             <button class="btn btn-warning" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>

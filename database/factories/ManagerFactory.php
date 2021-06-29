@@ -31,6 +31,7 @@ class ManagerFactory extends Factory {
             },
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
+            'admin' => 0,
         ];
     }
 }

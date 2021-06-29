@@ -10,6 +10,6 @@
     <dl class="row">
         <x-info-label value="{{ __('Name') }}">{{ $division->name }}</x-info-label>
         <x-info-label value="{{ __('Location') }}">{{ $division->location }}</x-info-label>
-        <x-info-label value="{{ __('Is operating') }}">{{ $division->isOperating }}</x-info-label>
+        <x-info-label value="{{ __('Is operating') }}">{{ $division->isOperating ? __('Yes') : __('No') }}</x-info-label>
     </dl>
 </x-app-layout>

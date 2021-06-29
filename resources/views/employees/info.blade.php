@@ -14,7 +14,7 @@
         <x-info-label value="{{ __('Email') }}">{{ $employee->email }}</x-info-label>
         <x-info-label value="{{ __('Phone number') }}">{{ $employee->phoneNumber }}</x-info-label>
         <x-info-label value="{{ __('Position') }}">{{ $employee->position }}</x-info-label>
-        <x-info-label value="{{ __('Pay') }}">{{ $employee->pay }}</x-info-label>
+        <x-info-label value="{{ __('Pay') }}">{{ $employee->pay }} $/m</x-info-label>
         <x-info-label value="{{ __('Join date') }}">{{ $employee->joinDate }}</x-info-label>
         <x-info-label value="{{ __('Leave date') }}">{{ $employee->leaveDate ?? '-' }}</x-info-label>
     </dl>

@@ -56,7 +56,7 @@ class ClientController extends Controller
             'firstName' => 'required|max:191',
             'lastName' => 'required|max:191',
             'registerDate' => 'nullable|time',
-            'email' => 'required|unique:client|max:191',
+            'email' => 'required|email|unique:client|max:191',
             'password' => 'required|min:8|max:191',
             'phoneNumber' => 'required|unique:client|max:191',
         ]);
@@ -126,7 +126,7 @@ class ClientController extends Controller
             'firstName' => 'required|max:191',
             'lastName' => 'required|max:191',
             'registerDate' => 'nullable|time',
-            'email' => ['required', 'max:191', Rule::unique('client', 'email')->ignore($client->email, 'email')],
+            'email' => ['required', 'email', 'max:191', Rule::unique('client', 'email')->ignore($client->email, 'email')],
             'phoneNumber' => ['required', 'max:191', Rule::unique('client', 'phoneNumber')->ignore($client->phoneNumber, 'phoneNumber')],
         ]);
         $client->firstName = $request->firstName;

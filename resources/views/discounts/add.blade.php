@@ -8,7 +8,7 @@
         @csrf
 
         <x-input inputFor="code" required>{{ __('Code') }}</x-input>
-        <x-input inputFor="amount" required>{{ __('Amount') }}</x-input>
+        <x-input inputFor="amount" required>{{ __('Amount') }} (%)</x-input>
         <x-input inputFor="startDate" required>{{ __('Start date') }}</x-input>
         <x-input inputFor="endDate" required>{{ __('End date') }}</x-input>
 

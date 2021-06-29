@@ -4,7 +4,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ $makarons->name }}
         </h2>
-        <div>
+        <div class="d-flex">
             <form method="POST" action="{{ route("cart.store") }}">
                 @method('POST')
                 @csrf
@@ -34,15 +34,15 @@
                     <div>
                         <div class="d-flex justify-content-between mb-4">
                             <h5 class="card-title fs-1">{{$makarons->name}}</h5>
-                            <h5 class="card-title fs-1">{{$makarons->price}}$</h5>
+                            <h5 class="card-title fs-1">{{$makarons->price}}$/kg</h5>
                         </div>
                         <ul>
                             <li class="fs-5 mb-2">{{ __('Shape') }}: {{ $makarons->shape }}</li>
                             <li class="fs-5 mb-2">{{ __('Color') }}: {{ $makarons->color }}</li>
-                            <li class="fs-5 mb-2">{{ __('Length') }}: {{ $makarons->length }}</li>
+                            <li class="fs-5 mb-2">{{ __('Length') }}: {{ $makarons->length }}mm</li>
                         </ul>
                     </div>
-                    <p class="fs-4">{{ __('In stock') }}: {{ $makarons->quantity }}</p>
+                    <p class="fs-4">{{ __('In stock') }}: {{ $makarons->quantity }}kg</p>
                 </div>
             </div>
         </div>

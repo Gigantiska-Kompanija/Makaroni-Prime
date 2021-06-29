@@ -18,7 +18,7 @@
         @csrf
 
         <x-input inputFor="code" val="{{ $discount->code }}" required>{{ __('Code') }}</x-input>
-        <x-input inputFor="amount" val="{{ $discount->amount }}" required>{{ __('Amount') }}</x-input>
+        <x-input inputFor="amount" val="{{ $discount->amount }}" required>{{ __('Amount') }} (%)</x-input>
         <x-input inputFor="startDate" type="date" val="{{ $discount->startDate }}" required>{{ __('Start date') }}</x-input>
         <x-input inputFor="endDate" type="date" val="{{ $discount->endDate }}" required>{{ __('End date') }}</x-input>
 

@@ -9,8 +9,8 @@
     </x-slot>
     <dl class="row">
         <x-info-label value="{{ __('Name') }}">{{ $ingredient->name }}</x-info-label>
-        <x-info-label value="{{ __('Price') }}">{{ $ingredient->price }}</x-info-label>
-        <x-info-label value="{{ __('Quantity') }}">{{ $ingredient->quantity }}</x-info-label>
+        <x-info-label value="{{ __('Price') }}">{{ $ingredient->price }}$/kg</x-info-label>
+        <x-info-label value="{{ __('Quantity') }}">{{ $ingredient->quantity }}kg</x-info-label>
         <x-info-label value="{{ __('Minimum') }}">{{ $ingredient->minimum }}</x-info-label>
     </dl>
 </x-app-layout>
