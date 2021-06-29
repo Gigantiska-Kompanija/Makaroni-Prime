@@ -7,9 +7,9 @@
 - [x] clients
 - [x] middlewares
 - [x] locales
-- [ ] ... cart
+- [x] cart
 - [x] editing
-- [ ] nav improving
+- [x] nav improving
 - [x] audit finishing
   - [x] list filtering
   - [x] to all create, edit, delete

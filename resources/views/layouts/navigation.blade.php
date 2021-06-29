@@ -34,15 +34,44 @@
                     <x-nav-link :href="route('discounts.index')" :active="request()->routeIs('discounts.index')">
                         {{ __('Discounts') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
-                        {{ __('Clients') }}
-                    </x-nav-link>
                         @if(Auth::guard('manager')->user()->admin)
+                        <div class="inline-flex items-center px-1 pt-1 border-b-2 fs-5 font-medium leading-5 focus:outline-none transition duration-150 ease-in-out {{
+    request()->routeIs('clients.index') || request()->routeIs('audit.index') || request()->routeIs('managers.index') ? "text-gray-900 border-warning focus:border-warning" :
+    "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:text-gray-700 focus:border-gray-300"}}">
+{{--                    <x-nav-link :href="'#'" :active="request()->routeIs('clients.index') || request()->routeIs('audit.index') || request()->routeIs('managers.index')">--}}
+                        <x-dropdown width="48">
+                            <x-slot name="trigger">
+                                <button class="flex items-center fs-5 font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+{{--                                    <x-nav-link :href="'#'">--}}
+{{--                                    </x-nav-link>--}}
+                                    {{ __('Other') }}
+                                    <div class="ml-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('clients.index')">{{ __('Clients') }}</x-dropdown-link>
+                                <x-dropdown-link :href="route('audit.index')">{{ __('Audit Log') }}</x-dropdown-link>
+                                <x-dropdown-link :href="route('managers.index')" :active="request()->routeIs('managers.index')">{{ __('Managers') }}</x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                        </div>
+{{--                    </x-nav-link>--}}
+                        {{--<x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
+                            {{ __('Clients') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('audit.index')" :active="request()->routeIs('audit.index')">
                             {{ __('Audit Log') }}
                         </x-nav-link>
                         <x-nav-link :href="route('managers.index')" :active="request()->routeIs('managers.index')">
                             {{ __('Managers') }}
+                        </x-nav-link>--}}
+                        @else
+                        <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
+                            {{ __('Clients') }}
                         </x-nav-link>
                         @endif
                     @endauth
@@ -141,15 +170,19 @@
             <x-responsive-nav-link :href="route('discounts.index')" :active="request()->routeIs('discounts.index')">
                 {{ __('Discounts') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
-                {{ __('Clients') }}
-            </x-responsive-nav-link>
                 @if(Auth::guard('manager')->user()->admin)
+                <x-responsive-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
+                    {{ __('Clients') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('audit.index')" :active="request()->routeIs('audit.index')">
                     {{ __('Audit Log') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('managers.index')" :active="request()->routeIs('managers.index')">
                     {{ __('Managers') }}
+                </x-responsive-nav-link>
+                @else
+                <x-responsive-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
+                    {{ __('Clients') }}
                 </x-responsive-nav-link>
                 @endif
             @endauth
