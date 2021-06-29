@@ -7,6 +7,7 @@ use App\Models\Audit;
 use App\Models\Makarons;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class MakaroniController extends Controller {
     public function __construct() {
@@ -97,8 +98,9 @@ class MakaroniController extends Controller {
     public function show($id)
     {
         $makarons = Makarons::findOrFail($id);
+        $inCart = session()->has('makaroni') && in_array($makarons->name, session()->get('makaroni'));
         $reviews = $makarons->reviews()->orderBy('date', 'DESC')->get();
-        return view('makaroni.info', compact('makarons', 'reviews'));
+        return view('makaroni.info', compact('makarons', 'reviews', 'inCart'));
     }
 
     /**

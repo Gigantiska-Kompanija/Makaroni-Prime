@@ -14,6 +14,7 @@
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Quantity (kg)') }}</th>
                     <th>{{ __('Price per kg') }}</th>
+                    <th>{{ __('Remove') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,10 +23,33 @@
                     <th><a href={{ route("makaroni.show", $cartItem->name) }}>{{ $cartItem->name }}</a></th>
                     <td><input name="{{ $cartItem->name }}" type="number" required min="1" max="{{ $cartItem->quantity }}" value="1"> ({{ $cartItem->quantity }} in stock)</td>
                     <td><a href={{ route("makaroni.show", $cartItem->name) }}>{{ $cartItem->price }}</a></td>
+                    <td><button class="btn btn-warning cart-remove" name="{{ $cartItem->name }}"><i class="fas fa-minus"></i></button></td>
                 </tr>
             @endforeach
             </tbody>
         </table>
         <button type="submit" class="btn btn-warning"><i class="fas fa-cash-register"></i></button>
     </form>
+    <script>
+    $(document).ready(function () {
+            $(".cart-remove").each(function(index) {
+                $(this).on("click", function() {
+                    var url = '{{ route("cart.store") }}';
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: {_token: CSRF_TOKEN,
+                                name: $(this).attr('name') },
+                        success: function (data) {
+                            location.reload();
+                        },
+                        error: function (data) {
+                            console.log('Error:', data);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </x-app-layout>

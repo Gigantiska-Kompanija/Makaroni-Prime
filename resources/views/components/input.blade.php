@@ -1,4 +1,4 @@
-@props(['disabled' => false, 'required' => false, 'inputFor' => 'a', 'type' => 'text', 'val' => ''])
+@props(['disabled' => false, 'required' => false, 'inputFor' => 'a', 'type' => 'text', 'val' => '', 'placeholder' => ''])
 
 <div class="mb-3">
     <label for={{ $inputFor }} class="form-label">{{ $slot }}</label>
@@ -7,6 +7,7 @@
             id={{ $inputFor }} 
             name={{ $inputFor }}
             type={{ $type }}
+            placeholder="{{ $placeholder }}"
             value="{{ old($inputFor) ?? $val }}" />
     @error($inputFor)
     <div>

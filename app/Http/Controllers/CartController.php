@@ -78,7 +78,6 @@ class CartController extends Controller
         }else{
             session()->push('makaroni',$name);
         }
-        return redirect(route('store'));
     }
 
     /**

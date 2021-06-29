@@ -5,12 +5,7 @@
             {{ $makarons->name }}
         </h2>
         <div class="d-flex">
-            <form method="POST" action="{{ route("cart.store") }}">
-                @method('POST')
-                @csrf
-                <input type="hidden" name="name" value="{{ $makarons->name }}">
-                <button type="submit" class="btn btn-warning"><i class="fas fa-cart-plus"></i></button>
-            </form>
+                <button type="submit" class="btn btn-warning" id="cart"><i class="fas {{ $inCart ? 'fa-minus' : 'fa-cart-plus' }}"></i></button>
             @auth('manager')
             <a class="btn btn-warning ml-1" href={{ route("makaroni.edit", $makarons->name) }}><i class="fas fa-pen"></i></a>
             @endauth
@@ -94,5 +89,21 @@
                 });
             });
         });
+        $("#cart").on("click", function() {
+                    var url = '{{ route("cart.store") }}';
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: {_token: CSRF_TOKEN,
+                            name: {!! json_encode($makarons->name) !!}},
+                        success: function (data) {
+                            location.reload();
+                        },
+                        error: function (data) {
+                            console.log('Error:', data);
+                        }
+                    });
+                });
     </script>
 </x-app-layout>
