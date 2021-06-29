@@ -31,10 +31,11 @@
                 <option value='22'>22</option>
                 <option value='23'>23</option>
                 <option value='24'>24</option>
-            </select> 
+            </select>
         </div>
         <x-input inputFor="code" required placeholder="CVV">{{ __('Security code') }}</x-input>
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex items-center justify-between mt-4">
+            <b>{{ __('Total') }}: {{ $total }}$</b>
             <button class="btn btn-warning">
                 <i class="fas fa-money-bill"></i>
             </button>

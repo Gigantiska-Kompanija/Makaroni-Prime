@@ -6,7 +6,7 @@
             </h2>
         </div>
     </x-slot>
-    <form method="POST" action="{{ route("form.order") }}">
+    <form action="{{ route("form.order") }}">
         @csrf
         <table class="table table-striped table-hover">
             <thead>
@@ -21,8 +21,9 @@
             @foreach($cartItems as $cartItem)
                 <tr>
                     <th><a href={{ route("makaroni.show", $cartItem->name) }}>{{ $cartItem->name }}</a></th>
-                    <td><input name="{{ $cartItem->name }}" type="number" required min="1" max="{{ $cartItem->quantity }}" value="1"> ({{ $cartItem->quantity }} in stock)</td>
-                    <td><a href={{ route("makaroni.show", $cartItem->name) }}>{{ $cartItem->price }}</a></td>
+                    <td><input name="{{ $cartItem->name }}" data-name="{{ $cartItem->name }}" type="number" required min="1" max="{{ $cartItem->quantity }}"
+                               value="{{ $amounts[$cartItem->name] }}"> ({{ $cartItem->quantity }} in stock)</td>
+                    <td><a href={{ route("makaroni.show", $cartItem->name) }}>{{ $cartItem->price }}$</a></td>
                     <td><button class="btn btn-warning cart-remove" name="{{ $cartItem->name }}"><i class="fas fa-minus"></i></button></td>
                 </tr>
             @endforeach
@@ -53,3 +54,29 @@
         });
     </script>
 </x-app-layout>
+<script>
+    var url = '{{ route('cart.amounts') }}';
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    var timeouts = {};
+    var maxTime = 800;
+    $('table input[type=number]').each(function () {
+        $(this).change(function (e) {
+            var name = e.target.dataset.name;
+            if (name in timeouts) {
+                clearTimeout(timeouts[name]);
+            }
+            timeouts[name] = setTimeout(function () {
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {_token: CSRF_TOKEN, name: name, amount: e.target.value},
+                    success: function () {
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            }, maxTime);
+        });
+    })
+</script>

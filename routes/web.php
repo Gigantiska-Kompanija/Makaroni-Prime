@@ -32,6 +32,7 @@ Route::resource('discounts', 'DiscountController')->middleware('auth:manager');
 Route::resource('managers', 'ManagerController')->middleware('auth:manager');
 Route::get('cart', 'CartController@index')->name('cart.index');
 Route::post('cart', 'CartController@store')->name('cart.store');
+Route::post('cart-amounts', 'CartController@amounts')->name('cart.amounts');
 Route::get('form-order', 'CartController@order')->middleware('auth')->name('form.order');
 Route::post('form-order', 'CartController@storeOrder')->middleware('auth')->name('form.storeOrder');
 Route::get('review/{id}', 'ReviewController@create')->middleware('auth')->name('review.create');

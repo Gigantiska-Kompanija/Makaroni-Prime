@@ -49,6 +49,7 @@ class AuthenticatedSessionController extends Controller
         Auth::guard('manager')->logout();
         Auth::guard('web')->logout();
 
+        $request->session()->forget('makaroni');
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
