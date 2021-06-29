@@ -21,7 +21,7 @@
     "Last name": "Uzvārds",
     "Position": "Amats",
     "Phone number": "Telefona numurs",
-    "Personal ID": "Personas numurs",
+    "Personal ID": "Personas kods",
     "Email": "E-pasts",
     "Pay": "Alga",
     "Salary": "Alga",
@@ -74,7 +74,12 @@
     "Yes": "Jā",
     "No": "Nē",
     "Total": "Kopā",
-    "Image": "Attēls",
-    "Image must be <2MB and .jpg": "Attēlam jābūt <2MB un .jpg"
+    "Image must be <2MB and .jpg": "Attēlam jābūt <2MB un .jpg",
+    "Time": "Laiks",
+    "Type": "Tips",
+    "Details": "Detaļas",
+    "IP Address": "IP Adrese",
+    "Managers": "Menedžeri",
+    "Audit Log": "Auditi"
 }
 
