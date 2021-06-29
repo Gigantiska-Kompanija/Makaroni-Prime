@@ -68,7 +68,9 @@ class DivisionController extends Controller
     public function show($id)
     {
         $division = Division::findOrFail($id);
-        return view('divisions.info', compact('division'));
+        $employees = $division->employees;
+        $managers = $division->managers;
+        return view('divisions.info', compact('division', 'employees', 'managers'));
     }
 
     /**

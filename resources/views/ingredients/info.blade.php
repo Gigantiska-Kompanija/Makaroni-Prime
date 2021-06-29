@@ -11,6 +11,6 @@
         <x-info-label value="{{ __('Name') }}">{{ $ingredient->name }}</x-info-label>
         <x-info-label value="{{ __('Price') }}">{{ $ingredient->price }}$/kg</x-info-label>
         <x-info-label value="{{ __('Quantity') }}">{{ $ingredient->quantity }}kg</x-info-label>
-        <x-info-label value="{{ __('Minimum') }}">{{ $ingredient->minimum }}</x-info-label>
+        <x-info-label value="{{ __('Minimum') }}">{{ $ingredient->minimum }}kg</x-info-label>
     </dl>
 </x-app-layout>

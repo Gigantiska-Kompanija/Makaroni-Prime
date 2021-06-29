@@ -16,4 +16,26 @@
         <x-info-label value="{{ __('Phone number') }}">{{ $client->phoneNumber }}</x-info-label>
 
     </dl>
+    <h2 class="fs-2 mt-4">{{ __('Order history') }}:</h2>
+    <table class="table table-striped table-hover">
+    <thead>
+            <tr>
+                <th>ID</th>
+                <th>{{ __('Date') }}</th>
+                <th>{{ __('Total') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach($orders as $order)
+            <tr>
+                <th>{{ $order->id }}</th>
+                <td>{{ $order->orderDate }}</td>
+                <td>{{ $order->total }}$</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <div>
+        {{ __('Total').': '.count($orders) }}
+    </div>
 </x-app-layout>

@@ -81,6 +81,11 @@
     "IP Address": "IP Adrese",
     "Managers": "Menedžeri",
     "Audit Log": "Auditi",
-    "Show only below minimum": "Rādīt tikai zem minimuma"
+    "Show only below minimum": "Rādīt tikai zem minimuma",
+    "From": "No",
+    "to": "līdz",
+    "Order history": "Pasūtījumu vēsture",
+    "Date": "Datums",
+    "Other": "Citi"
 }
 

@@ -124,10 +124,10 @@
                     </x-slot>
                     </x-dropdown>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">{{ __('Log in') }}</a>
+                        <a href="{{ route('login') }}" class="fs-5 text-gray-700 underline">{{ __('Log in') }}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">{{ __('Register') }}</a>
+                            <a href="{{ route('register') }}" class="ml-4 fs-5 text-gray-700 underline">{{ __('Register') }}</a>
                         @endif
                     @endauth
                 @endif

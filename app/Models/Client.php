@@ -29,7 +29,7 @@ class Client extends Authenticatable {
     ];
 
     public function orders(): Relation {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class, 'clientID');
     }
 
     public function reviews(): Relation {

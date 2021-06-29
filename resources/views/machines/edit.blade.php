@@ -35,7 +35,7 @@
                 <option value="0" {{ $machine->isOperating ? '' : 'selected'}}>{{ __('No') }}</option>
             </select>
         </div>
-        <x-input inputFor="lastServiced" type="date" val="{{ $machine->lastServiced }}">{{ __('Last serviced') }}</x-input>
+        <x-input inputFor="lastServiced" type="date" val="{{ date('Y-m-d',strtotime($machine->lastServiced)) }}">{{ __('Last serviced') }}</x-input>
         <div class="mb-3">
             <label for="needsMaintenance" class="form-label">{{ __('Needs maintenance') }}</label>
             <select class="form-select" name="needsMaintenance">
@@ -43,8 +43,8 @@
                 <option value="0" {{ $machine->needsMaintenance ? '' : 'selected'}}>{{ __('No') }}</option>
             </select>
         </div>
-        <x-input inputFor="purchaseDate" type="date" val="{{ $machine->purchaseDate }}">{{ __('Purchase date') }}</x-input>
-        <x-input inputFor="decommissionDate" type="date" val="{{ $machine->decommissionDate }}">{{ __('Decommission date') }}</x-input>
+        <x-input inputFor="purchaseDate" type="date" val="{{ date('Y-m-d',strtotime($machine->purchaseDate)) }}">{{ __('Purchase date') }}</x-input>
+        <x-input inputFor="decommissionDate" type="date" val="{{ date('Y-m-d',strtotime($machine->decommissionDate)) }}">{{ __('Decommission date') }}</x-input>
 
         <x-submit-btn />
     </form>

@@ -86,7 +86,8 @@ class ClientController extends Controller
             }
         }
         $client = Client::findOrFail($id);
-        return view('clients.info', compact('client'));
+        $orders = $client->orders;
+        return view('clients.info', compact('client', 'orders'));
     }
 
     /**
