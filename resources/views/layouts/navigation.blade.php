@@ -59,10 +59,6 @@
                             </x-slot>
                         </x-dropdown>
                         </div>
-                        @else
-                        <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
-                            {{ __('Clients') }}
-                        </x-nav-link>
                         @endif
                     @endauth
                     <x-nav-link>
@@ -169,10 +165,6 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('managers.index')" :active="request()->routeIs('managers.index')">
                     {{ __('Managers') }}
-                </x-responsive-nav-link>
-                @else
-                <x-responsive-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
-                    {{ __('Clients') }}
                 </x-responsive-nav-link>
                 @endif
             @endauth
