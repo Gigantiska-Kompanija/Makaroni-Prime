@@ -20,7 +20,7 @@ class Review extends Model {
     ];
 
     public function client(): Relation {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class, 'clientID');
     }
 
     public function makarons(): Relation {
