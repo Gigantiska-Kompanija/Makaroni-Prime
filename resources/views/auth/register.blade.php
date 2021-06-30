@@ -13,7 +13,7 @@
             @csrf
 
             <!-- Name -->
-            <x-input inputFor="name" required >{{ __('Name') }}</x-input>
+            <x-input inputFor="name" required >{{ __('Name') }}, {{ __('Last name') }}</x-input>
 
             <!-- Email Address -->
             <x-input inputFor="email" type="email" required >{{ __('Email') }}</x-input>
