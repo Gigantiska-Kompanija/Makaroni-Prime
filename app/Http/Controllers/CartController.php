@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Discount;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Makarons;
@@ -32,10 +33,23 @@ class CartController extends Controller
      */
     public function order(Request $request)
     {
+        $discountedItems = [];
+        if (isset($request->discount)) {
+            $discount = Discount::find($request->discount);
+            if (isset($discount)) {
+                foreach ($discount->makaroni()->get() as $makarons) {
+                    $discountedItems[$makarons->name] = (float) $discount->amount;
+                }
+            }
+        }
         $items = session()->get('makaroni');
         $total = 0;
         foreach ($items as $name => $amount) {
-            $total += $amount * (float) Makarons::find($name)->price;
+            if (isset($discountedItems[$name])) {
+                $total += $amount * (float) Makarons::find($name)->price * (1.0 - $discountedItems[$name]);
+            } else {
+                $total += $amount * (float) Makarons::find($name)->price;
+            }
         }
         return view('form-order', compact('total'));
     }
@@ -87,7 +101,7 @@ class CartController extends Controller
     {
         $name = $request->name;
         $makarons = session()->pull('makaroni');
-        
+
         if ($makarons && in_array($name, array_keys($makarons))){
             unset($makarons[$request->name]);
         }else{

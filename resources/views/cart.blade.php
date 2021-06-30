@@ -30,6 +30,7 @@
             </tbody>
         </table>
         @if(count($cartItems) > 0)
+        <x-input inputFor="discount" placeholder="{{ __('Code') }}">{{ __('Discount code') }}</x-input>
         <button type="submit" class="btn btn-warning"><i class="fas fa-cash-register"></i></button>
         @endif
     </form>
