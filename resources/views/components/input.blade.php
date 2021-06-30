@@ -8,7 +8,7 @@
             name={{ $inputFor }}
             type={{ $type }}
             placeholder="{{ $placeholder }}"
-            {{ $disabled ? 'disabled' : '' }}
+            {{ $disabled ? 'readonly' : '' }}
             value="{{ old($inputFor) ?? $val }}" />
     @error($inputFor)
     <div>

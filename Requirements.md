@@ -18,7 +18,7 @@ assigned to all roles and to quest users must be different.
 - [x] User passwords are not stored in plain text.
 - [x] HTML and CSS validates. It is requirement from “Web technologies I” course.
 - [x] UTF-8 text encoding is used throughout the system.
-- [x] ”Nice URLs” are used in the system (addresses do not contain script names, e.g., index.php, GET
+- [x] "Nice URLs" are used in the system (addresses do not contain script names, e.g., index.php, GET
 parameters are not used when not appropriate).
 - [x] Version control is used (also for applications developed by a single developer). There are at least 3
 commits with different timestamps and different functioning versions of the developed system. Git is
