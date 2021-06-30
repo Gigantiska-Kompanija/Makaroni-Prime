@@ -9,7 +9,14 @@
 
         <x-input inputFor="serialNumber" required>{{ __('Serial number') }}</x-input>
         <x-input inputFor="function">{{ __('Function') }}</x-input>
-        <x-input inputFor="located" required>{{ __('Located') }}</x-input>
+        <div class="mb-3">
+            <label for="located" class="form-label">{{ __('Located') }}</label>
+            <select class="form-select" name="located" required>
+                @foreach($locations as $location)
+                    <option value="{{$location['name']}}">{{ $location['name'] }}</option>
+                @endforeach
+            </select>
+        </div>
         <x-input inputFor="model">{{ __('Model') }}</x-input>
         <div class="mb-3">
             <label for="isOperating" class="form-label">{{ __('Is operating') }}</label>
