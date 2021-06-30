@@ -53,7 +53,7 @@
         @foreach($reviews as $review)
             <div class="card mt-4">
                 <div class="d-flex justify-content-between align-items-center card-header">
-                    <h5>{{ $review->clientID }}</h5>
+                    <h5>{{ $review->client()->first()->firstName }} {{ $review->client()->first()->lastName }}</h5>
                     <div class="d-flex align-items-center">
                         @auth('manager')
                         <button class="delete-review btn btn-warning mr-4" id={{ $review->id }}><i class="fas fa-trash-alt"></i></button>
