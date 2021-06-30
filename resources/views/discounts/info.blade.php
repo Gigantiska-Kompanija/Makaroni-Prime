@@ -17,6 +17,7 @@
     @csrf
     <div class="d-flex justify-content-between align-items-center mt-4">
         <h2 class="fs-2">{{ __('Makaroni') }}:</h2>
+        @if(count($makaroniLeft) > 0)
         <div class="d-flex">
             <select class="form-select" name="makarons">
                 @foreach($makaroniLeft as $makarons)
@@ -25,6 +26,7 @@
             </select>
             <button class="btn btn-warning ml-1"><i class="fas fa-plus"></i></button>
         </div>
+        @endif
     </div>
     </form>
     <table class="table table-striped table-hover">

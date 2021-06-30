@@ -16,6 +16,7 @@
     @csrf
     <div class="d-flex justify-content-between align-items-center mt-4">
         <h2 class="fs-2">{{ __('Managers') }}:</h2>
+        @if(count($managersLeft) > 0)
         <div class="d-flex">
             <select class="form-select" name="employee">
                 @foreach($managersLeft as $manager)
@@ -24,6 +25,7 @@
             </select>
             <button class="btn btn-warning ml-1"><i class="fas fa-plus"></i></button>
         </div>
+        @endif
     </div>
     </form>
     <table class="table table-striped table-hover">
@@ -57,6 +59,7 @@
     @csrf
     <div class="d-flex justify-content-between align-items-center mt-4">
         <h2 class="fs-2">{{ __('Employees') }}:</h2>
+        @if(count($employeesLeft) > 0)
         <div class="d-flex">
             <select class="form-select" name="employee">
                 @foreach($employeesLeft as $employee)
@@ -65,6 +68,7 @@
             </select>
             <button class="btn btn-warning ml-1"><i class="fas fa-plus"></i></button>
         </div>
+        @endif
     </div>
     </form>
     <table class="table table-striped table-hover">
@@ -94,7 +98,7 @@
     <div>
         {{ __('Total').': '.count($employees) }}
     </div>
-    
+
     <script>
     $(document).ready(function () {
             $(".employee-remove").each(function(index) {
