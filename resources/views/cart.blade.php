@@ -29,7 +29,9 @@
             @endforeach
             </tbody>
         </table>
+        @if(count($cartItems) > 0)
         <button type="submit" class="btn btn-warning"><i class="fas fa-cash-register"></i></button>
+        @endif
     </form>
     <script>
     $(document).ready(function () {
