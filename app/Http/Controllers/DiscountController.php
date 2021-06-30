@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Audit;
+use App\Models\Makarons;
 use Illuminate\Http\Request;
 use App\Models\Discount;
 use Illuminate\Validation\Rule;
@@ -66,7 +67,9 @@ class DiscountController extends Controller
     public function show($id)
     {
         $discount = Discount::findOrFail($id);
-        return view('discounts.info', compact('discount'));
+        $makaroni = $discount->makaroni;
+        $makaroniLeft = Makarons::all()->diff($makaroni);
+        return view('discounts.info', compact('discount', 'makaroni', 'makaroniLeft'));
     }
 
     /**
@@ -104,6 +107,24 @@ class DiscountController extends Controller
         $discount->save();
         Audit::create('update-discount', $request, null, $discount->code);
         return redirect(route('discounts.show', $request->code));
+    }
+
+    public function addMakarons(Request $request, $id) {
+        if ($request->makarons) {
+            $discount = Discount::findOrFail($id);
+            $makarons = Makarons::findOrFail($request->makarons);
+            $discount->makaroni()->attach($makarons);
+        }
+        return redirect(route('discounts.show', $id));
+    }
+
+    public function removeMakarons(Request $request, $id) {
+        if ($request->makarons) {
+            $discount = Discount::findOrFail($id);
+            $makarons = Makarons::findOrFail($request->makarons);
+            $discount->makaroni()->detach($makarons);
+        }
+        return redirect(route('discounts.show', $id));
     }
 
     /**

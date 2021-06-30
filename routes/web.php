@@ -33,6 +33,8 @@ Route::post('removeManager/divisions/{id}', 'DivisionController@removeManager')-
 Route::resource('divisions', 'DivisionController')->middleware('auth:manager');
 Route::resource('clients', 'ClientController');
 Route::resource('discounts', 'DiscountController')->middleware('auth:manager');
+Route::post('addMakarons/divisions/{id}', 'DiscountController@addMakarons')->middleware('auth:manager')->name('discounts.addMakarons');
+Route::post('removeMakarons/divisions/{id}', 'DiscountController@removeMakarons')->middleware('auth:manager')->name('discounts.removeMakarons');
 Route::resource('managers', 'ManagerController')->middleware('auth:manager');
 Route::get('cart', 'CartController@index')->name('cart.index');
 Route::post('cart', 'CartController@store')->name('cart.store');
