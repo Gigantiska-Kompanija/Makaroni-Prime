@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Audit;
 use Illuminate\Http\Request;
 use App\Models\Division;
+use App\Models\Employee;
+use App\Models\Manager;
 use Illuminate\Validation\Rule;
 
 class DivisionController extends Controller
@@ -59,6 +61,43 @@ class DivisionController extends Controller
         return redirect(route('divisions.show', $request->name));
     }
 
+    public function addEmployee(Request $request, $id)
+    {
+        if($request->employee){
+            $division = Division::findOrFail($id);
+            $employee = Employee::findOrFail($request->employee);
+            $division->employees()->attach($employee);
+        }
+        return redirect(route('divisions.show', $id));
+    }
+    public function addManager(Request $request, $id)
+    {
+        if($request->employee){
+            $division = Division::findOrFail($id);
+            $employee = Manager::findOrFail($request->employee);
+            $division->managers()->attach($employee);
+        }
+        return redirect(route('divisions.show', $id));
+    }
+    public function removeEmployee(Request $request, $id)
+    {
+        if($request->employee){
+            $division = Division::findOrFail($id);
+            $employee = Employee::findOrFail($request->employee);
+            $division->employees()->detach($employee);
+        }
+        return redirect(route('divisions.show', $id));
+    }
+    public function removeManager(Request $request, $id)
+    {
+        if($request->employee){
+            $division = Division::findOrFail($id);
+            $employee = Manager::findOrFail($request->employee);
+            $division->managers()->detach($employee);
+        }
+        return redirect(route('divisions.show', $id));
+    }
+
     /**
      * Display a division.
      *
@@ -69,8 +108,13 @@ class DivisionController extends Controller
     {
         $division = Division::findOrFail($id);
         $employees = $division->employees;
+        $employeesLeft = Employee::all()->diff($employees)
+        ->filter(function ($item) {
+            return !$item->manager;
+        });
         $managers = $division->managers;
-        return view('divisions.info', compact('division', 'employees', 'managers'));
+        $managersLeft = Manager::all()->diff($managers);
+        return view('divisions.info', compact('division', 'employees', 'managers', 'employeesLeft', 'managersLeft'));
     }
 
     /**
