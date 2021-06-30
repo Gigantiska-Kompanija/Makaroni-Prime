@@ -43,7 +43,7 @@ class ManagerController extends Controller {
         $manager = new Manager();
         $manager->employee = $request->employee;
         $manager->password = Hash::make($request->password);
-        $manager->admin = $request->admin;
+        $manager->admin = $request->admin ?? false;
         $manager->save();
         Audit::create('create-manager', $request, null, $manager->employee);
         return redirect(route('managers.index'));
