@@ -47,13 +47,16 @@ class CartController extends Controller
      */
     public function storeOrder(Request $request)
     {
+        if (!session()->has('makaroni')) {
+            return redirect('/');
+        }
+
         $request->validate([
-            'cardNr' => ['required', 'regex:/(^4[0-9]{12}(?:[0-9]{3})?$)|(^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$)|(3[47][0-9]{13})|(^3(?:0[0-5]|[68][0-9])[0-9]{11}$)|(^6(?:011|5[0-9]{2})[0-9]{12}$)|(^(?:2131|1800|35\d{3})\d{11}$)/gm'],
+            'cardNr' => ['required', 'regex:/(\d{4} ?){3}\d{4}/'],
             'expireMM' => 'required',
             'expireYY' => 'required',
             'code' => 'required|string|min:3|max:3',
         ]);
-
 
         $items = session()->pull('makaroni');
         $total = 0;
@@ -68,7 +71,9 @@ class CartController extends Controller
         foreach ($items as $name => $amount) {
             $makarons = Makarons::find($name);
             $order->makaroni()->attach($makarons,
-                  ['amount' => $amount, 'price' => $amount * $makarons->price]);
+                  ['amount' => $amount, 'price' => $makarons->price]);
+            $makarons->quantity = $makarons->quantity - $amount;
+            $makarons->save();
         }
         return redirect('/');
     }
