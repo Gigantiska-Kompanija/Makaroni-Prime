@@ -17,7 +17,7 @@
         @method('PUT')
         @csrf
 
-        <x-input inputFor="personalId" val="{{ $employee->personalId }}" required>{{ __('Personal ID') }}</x-input>
+        <x-input inputFor="personalId" val="{{ $employee->personalId }}" disabled>{{ __('Personal ID') }}</x-input>
         <x-input inputFor="firstName" val="{{ $employee->firstName }}" required>{{ __('First name') }}</x-input>
         <x-input inputFor="lastName" val="{{ $employee->lastName }}" required>{{ __('Last name') }}</x-input>
         <x-input inputFor="email" val="{{ $employee->email }}" required>{{ __('Email') }}</x-input>

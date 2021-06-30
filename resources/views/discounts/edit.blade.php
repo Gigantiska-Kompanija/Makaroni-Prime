@@ -17,7 +17,7 @@
         @method('PUT')
         @csrf
 
-        <x-input inputFor="code" val="{{ $discount->code }}" required>{{ __('Code') }}</x-input>
+        <x-input inputFor="code" val="{{ $discount->code }}" disabled>{{ __('Code') }}</x-input>
         <x-input inputFor="amount" val="{{ $discount->amount * 100 }}" required>{{ __('Amount') }} (%)</x-input>
         <x-input inputFor="startDate" type="date" val="{{ date('Y-m-d',strtotime($discount->startDate)) }}" required>{{ __('Start date') }}</x-input>
         <x-input inputFor="endDate" type="date" val="{{ date('Y-m-d',strtotime($discount->endDate)) }}" required>{{ __('End date') }}</x-input>
