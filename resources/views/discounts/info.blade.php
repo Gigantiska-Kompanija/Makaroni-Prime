@@ -8,9 +8,9 @@
     </div>
     </x-slot>
     <dl class="row">
-        
+
         <x-info-label value="{{ __('Code') }}">{{ $discount->code }}</x-info-label>
-        <x-info-label value="{{ __('Amount') }}">{{ $discount->amount }}%</x-info-label>
+        <x-info-label value="{{ __('Amount') }}">{{ $discount->amount * 100 }}%</x-info-label>
         <x-info-label value="{{ __('Start date') }}">{{ $discount->startDate }}</x-info-label>
         <x-info-label value="{{ __('End date') }}">{{ $discount->endDate }}</x-info-label>
     </dl>

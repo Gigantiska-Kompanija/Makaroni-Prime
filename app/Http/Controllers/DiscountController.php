@@ -43,13 +43,13 @@ class DiscountController extends Controller
     {
         $validated = $request->validate([
             'code' => 'required|unique:discount|max:191',
-            'amount' => 'required|numeric',
+            'amount' => 'required|numeric|min:0|max:100',
             'startDate' => 'required',
             'endDate' => 'required',
         ]);
         $discount = new Discount();
         $discount->code = $request->code;
-        $discount->amount = $request->amount;
+        $discount->amount = $request->amount / 100.0;
         $discount->startDate = $request->startDate;
         $discount->endDate = $request->endDate;
         $discount->save();
@@ -93,12 +93,12 @@ class DiscountController extends Controller
         $discount = Discount::findOrFail($id);
         $validated = $request->validate([
             'code' => ['required', 'max:191', Rule::unique('discount', 'code')->ignore($discount->code, 'code')],
-            'amount' => 'required|numeric',
+            'amount' => 'required|numeric|min:0|max:100',
             'startDate' => 'required',
             'endDate' => 'required',
         ]);
         $discount->code = $request->code;
-        $discount->amount = $request->amount;
+        $discount->amount = $request->amount / 100.0;
         $discount->startDate = $request->startDate;
         $discount->endDate = $request->endDate;
         $discount->save();

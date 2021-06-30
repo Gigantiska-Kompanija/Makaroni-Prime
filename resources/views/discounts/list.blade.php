@@ -26,7 +26,7 @@
         @foreach($discounts as $discount)
             <tr>
                 <th><a href={{ route("discounts.show", $discount->code) }}>{{ $discount->code }}</a></th>
-                <td><a href={{ route("discounts.show", $discount->code) }}>{{ $discount->amount }}%</a></td>
+                <td><a href={{ route("discounts.show", $discount->code) }}>{{ $discount->amount * 100 }}%</a></td>
                 <td><a href={{ route("discounts.show", $discount->code) }}>{{ $discount->startDate }}</a></td>
                 <td><a href={{ route("discounts.show", $discount->code) }}>{{ $discount->endDate }}</a></td>
             </tr>
