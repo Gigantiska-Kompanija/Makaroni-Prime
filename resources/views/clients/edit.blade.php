@@ -4,6 +4,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit client') }} {{ $client->firstName }} {{ $client->lastName }}
         </h2>
+        @auth('manager')
         <form method="POST" action="{{ route('clients.destroy', $client->id) }}">
             @csrf
             <input type="hidden" name="_method" value="delete">
@@ -11,6 +12,7 @@
                 <i class="fas fa-trash-alt"></i>
             </button>
         </form>
+        @endauth
     </div>
     </x-slot>
     <form method="POST" action="{{ route('clients.update', $client->id) }}">
