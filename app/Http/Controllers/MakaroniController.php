@@ -98,7 +98,7 @@ class MakaroniController extends Controller {
     public function show($id)
     {
         $makarons = Makarons::findOrFail($id);
-        $inCart = session()->has('makaroni') && in_array($makarons->name, session()->get('makaroni'));
+        $inCart = session()->has('makaroni') && in_array($makarons->name, array_keys(session()->get('makaroni')));
         $reviews = $makarons->reviews()->orderBy('date', 'DESC')->get();
         return view('makaroni.info', compact('makarons', 'reviews', 'inCart'));
     }

@@ -87,8 +87,8 @@ class CartController extends Controller
     {
         $name = $request->name;
         $makarons = session()->pull('makaroni');
-
-        if (session()->has('makaroni') && in_array($name, session()->get('makaroni'))){
+        
+        if ($makarons && in_array($name, array_keys($makarons))){
             unset($makarons[$request->name]);
         }else{
             $makarons[$request->name] = 1;
