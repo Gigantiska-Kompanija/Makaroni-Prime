@@ -40,7 +40,7 @@
             <label for="needsMaintenance" class="form-label">{{ __('Needs maintenance') }}</label>
             <select class="form-select" name="needsMaintenance">
                 <option value="1">{{ __('Yes') }}</option>
-                <option value="0" {{ $machine->needsMaintenance ? (isset($machine->needsMaintenance) ? '' : 'selected') : 'selected'}}>{{ __('No') }}</option>
+                <option value="0" {{ $machine->needsMaintenance ? '' : 'selected'}}>{{ __('No') }}</option>
             </select>
         </div>
         <x-input inputFor="purchaseDate" type="date" val="{{ date('Y-m-d',strtotime($machine->purchaseDate)) }}">{{ __('Purchase date') }}</x-input>

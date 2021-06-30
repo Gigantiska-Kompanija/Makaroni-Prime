@@ -34,6 +34,7 @@
             <tr>
                 <th>{{ __('Serial Number') }}</th>
                 <th>{{ __('Location') }}</th>
+                <th>{{ __('Function') }}</th>
                 <th>{{ __('Model') }}</th>
                 <th>{{ __('Is operating') }}</th>
                 <th>{{ __('Needs maintenance') }}</th>
@@ -44,6 +45,7 @@
             <tr>
                 <th><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->serialNumber }}</a></th>
                 <td><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->located }}</a></td>
+                <td><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->function }}</a></td>
                 <td><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->model }}</a></td>
                 <td><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->isOperating ? __('Yes') : __('No') }}</a></td>
                 <td><a href={{ route("machines.show", $machine->serialNumber) }}>{{ $machine->needsMaintenance ? __('Yes') : __('No') }}</a></td>

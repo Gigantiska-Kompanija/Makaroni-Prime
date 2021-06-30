@@ -30,7 +30,7 @@
             <label for="needsMaintenance" class="form-label">{{ __('Needs maintenance') }}</label>
             <select class="form-select" name="needsMaintenance">
                 <option value="1">{{ __('Yes') }}</option>
-                <option value="0">{{ __('No') }}</option>
+                <option value="0" selected>{{ __('No') }}</option>
             </select>
         </div>
         <x-input inputFor="purchaseDate" type="date">{{ __('Purchase date') }}</x-input>
