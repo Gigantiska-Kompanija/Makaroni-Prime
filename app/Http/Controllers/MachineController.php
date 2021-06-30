@@ -55,10 +55,10 @@ class MachineController extends Controller
             'located' => 'required|exists:division,name|max:191',
             'model' => 'nullable|max:191',
             'isOperating' => 'nullable|numeric|boolean',
-            'lastServiced' => 'nullable|date|max:now',
+            'lastServiced' => 'nullable|date|before:now',
             'needsMaintenance' => 'nullable|numeric|boolean',
-            'purchaseDate' => 'nullable|date|max:now',
-            'decommissionDate' => 'nullable|date|max:now',
+            'purchaseDate' => 'nullable|date|before:now',
+            'decommissionDate' => 'nullable|date|before:now',
         ]);
         $machine = new Machinery();
         $machine->serialNumber = $request->serialNumber;
@@ -116,10 +116,10 @@ class MachineController extends Controller
             'located' => 'required|exists:division,name|max:191',
             'model' => 'nullable|max:191',
             'isOperating' => 'nullable|numeric|boolean',
-            'lastServiced' => 'nullable|date|max:now',
+            'lastServiced' => 'nullable|date|before:now',
             'needsMaintenance' => 'nullable|numeric|boolean',
-            'purchaseDate' => 'nullable|date|max:now',
-            'decommissionDate' => 'nullable|date|max:now',
+            'purchaseDate' => 'nullable|date|before:now',
+            'decommissionDate' => 'nullable|date|before:now',
         ]);
         $machine->serialNumber = $request->serialNumber;
         if ($request->function !== null) $machine->function = $request->function;
