@@ -91,6 +91,11 @@
     "Order": "Pasūtījums",
     "Profile": "Profils",
     "Add review": "Pievienot atsauksmi",
-    "Remove": "Noņemt"
+    "Month": "Mēnesis",
+    "Year": "Gads",
+    "Checkout": "Pasūtījuma noformēšana",
+    "Credit card number": "Kredītkartes numurs",
+    "Expiration date": "Derīguma termiņš",
+    "Security code": "Drošības kods"
 }
 
