@@ -25,7 +25,7 @@
         <x-input inputFor="position" val="{{ $employee->position }}">{{ __('Position') }}</x-input>
         <x-input inputFor="pay" val="{{ $employee->pay }}">{{ __('Salary') }} ($/m)</x-input>
         <x-input inputFor="joinDate" type="date" val="{{ date('Y-m-d',strtotime($employee->joinDate)) }}">{{ __('Join date') }}</x-input>
-        <x-input inputFor="leaveDate" type="date" val="{{ date('Y-m-d',strtotime($employee->leaveDate)) }}">{{ __('Leave date') }}</x-input>
+        <x-input inputFor="leaveDate" type="date" val="{{ isset($employee->leaveDate) ? date('Y-m-d',strtotime($employee->leaveDate)) : '' }}">{{ __('Leave date') }}</x-input>
 
         <x-submit-btn />
     </form>
