@@ -8,7 +8,7 @@
     </div>
     </x-slot>
     <dl class="row">
-        
+
         <x-info-label value="{{ __('Name') }}">{{ $client->firstName }}</x-info-label>
         <x-info-label value="{{ __('Last name') }}">{{ $client->lastName }}</x-info-label>
         <x-info-label value="{{ __('Register date') }}">{{ $client->registerDate }}</x-info-label>
@@ -28,9 +28,9 @@
         <tbody>
         @foreach($orders as $order)
             <tr>
-                <th>{{ $order->id }}</th>
-                <td>{{ $order->orderDate }}</td>
-                <td>{{ $order->total }}$</td>
+                <th><a href="{{ route('order.show', $order->id) }}">{{ $order->id }}</a></th>
+                <td><a href="{{ route('order.show', $order->id) }}">{{ $order->orderDate }}</a></td>
+                <td><a href="{{ route('order.show', $order->id) }}">{{ $order->total }}$</a></td>
             </tr>
             @endforeach
         </tbody>

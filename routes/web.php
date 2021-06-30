@@ -38,6 +38,7 @@ Route::post('form-order', 'CartController@storeOrder')->middleware('auth')->name
 Route::get('review/{id}', 'ReviewController@create')->middleware('auth')->name('review.create');
 Route::post('review/{id}', 'ReviewController@store')->middleware('auth')->name('review.store');
 Route::delete('review/{id}', 'ReviewController@destroy')->middleware('auth:manager')->name('review.destroy');
+Route::get('order/{id}', 'OrderController@show')->middleware('auth:manager')->name('order.show');
 Route::post('switchLang', 'LocaleController@set')->name('lang.switch');
 
 Route::get('audit', 'AuditController@index')->middleware(['admin'])->name('audit.index');
