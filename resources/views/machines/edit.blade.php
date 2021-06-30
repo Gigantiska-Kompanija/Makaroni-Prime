@@ -17,7 +17,7 @@
         @method('PUT')
         @csrf
 
-        <x-input inputFor="serialNumber" val="{{ $machine->serialNumber }}" required>{{ __('Serial number') }}</x-input>
+        <x-input inputFor="serialNumber" val="{{ $machine->serialNumber }}" disabled>{{ __('Serial number') }}</x-input>
         <x-input inputFor="function" val="{{ $machine->function }}">{{ __('Function') }}</x-input>
         <div class="mb-3">
             <label for="located" class="form-label">{{ __('Located') }}</label>

@@ -17,7 +17,7 @@
         @method('PUT')
         @csrf
 
-        <x-input inputFor="name" val="{{ $division->name }}" required>{{ __('Name') }}</x-input>
+        <x-input inputFor="name" val="{{ $division->name }}" disabled>{{ __('Name') }}</x-input>
         <x-input inputFor="location" val="{{ $division->location }}" required>{{ __('Location') }}</x-input>
         <div class="mb-3">
             <label for="isOperating" class="form-label">{{ __('Is operating') }}</label>
